@@ -13,6 +13,7 @@
 #ifndef _ABSTRACT_TARGET_H_
 #define _ABSTRACT_TARGET_H_
 
+class ImodelIGC;
 namespace Training
 {
     //------------------------------------------------------------------------------

@@ -1,3 +1,5 @@
+#error remove me
+#if 0
 //////////////////////////////////////////////////////////////////////////////
 //
 // PCH.H
@@ -53,7 +55,7 @@
 
 #include "engine.h"
 #include "effect.h"
-#include "utility.h"
+#include "Utility.h"
 #include "Zone.h"
 //#include "zauth.h" KG removed
 #include "igc.h"
@@ -88,4 +90,5 @@
 #define bit_or  |
 #define not     !
 
+#endif
 #endif

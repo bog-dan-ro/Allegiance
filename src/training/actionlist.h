@@ -13,12 +13,11 @@
 #ifndef _ACTION_LIST_H_
 #define _ACTION_LIST_H_
 
-#ifndef _ACTION_H_
-#include "Action.h"
-#endif// _ACTION_H_
+#include <list>
 
 namespace Training
 {
+    class Action;
     //------------------------------------------------------------------------------
     // class definitions
     //------------------------------------------------------------------------------

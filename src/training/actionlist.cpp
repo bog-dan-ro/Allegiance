@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ActionList.h"
+#include    "actionlist.h"
 
 namespace Training
 {
