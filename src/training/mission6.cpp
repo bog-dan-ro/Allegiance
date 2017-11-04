@@ -10,18 +10,17 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "Mission6.h"
+#include    "mission6.h"
 
 #include    "Training.h"
-#include    "GoalList.h"
-#include    "ConditionalAction.h"
+#include    "goallist.h"
+#include    "conditionalaction.h"
 #include    "GetShipIsDestroyedCondition.h"
-#include    "FalseCondition.h"
-#include    "ElapsedTimeCondition.h"
-#include    "SetDisplayModeAction.h"
+#include    "falsecondition.h"
+#include    "elapsedtimecondition.h"
+#include    "setdisplaymodeaction.h"
 #include    "CreateDroneAction.h"
-#include    "MessageAction.h"
+#include    "messageaction.h"
 
 namespace Training
 {

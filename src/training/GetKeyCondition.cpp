@@ -10,9 +10,8 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "GetKeyCondition.h"
-#include    "TrainingMission.h"
+#include    "trainingmission.h"
 
 namespace Training
 {

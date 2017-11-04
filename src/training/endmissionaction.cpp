@@ -10,9 +10,8 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "TrainingMission.h"
-#include    "EndMissionAction.h"
+#include    "trainingmission.h"
+#include    "endmissionaction.h"
 
 namespace Training
 {

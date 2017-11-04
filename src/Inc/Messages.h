@@ -11,7 +11,9 @@
 #ifndef _MESSAGES_ 
 #define _MESSAGES_ 
 
-#include "MessageCore.h"
+#include <igc.h>
+
+#include "messagecore.h"
 
 // KGJV - MSGVER has its own include file now
 #include "MessageVersion.h"
@@ -40,9 +42,9 @@ DEFINE_FEDMSG(C, LOGONREQ, 1)   // First message the client sends to the server.
   Time      time;
   DWORD     dwCookie;
   int       crcFileList; 
-  int8		steamAuthTicket[1024]; // BT - STEAM
-  uint32	steamAuthTicketLength; // BT - STEAM
-  uint64	steamID; // BT - STEAM
+  int8_t		steamAuthTicket[1024]; // BT - STEAM
+  uint32_t	steamAuthTicketLength; // BT - STEAM
+  uint64_t	steamID; // BT - STEAM
   char		drmHash[50]; // BT - STEAM
 END_FEDMSG
 

@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ObjectWithinRadiusCondition.h"
+#include    "objectwithinradiuscondition.h"
 #include    "TypeIDTarget.h"
 
 namespace Training

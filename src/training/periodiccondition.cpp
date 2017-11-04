@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "PeriodicCondition.h"
+#include    "periodiccondition.h"
 
 namespace Training
 {

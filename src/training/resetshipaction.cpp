@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ResetShipAction.h"
+#include    "resetshipaction.h"
 
 namespace Training
 {

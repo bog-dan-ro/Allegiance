@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "ShipSeesObjectCondition.h"
 #include    "TypeIDTarget.h"
 

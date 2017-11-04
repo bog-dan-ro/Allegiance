@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "SoundFinishedCondition.h"
+#include    "soundfinishedcondition.h"
 
 namespace Training
 {

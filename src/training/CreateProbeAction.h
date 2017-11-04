@@ -13,9 +13,7 @@
 #ifndef _CREATE_PROBE_ACTION_H_
 #define _CREATE_PROBE_ACTION_H_
 
-#ifndef _CREATE_OBJECT_ACTION_H_
 #include "CreateObjectAction.h"
-#endif// _CREATE_OBJECT_ACTION_H_
 
 namespace Training
 {

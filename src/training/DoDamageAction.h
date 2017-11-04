@@ -13,9 +13,7 @@
 #ifndef _DO_DAMAGE_ACTION_H_
 #define _DO_DAMAGE_ACTION_H_
 
-#ifndef _ACTION_H_
 #include "Action.h"
-#endif  //_ACTION_H_
 
 namespace Training
 {

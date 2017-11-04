@@ -10,8 +10,6 @@
 **
 **  History:
 */
-
-#include    "pch.h"
 #include    "GetCommandCondition.h"
 #include    "TypeIDTarget.h"
 

@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ObjectPointingAtCondition.h"
+#include    "objectpointingatcondition.h"
 #include    "TypeIDTarget.h"
 
 namespace Training

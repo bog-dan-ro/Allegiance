@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "ToggleWeaponAction.h"
 
 namespace Training

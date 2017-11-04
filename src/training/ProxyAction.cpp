@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "ProxyAction.h"
 
 namespace Training

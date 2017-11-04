@@ -1,9 +1,9 @@
+ADD_DEFINITIONS(-D__MODULE__="ClintLib")
+
+INCLUDE_DIRECTORIES(../Inc ../zlib ../engine  ../soundengine ../guids ../Igc ../lobby)
+
 SET(ClintLib_SRC
-    AutoDownload.cpp
-    appmsg.cpp
-    badwords.cpp
     clintlib.cpp
-    pch.cpp
    )
 
 ADD_LIBRARY(ClintLib ${ClintLib_SRC})

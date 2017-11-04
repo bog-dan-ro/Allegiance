@@ -6,6 +6,12 @@
 
 #include "console.h"
 
+#include <efwindow.h>
+#include <igc.h>
+#include <image.h>
+#include <soundbase.h>
+#include <tref.h>
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Main Trek Window

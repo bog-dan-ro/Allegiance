@@ -10,9 +10,8 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "Training.h"
-#include    "GoalList.h"
+#include    "goallist.h"
 
 namespace Training
 {

@@ -1,3 +1,5 @@
+#error remove me
+#if 0
 #include <windows.h>
 #include <windowsx.h>
 #include <mmsystem.h>
@@ -32,3 +34,4 @@
 
 // removed engine dep since color codes are in zlib now
 //#include "engine.h"
+#endif

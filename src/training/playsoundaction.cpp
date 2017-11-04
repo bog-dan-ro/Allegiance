@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "PlaySoundAction.h"
+#include    "playsoundaction.h"
 
 namespace Training
 {

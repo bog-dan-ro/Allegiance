@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "GetViewSectorCondition.h"
 
 namespace Training

@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "SetControlsAction.h"
 
 namespace Training

@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "TrueCondition.h"
+#include    "truecondition.h"
 
 namespace Training
 {

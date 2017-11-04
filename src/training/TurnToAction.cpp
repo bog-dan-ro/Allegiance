@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "TurnToAction.h"
 #include    "TypeIDTarget.h"
 

@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "PlayerShipTarget.h"
 
 namespace Training

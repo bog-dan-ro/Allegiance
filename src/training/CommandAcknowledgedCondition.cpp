@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "CommandAcknowledgedCondition.h"
+#include "CommandAcknowledgedCondition.h"
+
+#include <igc.h>
 
 namespace Training
 {

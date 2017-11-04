@@ -1,5 +1,6 @@
 ADD_DEFINITIONS(-D__MODULE__="Training")
-INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib ../Lib/steam ../guids ../Zone ..)
+INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib ../Lib/steam
+                    ../soundengine ../guids ../Zone ../WinTrek ../clintlib ..)
 
 SET(training_SRC
     AbstractTarget.cpp
@@ -77,7 +78,6 @@ SET(training_SRC
     objectwithinradiuscondition.cpp
     onetimeaction.cpp
     orcondition.cpp
-    pch.cpp
     periodiccondition.cpp
     playsoundaction.cpp
     resetaction.cpp

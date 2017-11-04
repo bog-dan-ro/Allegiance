@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "NTimesCondition.h"
+#include    "ntimescondition.h"
 
 namespace Training
 {

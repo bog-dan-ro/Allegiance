@@ -9,7 +9,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "DoDamageAdjustableAction.h"
 
 namespace Training

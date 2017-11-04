@@ -13,9 +13,9 @@
 #ifndef _TRAINING_MISSION_H_
 #define _TRAINING_MISSION_H_
 
-#ifndef _GOAL_H_
+#include <WinTrek.h>
+
 #include "Goal.h"
-#endif  //_GOAL_H_
 
 namespace Training
 {

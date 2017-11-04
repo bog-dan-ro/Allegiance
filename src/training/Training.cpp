@@ -10,14 +10,13 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "Training.h"
 #include    "Mission2.h"
 #include    "Mission3.h"
 #include    "Mission4.h"
 #include    "Mission5.h"
-#include    "Mission6.h"
-#include	"Mission8.h" //TheBored 06-JUL-07: Adding nanite mission.
+#include    "mission6.h"
+#include	"mission8.h" //TheBored 06-JUL-07: Adding nanite mission.
 
 namespace Training
 {

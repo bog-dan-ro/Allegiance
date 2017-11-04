@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "ReleaseConsumerAction.h"
 
 namespace Training

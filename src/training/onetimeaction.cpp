@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "OneTimeAction.h"
+#include    "onetimeaction.h"
 
 namespace Training
 {

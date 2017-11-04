@@ -18,7 +18,8 @@
 #ifndef _WINTREK_
 #define _WINTREK_
 
-#include "treki.h"
+#include <clintlib.h>
+#include "Treki.h"
 
 extern bool g_bActivity; //Imago: AFK from Activity flag
 
