@@ -1,4 +1,3 @@
-#error remove me
 #if 0
 #include <windows.h>
 #include <windowsx.h>
