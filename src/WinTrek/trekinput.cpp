@@ -1,4 +1,17 @@
-#include "pch.h"
+#include "trekinput.h"
+
+#include <alloc.h>
+#include <base.h>
+#include <efimage.h>
+#include <font.h>
+#include <igc.h>
+#include <listpane.h>
+#include <model.h>
+#include <namespace.h>
+#include <popup.h>
+#include <tarray.h>
+
+#include "Treki.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

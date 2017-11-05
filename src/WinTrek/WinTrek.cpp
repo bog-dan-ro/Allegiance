@@ -1,18 +1,42 @@
 #include "WinTrek.h"
 
+#include <efapp.h>
+#include <efimage.h>
+#include <efgeo.h>
+#include <efpane.h>
+#include <geometry.h>
+#include <help.h>
 #include <namespace.h>
+#include <redbooksound.h>
+#include <regkey.h>
 #include <shellapi.h>
+#include <soundtemplates.h>
+#include <starimage.h>
+#include <thinggeo.h>
+
+#include <VersionInfo.h>
+
+#include "artwork.h"
 #include "cmdview.h"
 //#include "console.h"
+#include "indicator.h"
+#include "radarimage.h"
 #include "trekctrls.h"
+#include "trekinput.h"
+#include "trekmdl.h"
+#include "treksound.h"
 
 #include "gamesite.h"
+#include "gamestate.h"
+#include "wintrekp.h"
 
 #include "badwords.h"
 #include "Slideshow.h"
 #include "Training.h"
 #include "CommandAcknowledgedCondition.h"
 #include "SteamClans.h" // BT - STEAM
+#include "ddvideo.h"
+#include "CallsignTagInfo.h"
 
 #include <delayimp.h>   // For error handling & advanced features
 //#include "..\\icqapi\\ICQAPIInterface.h"
@@ -43,7 +67,8 @@ extern bool g_bActivity = true;
 extern bool g_bAFKToggled = false;
 
 
-
+using namespace std;
+using namespace SoundEngine;
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -54,7 +79,7 @@ extern bool g_bAFKToggled = false;
 namespace SoundInit {
     void InitializeSoundTemplates(
         Modeler* pmodeler,
-        TVector<TRef<SoundEngine::ISoundTemplate> >& vSoundMap
+        TVector<TRef<ISoundTemplate> >& vSoundMap
     );
     void AddMembers(INameSpace* pns);
 }
@@ -3768,7 +3793,7 @@ public:
 				const WinPoint& sizePane = m_pscreen->GetPane()->GetSize();
 
 				float scale;
-				scale = min(rectScreen.XSize() / sizePane.X(), rectScreen.YSize() / sizePane.Y());
+                scale = min(rectScreen.XSize() / sizePane.X(), rectScreen.YSize() / sizePane.Y());
 
 				Point pointTranslate;
 				pointTranslate = Point(
@@ -3834,8 +3859,7 @@ public:
 	// BT - STEAM - Enable moderators to ban players by context menu.
 	void contextKickPlayer()
 	{
-		char szMessageParam[CB_ZTS];
-		lstrcpy(szMessageParam, "You have been moved to NOAT by an administrator.");
+        char szMessageParam[CB_ZTS] = "You have been moved to NOAT by an administrator.";
 		trekClient.SetMessageType(BaseClient::c_mtGuaranteed);
 		BEGIN_PFM_CREATE(trekClient.m_fm, pfmQuitSide, CS, QUIT_SIDE)
 			FM_VAR_PARM(szMessageParam, CB_ZTS)
@@ -3847,8 +3871,7 @@ public:
 	// BT - STEAM - Enable moderators to ban players by context menu.
 	void contextBanPlayer()
 	{
-		char szMessageParam[CB_ZTS];
-		lstrcpy(szMessageParam, "You have been banned from this game an administrator.");
+        char szMessageParam[CB_ZTS] = "You have been banned from this game an administrator.";
 		trekClient.SetMessageType(BaseClient::c_mtGuaranteed);
 		BEGIN_PFM_CREATE(trekClient.m_fm, pfmQuitSide, CS, QUIT_MISSION)
 			FM_VAR_PARM(szMessageParam, CB_ZTS)
@@ -4889,8 +4912,8 @@ public:
 			{
 				if (GetViewMode() == vmLoadout)
 				{
-					m_pchatListPane->SetChatLines(min(lines, 6));
-					m_pnumberChatLines->SetValue(min(lines, 6));
+                    m_pchatListPane->SetChatLines(min<uint32_t>(lines, 6));
+                    m_pnumberChatLines->SetValue(min<uint32_t>(lines, 6));
 				}
 				else if (GetViewMode() <= vmOverride)
 				{
@@ -4916,8 +4939,8 @@ public:
 			{
 				if (GetViewMode() == vmLoadout)
 				{
-					m_pchatListPane->SetChatLines(min(lines, 6));
-					m_pnumberChatLines->SetValue(min(lines, 6));
+                    m_pchatListPane->SetChatLines(min<uint32_t>(lines, 6));
+                    m_pnumberChatLines->SetValue(min<uint32_t>(lines, 6));
 				}
 				else if (GetViewMode() <= vmOverride)
 				{
@@ -5407,7 +5430,7 @@ public:
     }
 
 	//Imago 7/8/09 #24
-    void SetGamma(ZString& value)
+    void SetGamma(const ZString& value)
     {
        //we save only when loading non-default or terminate()
 		GetEngine()->SetGammaLevel(atof(ZString(value)));
@@ -5608,7 +5631,7 @@ public:
 
     void AdjustMusicVolume(float fDelta)
     {
-        float fNewValue = min(0, max(c_nMinGain, m_pnumMusicGain->GetValue() + fDelta));
+        float fNewValue = min(0.f, max<float>(c_nMinGain, m_pnumMusicGain->GetValue() + fDelta));
         m_pnumMusicGain->SetValue(fNewValue);
 
         SavePreference("MusicGain", (DWORD)-fNewValue);
@@ -5628,7 +5651,7 @@ public:
 
     void AdjustSFXVolume(float fDelta)
     {
-        float fNewValue = min(0, max(c_nMinGain, m_pnumSFXGain->GetValue() + fDelta));
+        float fNewValue = min(0.f, max<float>(c_nMinGain, m_pnumSFXGain->GetValue() + fDelta));
         m_pnumSFXGain->SetValue(fNewValue);
 
         SavePreference("SFXGain", (DWORD)-fNewValue);
@@ -5647,7 +5670,7 @@ public:
 
     void AdjustVoiceOverVolume(float fDelta)
     {
-        float fNewValue = min(0, max(c_nMinGain, m_pnumVoiceOverGain->GetValue() + fDelta));
+        float fNewValue = min(0.f, max<float>(c_nMinGain, m_pnumVoiceOverGain->GetValue() + fDelta));
         m_pnumVoiceOverGain->SetValue(fNewValue);
 
         SavePreference("VoiceOverGain", (DWORD)-fNewValue);
@@ -5667,7 +5690,7 @@ public:
 	//Imago 7/10 #187
     void AdjustFFGain(float fDelta)
     {
-        float fNewValue = min(10000, max(c_nMinFFGain, m_pnumFFGain->GetValue() + fDelta));
+        float fNewValue = min(10000.f, max<float>(c_nMinFFGain, m_pnumFFGain->GetValue() + fDelta));
         m_pnumFFGain->SetValue(fNewValue);
 
         SavePreference("FFGain", fNewValue);
@@ -5689,7 +5712,7 @@ public:
 
     void AdjustMouseSens(float fDelta)
     {
-        float fNewValue = min(2, max(0.1f, m_pnumMouseSens->GetValue() + fDelta));
+        float fNewValue = min(2.0f, max(0.1f, m_pnumMouseSens->GetValue() + fDelta));
         m_pnumMouseSens->SetValue(fNewValue);
 
         SavePreference("MouseSensitivity", ZString(fNewValue));
@@ -5769,7 +5792,7 @@ public:
         }
         else
         {
-			float value = (min(2, max(0.1f, fCurrentSens + fDelta))) * 100;
+            float value = (min(2.f, max(0.1f, fCurrentSens + fDelta))) * 100;
 			char szValue[4] = {'\0'};
 			sprintf(szValue,"%.0f",value);
             strResult += "to " + ZString(szValue) + " %";
@@ -6075,7 +6098,7 @@ public:
         }
         else
         {
-            strResult += "to " + ZString(min(0, max(c_nMinGain, fCurrentGain + fDelta))) + " dB";
+            strResult += "to " + ZString(min(0.f, max<float>(c_nMinGain, fCurrentGain + fDelta))) + " dB";
         }
 
         return strResult;
@@ -6095,7 +6118,7 @@ public:
         }
         else
         {
-            strResult += "to " + ZString(min(10000, max(c_nMinFFGain, fCurrentGain + fDelta) / 100)) + " %";
+            strResult += "to " + ZString(min(10000.f, max<float>(c_nMinFFGain, fCurrentGain + fDelta) / 100)) + " %";
         }
 
         return strResult;
@@ -7571,7 +7594,7 @@ public:
             + " Server: " + ZString(szRemoteAddress)
             + " fov: " + ((m_pcamera != NULL) ? ZString(DegreesFromRadians(m_pcamera->GetFOV())) : ZString())
             + strPosition
-            + " lag: " + ZString((long) trekClient.m_serverLag)
+            + " lag: " + ZString((int) trekClient.m_serverLag)
             + " ping: " + ZString(Time::Now() - trekClient.m_timeLastPing)
             + " sync: " + ZString(int(100.0f * trekClient.m_sync))
             + " snds: " + ZString(nNumPlayingSoundBuffers);
@@ -9381,9 +9404,9 @@ public:
         void Evaluate()
         {
             if (m_bOn) {
-                m_value = min(1, m_valueStart + (GetTime() - m_timeStart));
+                m_value = min(1.f, m_valueStart + (GetTime() - m_timeStart));
             } else {
-                m_value = max(0, m_valueStart - (GetTime() - m_timeStart));
+                m_value = max(0.f, m_valueStart - (GetTime() - m_timeStart));
             }
 
             GetValueInternal() = Interpolate(m_positionOff, m_positionOn, m_value);
@@ -11256,6 +11279,7 @@ public:
             case FM_S_ICQ_CHAT_ACK:
             {
                 CASTPFM(pfmICQChat, S, ICQ_CHAT_ACK, pfm);
+#ifndef __GNUC__
                 __try
                 {
                   static bool fICQInit = false;
@@ -11271,6 +11295,7 @@ public:
                 {
                   // nothing to do here
                 }
+#endif
             }
             break;
 

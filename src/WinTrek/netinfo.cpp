@@ -1,6 +1,8 @@
-#include "pch.h"
-
 #define MAX_STRING 1024
+
+#include <windows.h>
+#include <zassert.h>
+#include <zstring.h>
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -250,7 +252,7 @@ bool CheckDevice(int index, bool& bValid, ZString& strDriverURL)
             bValid = false;
         } else {
             void *pvVerInfo = _alloca(dwVerInfoSize);
-            ZVerify(GetFileVersionInfo((char*)(PCC)strDriverPath, NULL, dwVerInfoSize, pvVerInfo));
+            ZVerify(GetFileVersionInfo((char*)(PCC)strDriverPath, 0, dwVerInfoSize, pvVerInfo));
 
             VS_FIXEDFILEINFO *lpvsFixedFileInfo = NULL;
             unsigned uTemp;
@@ -349,5 +351,3 @@ bool CheckNetworkDevices(ZString& strDriverURL)
 
     return true;
 }
-
-

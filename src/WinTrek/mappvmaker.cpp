@@ -9,7 +9,6 @@
 **  History:
 */
 
-#include    "pch.h"
 #include    "mapmakerigc.h"
 #include    "mappvmaker.h"
 

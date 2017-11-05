@@ -1,4 +1,10 @@
-#include "pch.h"
+#include <model.h>
+#include <namespace.h>
+#include <redbooksound.h>
+#include <soundtemplates.h>
+#include <soundutil.h>
+
+using namespace SoundEngine;
 
 class WaveTemplateFactory : public IFunction
 {

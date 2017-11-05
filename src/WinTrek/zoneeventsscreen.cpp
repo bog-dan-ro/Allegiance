@@ -1,5 +1,15 @@
-#include "pch.h"
+#include "screen.h"
 
+#include <FTPSession.h>
+#include <combopane.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <frameimage.h>
+#include <help.h>
+#include <listpane.h>
+#include <namespace.h>
+
+#include "trekctrls.h"
 //////////////////////////////////////////////////////////////////////////////
 //
 // ZoneEvents Screen

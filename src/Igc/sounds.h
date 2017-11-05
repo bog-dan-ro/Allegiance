@@ -1,3 +1,6 @@
+#pragma once
+
+#include "igc.h"
 
 //
 // sound IDs

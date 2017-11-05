@@ -1,11 +1,8 @@
-#include "pch.h"
-#include "mdl.h"
 #include "trekmdl.h"
-//#include "console.h"
-#ifndef MARKCU
+
+#include <mdl.h>
+
 #include "consoledata.h"
-#endif 
-// KGJV #62
 #include "mappreview.h"
 //////////////////////////////////////////////////////////////////////////////
 //

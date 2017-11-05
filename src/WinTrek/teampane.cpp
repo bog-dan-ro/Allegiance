@@ -1,6 +1,10 @@
-#include "pch.h"
-#include "training.h"
+#include <clintlib.h>
+
+#include "Training.h"
+#include "WinTrek.h"
+
 #include "badwords.h"
+#include "surface.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

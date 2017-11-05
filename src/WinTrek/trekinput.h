@@ -2,9 +2,13 @@
 #define	TREKINPUT_H
 
 #include <igc.h>
+#include <input.h>
 #include <tref.h>
+#include <value.h>
 
-
+class IPopup;
+class Modeler;
+class IEngineFont;
 //////////////////////////////////////////////////////////////////////////////
 //
 // Trek Input

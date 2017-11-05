@@ -3,6 +3,7 @@
 #include <button.h>
 #include <combopane.h>
 #include <controls.h>
+#include <gamestate.h>
 
 #include "artwork.h"
 #include "consoledata.h"

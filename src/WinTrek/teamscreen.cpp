@@ -1,6 +1,13 @@
-#include "pch.h"
-#include "training.h"
-#include "badwords.h"
+#include "screen.h"
+
+#include <Training.h>
+#include <badwords.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <combopane.h>
+#include <frameimage.h>
+#include <listpane.h>
+#include <namespace.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,7 +15,13 @@
 #include <string>
 
 // KGJV #62
+#include "artwork.h"
 #include "mappreview.h"
+#include "trekctrls.h"
+#include "trekmdl.h"
+
+using namespace std;
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Team Screen
@@ -1897,13 +1910,13 @@ public:
 	  plistMembers = pSideInfo->GetMembers();
 	  if (plistMembers.GetCount() > 0)
 	  {
-		  ShipID iShipID = plistMembers.GetFront();
+          ItemID iShipID = ItemID(plistMembers.GetFront());
 		  while (true)
 		  {
 			  if (!iShipID)
 				  break;
 
-			  pPlayer = trekClient.FindPlayer(iShipID);
+              pPlayer = trekClient.FindPlayer(ShipID(uintptr_t(iShipID)));
 
 			  if (pPlayer)
 			  {
@@ -1913,7 +1926,7 @@ public:
 					  iRankSum += (iTempRank < 1) ? 1 : iTempRank;
 				  }
 			  }
-			  iShipID = (ShipID)plistMembers.GetNext((ItemID)iShipID);
+              iShipID = plistMembers.GetNext(iShipID);
 		  }
 
 	  }
@@ -1950,13 +1963,13 @@ public:
 			plistMembers = pSide->GetMembers();
 			if (plistMembers.GetCount() > 0)
 			{
-				ShipID iShipID = plistMembers.GetFront();
+                ItemID iShipID = ItemID(plistMembers.GetFront());
 				while (true)
 				{
 					if (!iShipID)
 						break;
 
-					pPlayer = trekClient.FindPlayer(iShipID);
+                    pPlayer = trekClient.FindPlayer(ShipID(uintptr_t(iShipID)));
 	
 					if (pPlayer)
 					{
@@ -1974,7 +1987,7 @@ public:
 							iAverageRank += iTempRank;
 						}
 					}
-					iShipID = (ShipID)plistMembers.GetNext((ItemID)iShipID);
+                    iShipID = plistMembers.GetNext(iShipID);
 				}
 			}
 		}

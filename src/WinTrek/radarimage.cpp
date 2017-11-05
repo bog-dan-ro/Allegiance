@@ -1,4 +1,5 @@
-#include "pch.h"
+#include "radarimage.h"
+
 const char* c_szRadarLODs[] = {
                                "Radar mode: All",
                                "Radar mode: Default",

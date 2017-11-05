@@ -1,6 +1,7 @@
 #ifndef _listwrappers_h_
 #define _listwrappers_h_
 
+#include <cstdint>
 #include <Utility.h>
 #include <event.h>
 #include <genericlist.h>
@@ -103,7 +104,7 @@ class IntItemIDWrapper
 public:
     IntItemIDWrapper() {}
     IntItemIDWrapper(T t) : m_t(t) {}
-    IntItemIDWrapper(ItemID pitem) { m_t = ((int)pitem == ZeroValue) ? 0 : (T)pitem; }
+    IntItemIDWrapper(ItemID pitem) { m_t = ((int)pitem == ZeroValue) ? 0 : T(uintptr_t(pitem)); }
 
     int operator = (T t) { m_t = t; }
     operator T () { return m_t; }

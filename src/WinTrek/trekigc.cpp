@@ -11,12 +11,21 @@
 **  History:
 */
 
-#include "pch.h"
+#include <Training.h>
+#include <efimage.h>
+#include <efgeo.h>
+#include <geometry.h>
+#include <model.h>
+#include <particlegeo.h>
+#include <regkey.h>
+#include <thinggeo.h>
+#include <value.h>
+#include <viewport.h>
 #include <stddef.h>
-#include "training.h"
-#include "regkey.h"
 #include <zreg.h>
+
 #include "badwords.h"
+#include "WinTrek.h"
 
 class ClusterSiteImpl : public ClusterSite
 {

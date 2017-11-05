@@ -1,4 +1,10 @@
-#include "pch.h"
+#include "indicator.h"
+
+#include <context.h>
+#include <image.h>
+
+#include "artwork.h"
+#include "WinTrek.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

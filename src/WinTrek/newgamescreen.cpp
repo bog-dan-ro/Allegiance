@@ -1,7 +1,20 @@
-#include "pch.h"
+#include "screen.h"
+
+#include <efapp.h>
+#include <efpane.h>
+#include <combopane.h>
+#include <frameimage.h>
+#include <help.h>
+#include <listpane.h>
+#include <namespace.h>
 
 //KGJV #62
+#include "gametypes.h"
 #include "mappreview.h"
+#include "trekctrls.h"
+
+using namespace std;
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // NewGame Screen

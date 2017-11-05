@@ -133,6 +133,7 @@ DEFINE_FEDMSG(CS, PROJECTILE_INSTANCE, 12)
 END_FEDMSG
 
 // keep in sync copy in ClubMessages.h
+#ifndef _MESSAGES_ALLCLUB_H_
 struct RankInfo
 {
     int     requiredRanking;
@@ -140,6 +141,7 @@ struct RankInfo
     RankID  rank;
     char    RankName[c_cbName];
 };
+#endif
 
 DEFINE_FEDMSG(S, RANK_INFO, 13)
   FM_VAR_ITEM(ranks); // an array of RankInfo sorted by civ, then rank

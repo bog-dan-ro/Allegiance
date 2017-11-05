@@ -14,6 +14,7 @@
 #include <map>
 #include <tlist.h>
 #include <ztime.h>
+#include <windowsx.h>
 
 #define OBLIVION_CLIENT_REG_KEY "Allegiance"
 

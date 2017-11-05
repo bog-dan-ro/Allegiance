@@ -1,4 +1,4 @@
-ADD_DEFINITIONS(-D__MODULE__="WinTrek" -DNO_CLUB_SERVER_CONNECTION -D_STEAM_APP_ID=700480)
+ADD_DEFINITIONS(-D__MODULE__="WinTrek" -DSTRSAFE_NO_DEPRECATE -DEnablePerformanceCounters -DNO_CLUB_SERVER_CONNECTION -D_STEAM_APP_ID=700480)
 
 INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
                     ../Lib/steam ../soundengine ../guids ../Zone
@@ -24,7 +24,6 @@ SET(Allegiance_SRC
     ddvideo.cpp
     gameoverscreen.cpp
     gamescreen.cpp
-    gamesite.cpp
     gamestartingscreen.cpp
     gametypes.cpp
     hangarscreen.cpp

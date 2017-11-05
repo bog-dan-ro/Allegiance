@@ -1,6 +1,8 @@
 #ifndef _logon_h_
 #define _logon_h_
 
+#include <zstring.h>
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // logon
@@ -20,6 +22,8 @@ enum LogonType
   LogonLAN,
 };
 
+class IPopup;
+class Modeler;
 TRef<IPopup> CreateLogonPopup(Modeler* pmodeler, LogonSite* psite, LogonType lt, 
                               LPCSTR szPrompt, LPCSTR szName, LPCSTR szPW, BOOL fRememberPW);
 

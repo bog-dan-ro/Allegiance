@@ -1,5 +1,3 @@
-#include "pch.h"
-
 #include <button.h>
 #include <controls.h>
 #include <geometry.h>
