@@ -11,6 +11,12 @@
  * 
  * Copyright 1986-2000 Microsoft Corporation, All Rights Reserved
  *-----------------------------------------------------------------------*/
+#pragma once
+
+#include <Member.h>
+#include <Squad.h>
+#include <igc.h>
+#include <listwrappers.h>
 
 
 

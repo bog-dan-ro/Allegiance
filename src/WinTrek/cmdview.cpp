@@ -1,8 +1,10 @@
-#include "pch.h"
 #include "cmdview.h"
 
 #include <button.h>
 #include <controls.h>
+#include <efapp.h>
+
+#include "WinTrek.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

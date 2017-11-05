@@ -1,6 +1,6 @@
-#include "pch.h"
+#include "WinTrek.h"
 
-
+#include <namespace.h>
 #include <shellapi.h>
 #include "cmdview.h"
 //#include "console.h"
@@ -9,12 +9,12 @@
 #include "gamesite.h"
 
 #include "badwords.h"
-#include "slideshow.h"
+#include "Slideshow.h"
 #include "Training.h"
 #include "CommandAcknowledgedCondition.h"
 #include "SteamClans.h" // BT - STEAM
 
-#include <Delayimp.h>   // For error handling & advanced features
+#include <delayimp.h>   // For error handling & advanced features
 //#include "..\\icqapi\\ICQAPIInterface.h"
 
 class QuickChatNode : public IMDLObject {};
@@ -54,7 +54,7 @@ extern bool g_bAFKToggled = false;
 namespace SoundInit {
     void InitializeSoundTemplates(
         Modeler* pmodeler,
-        TVector<TRef<ISoundTemplate> >& vSoundMap
+        TVector<TRef<SoundEngine::ISoundTemplate> >& vSoundMap
     );
     void AddMembers(INameSpace* pns);
 }

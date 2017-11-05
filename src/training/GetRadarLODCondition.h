@@ -13,9 +13,9 @@
 #ifndef _GET_RADAR_LOD_CONDITION_H_
 #define _GET_RADAR_LOD_CONDITION_H_
 
-#ifndef _CONDITION_H_
+#include <radarimage.h>
+
 #include "Condition.h"
-#endif  //_CONDITION_H_
 
 namespace Training
 {

@@ -10,7 +10,9 @@
 **
 **  History:
 */
-#include    "GetRadarLODCondition.h"
+#include "GetRadarLODCondition.h"
+
+#include <Treki.h>
 
 namespace Training
 {
@@ -30,7 +32,7 @@ namespace Training
     //------------------------------------------------------------------------------
     bool        GetRadarLODCondition::Evaluate (void)
     {
-        return (GetWindow ()->GetRadarMode () == static_cast<int> (m_expectedRadarLOD)) ? true : false;
+        return (GetWindow()->GetRadarMode () == static_cast<int> (m_expectedRadarLOD)) ? true : false;
     }
 
     //------------------------------------------------------------------------------

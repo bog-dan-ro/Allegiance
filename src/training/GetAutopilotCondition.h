@@ -17,6 +17,9 @@
 #include "Condition.h"
 #endif  //_CONDITION_H_
 
+#include <tref.h>
+
+class IshipIGC;
 namespace Training
 {
     //------------------------------------------------------------------------------

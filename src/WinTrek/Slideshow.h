@@ -1,7 +1,11 @@
 #ifndef slideshow_h_
 #define slideshow_h_
 
+#include <image.h>
+#include <input.h>
+#include <soundbase.h>
 #include "screen.h"
+
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -19,7 +23,7 @@ class Slideshow :
         TRef<Image>             m_pImage;
         TRef<WrapImage>         m_pWrapImage;
         bool                    m_bNextSlide;
-        TRef<ISoundInstance>    m_pSoundInstance;
+        TRef<SoundEngine::ISoundInstance>    m_pSoundInstance;
         TRef<IKeyboardInput>    m_pkeyboardInputOldFocus;
         TRef<IEventSink>        m_pEventSink;
         bool                    m_bInTimer;

@@ -10,7 +10,9 @@
 **
 **  History:
 */
-#include    "GetShipIsStoppedCondition.h"
+#include "GetShipIsStoppedCondition.h"
+
+#include <WinTrek.h>
 
 namespace Training
 {

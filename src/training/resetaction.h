@@ -13,13 +13,10 @@
 #ifndef _RESET_ACTION_H_
 #define _RESET_ACTION_H_
 
-#ifndef _ACTION_H_
-#include "Action.h"
-#endif  //_ACTION_H_
+#include <igc.h>
 
-#ifndef _GOAL_H_
+#include "Action.h"
 #include "Goal.h"
-#endif  //_GOAL_H_
 
 namespace Training
 {

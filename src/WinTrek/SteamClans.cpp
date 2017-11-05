@@ -1,8 +1,7 @@
-#include "pch.h"
+#ifdef STEAM_APP_ID
 #include "SteamClans.h"
 
 // BT - STEAM
-#ifdef STEAM_APP_ID
 
 SteamClans::SteamClans()
 {

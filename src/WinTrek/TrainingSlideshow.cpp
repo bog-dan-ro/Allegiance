@@ -1,6 +1,9 @@
-#include "pch.h"
-#include "slideshow.h"
-#include "training.h"
+#include <efpopup.h>
+
+#include "Slideshow.h"
+#include "Training.h"
+#include "Treki.h"
+#include "WinTrek.h"
 
 
 //////////////////////////////////////////////////////////////////////////////

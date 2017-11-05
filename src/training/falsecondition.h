@@ -13,13 +13,8 @@
 #ifndef _FALSE_CONDITION_H_
 #define _FALSE_CONDITION_H_
 
-#ifndef _NOT_CONDITION_H_
-#include "NotCondition.h"
-#endif  //_NOT_CONDITION_H_
-
-#ifndef _TRUE_CONDITION_H_
-#include "TrueCondition.h"
-#endif  //_TRUE_CONDITION_H_
+#include "notcondition.h"
+#include "truecondition.h"
 
 namespace Training
 {

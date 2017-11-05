@@ -141,7 +141,7 @@ namespace Training
             {
                 // only allow if the inventory pane is up
                 TrekWindow* pWindow = GetWindow ();
-                if (pWindow->GetOverlayFlags () bit_and ofInventory)
+                if (pWindow->GetOverlayFlags () & ofInventory)
                     return true;
                 return false;
             }

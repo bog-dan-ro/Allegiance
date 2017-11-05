@@ -1,6 +1,10 @@
 #pragma once
 #ifdef STEAM_APP_ID
 
+#include <tvector.h>
+#include <steam_api.h>
+#include "CallsignTagInfo.h"
+
 // BT - STEAM
 
 class SteamClans
@@ -10,7 +14,7 @@ private:
 	bool m_officerDataReceived = false;
 
 	void OnClanOfficerListResponse(ClanOfficerListResponse_t *pCallback, bool bIOFailure);
-	CCallResult< SteamClans, ClanOfficerListResponse_t > m_SteamCallResultClanOfficerListResponse;
+    CCallResult< SteamClans, ClanOfficerListResponse_t > m_SteamCallResultClanOfficerListResponse;
 
 public:
 	SteamClans();

@@ -33,7 +33,7 @@ namespace Training
     bool        GetStateBitsCondition::Evaluate (void)
     {
         int     iBits = m_ship->GetStateM ();
-        return (iBits bit_and m_iBits) ? true : false;
+        return (iBits & m_iBits) ? true : false;
     }
 
     //------------------------------------------------------------------------------

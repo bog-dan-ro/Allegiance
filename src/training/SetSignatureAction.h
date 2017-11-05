@@ -13,13 +13,10 @@
 #ifndef _SET_SIGNATURE_ACTION_H_
 #define _SET_SIGNATURE_ACTION_H_
 
-#ifndef _ACTION_H_
-#include "Action.h"
-#endif// _ACTION_H_
+#include <igc.h>
 
-#ifndef _ABSTRACT_TARGET_H_
+#include "Action.h"
 #include "AbstractTarget.h"
-#endif  //_ABSTRACT_TARGET_H_
 
 namespace Training
 {

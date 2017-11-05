@@ -1,14 +1,10 @@
-#include "pch.h"
-
-#include <inttypes.h> 
-
-// BT - STEAM
-
 #include "CallsignTagInfo.h"
 
-
-
-CallsignTagInfo::CallsignTagInfo(ZString callsignTag, uint64 steamGroupID, int index, bool isOfficer) :
+#include <regkey.h>
+#ifdef STEAM_APP_ID
+# include <steam_api.h>
+#endif
+CallsignTagInfo::CallsignTagInfo(ZString callsignTag, uint64_t steamGroupID, int index, bool isOfficer) :
 	m_callsignTag(callsignTag),
 	m_steamGroupID(steamGroupID),
 	m_index(index),
@@ -130,7 +126,8 @@ void CallsignTagInfo::LoadFromRegistry()
 
 void CallsignTagInfo::SaveToRegistry()
 {
-	char steamGroupID[64];
+#ifdef STEAM_APP_ID
+    char steamGroupID[64];
 	sprintf(steamGroupID, "%" PRIu64, m_steamGroupID);
 
 	char token[5];
@@ -147,11 +144,13 @@ void CallsignTagInfo::SaveToRegistry()
 	}
 
 	UpdateStringValues(m_callsignToken);
+#endif
 }
 
 void CallsignTagInfo::UpdateStringValues(ZString selectedToken)
 {
-	m_isOfficer = false;
+#ifdef STEAM_APP_ID
+    m_isOfficer = false;
 	//m_callsignTag = "";
 	//m_index = 0;
 
@@ -190,6 +189,7 @@ void CallsignTagInfo::UpdateStringValues(ZString selectedToken)
 		else
 			m_callsignToken = tokens.Middle(tokens.GetLength() - 1, 1);
 	}
+#endif
 }
 
 ZString CallsignTagInfo::GetAvailableTokens()
@@ -212,7 +212,7 @@ ZString CallsignTagInfo::GetAvailableTokens()
 	}
 }
 
-void CallsignTagInfo::SetSteamGroupID(uint64 steamGroupID, ZString callsignTag)
+void CallsignTagInfo::SetSteamGroupID(uint64_t steamGroupID, ZString callsignTag)
 {
 	m_steamGroupID = steamGroupID;
 	m_callsignTag = "";

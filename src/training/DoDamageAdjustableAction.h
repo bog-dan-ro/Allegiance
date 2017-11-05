@@ -12,9 +12,9 @@
 #ifndef _DO_DAMAGE_ADJUSTABLE_ACTION_H_
 #define _DO_DAMAGE_ADJUSTABLE_ACTION_H_
 
-#ifndef _ACTION_H_
+#include <igc.h>
+
 #include "Action.h"
-#endif  //_ACTION_H_
 
 namespace Training
 {

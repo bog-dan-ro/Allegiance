@@ -13,9 +13,10 @@
 #ifndef _PLAY_SOUND_ACTION_H_
 #define _PLAY_SOUND_ACTION_H_
 
-#ifndef _ACTION_H_
+#include <igc.h>
+#include <soundbase.h>
+
 #include "Action.h"
-#endif// _ACTION_H_
 
 namespace Training
 {
@@ -34,7 +35,7 @@ namespace Training
 
         protected:
                     SoundID                 m_soundID;
-                    TRef<ISoundInstance>    m_soundInstance;
+                    TRef<SoundEngine::ISoundInstance>    m_soundInstance;
                     bool                    m_bHasStarted;
     };
 

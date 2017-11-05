@@ -1,6 +1,8 @@
 ADD_DEFINITIONS(-D__MODULE__="Training")
-INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib ../Lib/steam
-                    ../soundengine ../guids ../Zone ../WinTrek ../clintlib ..)
+
+INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
+                    ../Lib/steam ../soundengine ../guids ../Zone
+                    ../WinTrek ../clintlib ../lobby ..)
 
 SET(training_SRC
     AbstractTarget.cpp

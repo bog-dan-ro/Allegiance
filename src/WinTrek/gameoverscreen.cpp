@@ -1,5 +1,5 @@
-#include "pch.h"
 #include "badwords.h"
+#include "screen.h"
 
 #include <button.h>
 #include <controls.h>

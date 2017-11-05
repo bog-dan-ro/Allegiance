@@ -9,7 +9,7 @@
 **
 **  History:
 */
-#include "pch.h"
+#include "Utility.h"
 
 //Allocate space for the node's hitTest and endpoint arrays
 //(as a single allocation)

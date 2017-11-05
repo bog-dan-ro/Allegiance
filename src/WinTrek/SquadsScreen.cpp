@@ -1,4 +1,21 @@
-#include "pch.h"
+#include <messagecore.h>
+
+#include <ClubMessages.h>
+#include <Squad.h>
+#include <Zone.h>
+#include <button.h>
+#include <combopane.h>
+#include <controls.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <efpopup.h>
+#include <listpane.h>
+#include <namespace.h>
+
+#include "ZoneSquad.h"
+#include "screen.h"
+#include "trekctrls.h"
+#include "WinTrek.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -1250,7 +1267,7 @@ public:
                     // after changing column sorts, make sure the same squad is selected
                     if (m_psquadPrePage == psquad)  
                     {
-                        m_nCurrentRanking = max(1, psquad->GetRanking(s_column));
+                        m_nCurrentRanking = std::max(1, psquad->GetRanking(s_column));
                         DisplaySquadsInRange();
 
                         // It's rare, but this can happen if user request lots of pages and switching between columns frequently

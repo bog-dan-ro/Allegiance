@@ -13,9 +13,9 @@
 #ifndef _GET_SHIP_IS_STOPPED_CONDITION_H_
 #define _GET_SHIP_IS_STOPPED_CONDITION_H_
 
-#ifndef _CONDITION_H_
+#include <igc.h>
+
 #include "Condition.h"
-#endif  //_CONDITION_H_
 
 namespace Training
 {

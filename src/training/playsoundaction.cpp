@@ -10,7 +10,10 @@
 **
 **  History:
 */
-#include    "playsoundaction.h"
+#include "playsoundaction.h"
+
+#include <WinTrek.h>
+#include <wintrekp.h>
 
 namespace Training
 {
@@ -36,7 +39,7 @@ namespace Training
         if (m_soundID != NA)
         {
             ThingSitePrivate*           pThingSite = static_cast<ThingSitePrivate*> (trekClient.GetShip ()->GetThingSite());
-            TRef<ISoundPositionSource>  pSource = pThingSite ? pThingSite->GetSoundSource () : NULL;
+            TRef<SoundEngine::ISoundPositionSource>  pSource = pThingSite ? pThingSite->GetSoundSource () : NULL;
             m_soundInstance = trekClient.StartSound (m_soundID, pSource);
         }
         m_bHasStarted = true;

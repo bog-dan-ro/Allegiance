@@ -9,6 +9,7 @@
 #include <efwindow.h>
 #include <igc.h>
 #include <image.h>
+#include <messagecore.h>
 #include <soundbase.h>
 #include <tref.h>
 
@@ -52,6 +53,8 @@ enum ScreenID {
 //////////////////////////////////////////////////////////////////////////////
 
 class ChatListPane;
+class TrekInput;
+class PlayerInfo;
 
 class TrekWindow : public EffectWindow {
 protected:
@@ -226,8 +229,8 @@ public:
     virtual void PlaySonicChat(int id, int voice) = 0;
 
     virtual void                  SoundEngineUpdate (void) = 0;
-    virtual TRef<ISoundInstance>  StartSound(ISoundTemplate* ptemplate, ISoundPositionSource* psource = NULL) = 0;
-    virtual TRef<ISoundInstance>  StartSound(SoundID soundId, ISoundPositionSource* psource = NULL) = 0;
+    virtual TRef<SoundEngine::ISoundInstance>  StartSound(SoundEngine::ISoundTemplate* ptemplate, SoundEngine::ISoundPositionSource* psource = NULL) = 0;
+    virtual TRef<SoundEngine::ISoundInstance>  StartSound(SoundID soundId, SoundEngine::ISoundPositionSource* psource = NULL) = 0;
 
     virtual void TriggerMusic(SoundID newMusicSound) = 0;
     virtual bool GetMusicIsOn (void) = 0;

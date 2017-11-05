@@ -13,9 +13,9 @@
 #ifndef _PERIODIC_CONDITION_H_
 #define _PERIODIC_CONDITION_H_
 
-#ifndef _CONDITION_H_
+#include <cstdint>
+
 #include "Condition.h"
-#endif  //_CONDITION_H_
 
 namespace Training
 {
@@ -33,8 +33,8 @@ namespace Training
 
         protected:
                     Condition*          m_pCondition;
-                    DWORD               m_dwPeriod;
-                    DWORD               m_dwStartTime;
+                    uint32_t            m_dwPeriod;
+                    uint32_t            m_dwStartTime;
     };
 
     //------------------------------------------------------------------------------

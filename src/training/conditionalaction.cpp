@@ -10,8 +10,8 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ConditionalAction.h"
+#include "Condition.h"
+#include "conditionalaction.h"
 
 namespace Training
 {

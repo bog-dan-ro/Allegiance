@@ -5,8 +5,9 @@
 #include <mmstream.h> 
 #include <amstream.h>
 #include <ddstream.h> 
-#include <DShow.h>
+#include <dshow.h>
 
+class ZString;
 
 // +-----------------------------------+
 // | THE DirectShow Class. 			   | 

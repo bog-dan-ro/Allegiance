@@ -1,8 +1,11 @@
-#include "pch.h"
 #include "ddvideo.h" //Macros and crap
-#include "ddstream.h" //DShow object
 
 #include <EngineSettings.h>
+#include <zassert.h>
+#include <zstring.h>
+
+#include "ddstream.h" //DShow object
+
 
 DDVideo::DDVideo()
 {

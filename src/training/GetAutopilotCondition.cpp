@@ -12,6 +12,8 @@
 */
 #include    "GetAutopilotCondition.h"
 
+#include <igc.h>
+
 namespace Training
 {
     //------------------------------------------------------------------------------

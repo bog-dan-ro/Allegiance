@@ -1,6 +1,10 @@
 #ifndef	TREKINPUT_H
 #define	TREKINPUT_H
 
+#include <igc.h>
+#include <tref.h>
+
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Trek Input
@@ -43,6 +47,8 @@ public:
     virtual TrekKey      OnXButton5()                                                              = 0;
 };
 
+class InputEngine;
+class JoystickImage;
 TRef<TrekInput> CreateTrekInput(HINSTANCE hInst, HWND hwnd, InputEngine* pinputEngine, JoystickImage* pjoystickImage);
 
 #define INPUTMAP_FILE         "inputmap1"

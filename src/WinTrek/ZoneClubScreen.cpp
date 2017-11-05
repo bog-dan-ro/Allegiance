@@ -1,9 +1,22 @@
-#include "pch.h"
+#include <AutoDownload.h>
+
+#include <button.h>
+#include <efpopup.h>
+#include <image.h>
+#include <namespace.h>
 #include <zreg.h>
 
+#include "logon.h"
+#include "screen.h"
+#include "trekctrls.h"
+#include "Treki.h"
+#include "WinTrek.h"
+#include "CallsignTagInfo.h"
+
 // BT - STEAM
+#ifndef __GNUC__
 #include "atlenc.h"
-#include <inttypes.h>
+#endif
 
 // #define NO_CLUB_SERVER_CONNECTION 1 // comment out before checkin
 

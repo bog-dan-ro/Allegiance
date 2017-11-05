@@ -1,12 +1,18 @@
 #ifndef _screens_h_
 #define _screens_h_
 
+#include <point.h>
+#include <tref.h>
+#include <Utility.h>
+#include <value.h>
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Screen
 //
 //////////////////////////////////////////////////////////////////////////////
-
+class Image;
+class Pane;
 class Screen : public IObject {
 public:
     virtual Image*   GetImage() { return NULL; }
@@ -22,7 +28,7 @@ public:
 // Screen Constructors
 //
 //////////////////////////////////////////////////////////////////////////////
-
+class Modeler;
 TRef<Screen> CreateTeamScreen(Modeler* pmodeler);
 TRef<Screen> CreateGameScreen(Modeler* pmodeler);
 TRef<Screen> CreateIntroScreen(Modeler* pmodeler);
@@ -43,7 +49,7 @@ TRef<Screen> CreateGameStartingScreen(Modeler* pmodeler);
 // Taken out of D3D9 build for now, movies not supported at the moment.  //Imago use DDVideo
 // TRef<Screen> CreateVideoScreen(Modeler* pmodeler, bool bIntroOnly);
 // BUILD_DX9
-
+class IPopup;
 TRef<IPopup> CreateMissionParametersPopup(Modeler* pmodeler);
 
 extern bool g_bQuickstart;

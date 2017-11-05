@@ -13,9 +13,9 @@
 #ifndef _SWAP_WEAPON_ACTION_H_
 #define _SWAP_WEAPON_ACTION_H_
 
-#ifndef _ACTION_H_
+#include <igc.h>
+
 #include "Action.h"
-#endif  //_ACTION_H_
 
 namespace Training
 {

@@ -12,6 +12,8 @@
 */
 #include    "trainingmission.h"
 
+#include    <trekinput.h>
+
 #include    "goallist.h"
 #include    "Predicate.h"
 #include    "truecondition.h"

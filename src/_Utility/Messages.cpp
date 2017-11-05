@@ -2,9 +2,11 @@
    Interface between WinTrek and FedSrv
    Owner: 
 */
+#include "Messages.h"
 
-#include "pch.h"
-#include "messagecore.h"
+#include <crtdbg.h>
+#include <guids.h>
+#include <windowsx.h>
 
 //  <NKM> 25-Aug-2004
 // For debug purposes....

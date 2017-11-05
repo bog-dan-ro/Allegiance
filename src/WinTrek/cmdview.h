@@ -1,6 +1,12 @@
 #ifndef	TREKGEO_H
 #define	TREKGEO_H
 
+#include <button.h>
+#include <controls.h>
+#include <igc.h>
+#include <pane.h>
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // ImageStringPane 

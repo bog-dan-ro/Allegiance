@@ -1,3 +1,9 @@
+ADD_DEFINITIONS(-D__MODULE__="WinTrek" -DNO_CLUB_SERVER_CONNECTION -D_STEAM_APP_ID=700480)
+
+INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
+                    ../Lib/steam ../soundengine ../guids ../Zone
+                    ../training ../clintlib ../lobby ../_Utility ..)
+
 SET(Allegiance_SRC
     CallsignTagInfo.cpp
     CharInfoScreen.cpp
@@ -34,7 +40,6 @@ SET(Allegiance_SRC
     netinfo.cpp
     newgamescreen.cpp
     passworddialog.cpp
-    pch.cpp
     radarimage.cpp
     sectormap.cpp
     selpane.cpp

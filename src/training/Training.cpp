@@ -11,6 +11,9 @@
 **  History:
 */
 #include    "Training.h"
+
+#include	<indicator.h>
+
 #include    "Mission2.h"
 #include    "Mission3.h"
 #include    "Mission4.h"

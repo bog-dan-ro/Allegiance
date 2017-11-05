@@ -10,7 +10,9 @@
 **
 **  History:
 */
-#include    "GetViewSectorCondition.h"
+#include "GetViewSectorCondition.h"
+
+#include <WinTrek.h>
 
 namespace Training
 {

@@ -49,7 +49,7 @@ namespace Training
     //------------------------------------------------------------------------------
     void        SetControlsAction::SetInputAction (int iInputAction, int iMask)
     {
-        m_iInputAction = (m_iInputAction bit_and iMask) bit_or iInputAction;
+        m_iInputAction = (m_iInputAction & iMask) | iInputAction;
     }
 
     //------------------------------------------------------------------------------

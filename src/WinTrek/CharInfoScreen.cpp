@@ -1,7 +1,13 @@
-#include "pch.h"
-
 #include <button.h>
+#include <combopane.h>
 #include <controls.h>
+#include <listpane.h>
+#include <listwrappers.h>
+#include <Medal.h>
+#include <namespace.h>
+
+#include "Treki.h"
+#include "WinTrek.h"
 
 class CharInfoScreen;
 extern CharInfoScreen * g_pCharInfoScreen; // messy but avoids .h file

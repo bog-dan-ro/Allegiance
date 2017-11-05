@@ -1,5 +1,5 @@
 ADD_DEFINITIONS(-D__MODULE__="Utility")
-INCLUDE_DIRECTORIES(../Inc ../zlib ../Lib/steam ../guids)
+INCLUDE_DIRECTORIES(../Inc ../zlib ../Lib/steam ../guids ../Igc)
 
 SET(Utility_SRC
     CRC.cpp
@@ -11,8 +11,6 @@ SET(Utility_SRC
     KDroot.cpp
     Messages.cpp
     Utility.cpp
-    allegdb.cpp
-    pch.cpp
    )
 
 ADD_LIBRARY(Utility ${Utility_SRC})

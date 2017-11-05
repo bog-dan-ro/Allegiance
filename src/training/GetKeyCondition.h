@@ -13,9 +13,9 @@
 #ifndef _GET_KEY_CONDITION_H_
 #define _GET_KEY_CONDITION_H_
 
-#ifndef _CONDITION_H_
+#include <igc.h>
+
 #include "Condition.h"
-#endif  //_CONDITION_H_
 
 namespace Training
 {

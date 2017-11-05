@@ -9,7 +9,9 @@
 **
 **  History:
 */
-#include    "DoDamageAdjustableAction.h"
+#include "DoDamageAdjustableAction.h"
+
+#include <WinTrek.h>
 
 namespace Training
 {

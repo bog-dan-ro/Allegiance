@@ -10,6 +10,9 @@
 **  History:
 */
 #include "mission8.h"
+
+#include <trekinput.h>
+
 #include "Training.h"
 #include "goallist.h"
 #include "conditionalaction.h"

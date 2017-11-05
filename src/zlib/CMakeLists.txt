@@ -32,7 +32,7 @@ ELSEIF(WIN32)
         FTPSession_win.cpp
         )
 ELSE()
-    MESSAGE(FATAL_ERROR "Unhandled platfor")
+    MESSAGE(FATAL_ERROR "Unhandled platform")
 ENDIF()
 
 ADD_LIBRARY(Zlib ${Zlib_SRC} ${PLATFORM_SRC})

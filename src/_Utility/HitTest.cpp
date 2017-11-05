@@ -9,7 +9,7 @@
 **
 **  History:
 */
-#include "pch.h"
+#include "Utility.h"
 
 void    HitTest::SetBB(Time     start,
                        Time     stop,
@@ -527,9 +527,11 @@ class   BoundingHull : public HitTest
                 do
                 {
                     float dot = direction * (*ppcvAdjacent)->m_position;
+#ifndef __GNUC__
                     #ifdef _M_IX86 // should only be a problem on x86 CPUs
                     __asm lea eax, [dot];
                     #endif
+#endif
                     if (dot > dotMax)
                     {
                         dotMax = dot;

@@ -1,6 +1,8 @@
-#include "pch.h"
-#include "slideshow.h"
+#include "Slideshow.h"
 
+#include <namespace.h>
+
+#include "Treki.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -22,7 +24,7 @@ void    Slideshow::CleanUpTimers (void)
 void    Slideshow::StopSound (void)
 {
     // check to see if there is a sound already playing
-    if (static_cast<ISoundInstance*> (m_pSoundInstance))
+    if (static_cast<SoundEngine::ISoundInstance*> (m_pSoundInstance))
         if (m_pSoundInstance->IsPlaying () == S_OK)
         {
             m_pSoundInstance->GetFinishEventSource ()->RemoveSink(m_pEventSink);

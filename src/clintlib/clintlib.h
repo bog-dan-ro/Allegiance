@@ -1,6 +1,7 @@
 #ifndef _CLINTLIB_
 #define _CLINTLIB_
 
+#include <igc.h>
 #include <Messages.h>
 #include <messageslc.h>
 #include <mission.h>
