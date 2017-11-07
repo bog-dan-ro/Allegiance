@@ -8,9 +8,12 @@
 **
 **  History:
 */
+#include "mappvmaker.h"
 
-#include    "mapmakerigc.h"
-#include    "mappvmaker.h"
+#include <base.h>
+#include <model.h>
+
+#include "mapmakerigc.h"
 
 CwarpPV::CwarpPV(ImissionPV *pmission,DataWarpIGC *ds,int dataSize)
   : m_destination(NULL),
@@ -2368,7 +2371,7 @@ const char * CmapPVMakerFromIGCFile::GenerateMission(const char * igcfile,	Imiss
         ObjectType  type = *((ObjectType*)pdata);
         int size = *((int*)(pdata + sizeof(ObjectType)));
 
-        if (__int64(-1) & (__int64(1) << __int64(type)))
+        if (int64_t(-1) & (int64_t(1) << int64_t(type)))
         {
             if (type == OT_warp)
             {

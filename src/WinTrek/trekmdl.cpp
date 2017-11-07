@@ -1,5 +1,8 @@
 #include "trekmdl.h"
 
+#include <combopane.h>
+#include <efapp.h>
+#include <efpane.h>
 #include <mdl.h>
 
 #include "consoledata.h"

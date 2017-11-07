@@ -3,7 +3,6 @@
 
 #include <igc.h>
 #include <pane.h>
-#include <sounds.h>
 #include <value.h>
 
 

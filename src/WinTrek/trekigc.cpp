@@ -11,21 +11,31 @@
 **  History:
 */
 
+#include <AutoDownload.h>
 #include <Training.h>
 #include <efimage.h>
 #include <efgeo.h>
+#include <engineapp.h>
+#include <explosion.h>
 #include <geometry.h>
 #include <model.h>
+#include <namespace.h>
 #include <particlegeo.h>
 #include <regkey.h>
+#include <soundutil.h>
 #include <thinggeo.h>
 #include <value.h>
 #include <viewport.h>
 #include <stddef.h>
 #include <zreg.h>
 
+#include "artwork.h"
 #include "badwords.h"
 #include "WinTrek.h"
+#include "wintrekp.h"
+
+using namespace SoundEngine;
+using namespace std;
 
 class ClusterSiteImpl : public ClusterSite
 {
@@ -788,7 +798,7 @@ private:
         const IhullTypeIGC* pht = m_pship->GetHullType();
         float fThrust = m_pship->GetHullType()->GetThrust() 
             / m_pship->GetHullType()->GetSideMultiplier();
-        float fForwardThrust = max(0, -1 * m_pship->GetEngineVector() 
+        float fForwardThrust = max(0.f, -1 * m_pship->GetEngineVector()
             * m_pship->GetOrientation().GetBackward());
         Vector vectSideThrust = m_pship->GetEngineVector() + 
             fForwardThrust * m_pship->GetOrientation().GetBackward();

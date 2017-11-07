@@ -1,5 +1,12 @@
 #include "mappreview.h"
+
+#include <efapp.h>
+
+#include "artwork.h"
 #include "mappvmaker.h"
+#include "WinTrek.h"
+
+using namespace std;
 
 class MapPreviewImageImpl : public MapPreviewImage
 {
@@ -174,7 +181,7 @@ private:
 		}
 
 		const   float   c_bfr = 0.1f * 
-			max(0.0001, max(m_xClusterMax - m_xClusterMin, 
+            max(0.0001f, max(m_xClusterMax - m_xClusterMin,
 				m_yClusterMax - m_yClusterMin));
 		m_xClusterMin -= c_bfr;
 		m_xClusterMax += c_bfr;
@@ -355,8 +362,8 @@ private:
             float fDeltaY = fScale * (m_pointLastDrag.Y() - point.Y());
 
             // make sure we don't drag the map off of the screen
-            m_xDrag = max(min((m_xClusterMax - m_xClusterMin) - (m_xMax - m_xMin), m_xDrag + fDeltaX), 0);
-            m_yDrag = max(min((m_yClusterMax - m_yClusterMin) - (m_yMax - m_yMin), m_yDrag + fDeltaY), 0);
+            m_xDrag = max(min((m_xClusterMax - m_xClusterMin) - (m_xMax - m_xMin), m_xDrag + fDeltaX), 0.f);
+            m_yDrag = max(min((m_yClusterMax - m_yClusterMin) - (m_yMax - m_yMin), m_yDrag + fDeltaY), 0.f);
 
             m_pointLastDrag = point;
             GetWindow()->SetCursor(AWF_CURSOR_DRAG);

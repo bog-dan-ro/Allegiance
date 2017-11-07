@@ -215,7 +215,7 @@ public:
     virtual HRESULT HandleMsg(FEDMESSAGE* pfm,
                               Time        lastUpdate,
                               Time        now) = 0;
-    virtual VOID VTSetText(LPSTR szFormat, ...) = 0;
+    virtual VOID VTSetText(const char* szFormat, ...) = 0;
 
     virtual void SetCursor(const char* pszCursorImage) = 0;
     virtual void SetWaitCursor() = 0;

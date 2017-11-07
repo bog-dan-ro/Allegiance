@@ -1,3 +1,5 @@
+#include <base.h>
+#include <igc.h>
 #include <namespace.h>
 #include <soundbase.h>
 

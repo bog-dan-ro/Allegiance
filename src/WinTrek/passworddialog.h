@@ -21,4 +21,4 @@ class IPopup;
 class MissionInfo;
 TRef<IPopup> CreatePasswordPopup(PasswordDialogSink* psink, const ZString& strPassword, MissionInfo* pmission = NULL);
 
-#endif _passworddialog_h_
+#endif //_passworddialog_h_

@@ -8,12 +8,17 @@
 **
 **  History:
 */
-// 
+
+//
 
 #ifndef __MAPPVMAKER_H_
 #define __MAPPVMAKER_H_
+
+#include <igc.h>
+
 class CMapPVCluster;
 class ImissionPV;
+class Modeler;
 
 class CwarpPV : public IObject
 {

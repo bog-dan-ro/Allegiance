@@ -2796,9 +2796,9 @@ public:
         return index;
     }
 
-    static char* CivID2String(CivID id)
+    static const char* CivID2String(CivID id)
     {
-      char *szCivs[] = {
+      const char *szCivs[] = {
         "ANY",
         "Rix",
         "Iron league",

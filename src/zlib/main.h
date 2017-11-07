@@ -4,9 +4,14 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
+#include <crtdbg.h>
+#include <eh.h>
+#include <inttypes.h>
+
+#include "alloc.h"
 #include "steam_api.h"
 #include "SlmVer.h"
-#include <inttypes.h>
+#include "zstring.h"
 
 // BT - STEAM - Integrated Steam Exception at the highest level.
 void MiniDumpFunction(unsigned int nExceptionCode, EXCEPTION_POINTERS *pException)
@@ -20,7 +25,7 @@ void MiniDumpFunction(unsigned int nExceptionCode, EXCEPTION_POINTERS *pExceptio
 	if (SteamUser() != nullptr && SteamUser()->BLoggedOn() == true)
 	{
 		char steamID[64];
-		sprintf(steamID, "%" PRIu64, SteamUser()->GetSteamID().ConvertToUint64());
+        sprintf(steamID, "%llu", SteamUser()->GetSteamID().ConvertToUint64());
 		sprintf(miniDumpComment, "%s - %s", steamID, SteamFriends()->GetPersonaName());
 	}
 

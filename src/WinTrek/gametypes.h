@@ -22,4 +22,4 @@ public:
     static TList<TRef<GameType> >& GetGameTypes();
 };
 
-#endif GAMETYPES_H
+#endif // GAMETYPES_H

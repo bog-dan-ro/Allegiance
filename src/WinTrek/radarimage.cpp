@@ -1,5 +1,13 @@
 #include "radarimage.h"
 
+#include <efapp.h>
+#include <font.h>
+#include <igc.h>
+#include <D3DDevice9.h>
+
+#include "artwork.h"
+#include "WinTrek.h"
+
 const char* c_szRadarLODs[] = {
                                "Radar mode: All",
                                "Radar mode: Default",

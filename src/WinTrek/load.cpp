@@ -1,8 +1,14 @@
+#include "load.h"
+#include "trekctrls.h"
+
 #include <button.h>
 #include <controls.h>
+#include <efapp.h>
 #include <geometry.h>
+#include <igc.h>
 #include <image.h>
 #include <paneimage.h>
+#include <thinggeo.h>
 
 const Money moneyLots = 0x7fffffff;
 

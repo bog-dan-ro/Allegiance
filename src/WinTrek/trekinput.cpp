@@ -8,6 +8,7 @@
 #include <listpane.h>
 #include <model.h>
 #include <namespace.h>
+#include <paneimage.h>
 #include <popup.h>
 #include <tarray.h>
 

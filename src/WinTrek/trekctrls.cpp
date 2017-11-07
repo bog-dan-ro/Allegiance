@@ -1,5 +1,10 @@
+#include <efapp.h>
+#include <efpane.h>
+
+#include "artwork.h"
 #include "trekctrls.h"
 
+using namespace std;
 
 /////////////////////////////////////////////////////////////////////////////
 //

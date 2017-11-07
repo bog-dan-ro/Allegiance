@@ -1,7 +1,9 @@
 #include "indicator.h"
 
 #include <context.h>
+#include <efapp.h>
 #include <image.h>
+#include <material.h>
 
 #include "artwork.h"
 #include "WinTrek.h"

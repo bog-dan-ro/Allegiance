@@ -2478,7 +2478,7 @@ public:
                     extern  TRef<ModifiableNumber>  g_pnumberMissionNumber;
                     int     iMission = static_cast<int> (g_pnumberMissionNumber->GetValue ());
                     ZAssert ((iMission >= 1) && (iMission <= 8)); //TheBored 06-JUL-07: second condition must be (iMission <= (number of training missions))
-                    char*   strNamespace[] =
+                    const char*   strNamespace[] =
                     {
                         "",
                         "",
@@ -2500,7 +2500,7 @@ public:
                     extern  TRef<ModifiableNumber>  g_pnumberMissionNumber;
                     int     iMission = static_cast<int> (g_pnumberMissionNumber->GetValue ());
                     ZAssert ((iMission >= 1) && (iMission <= 8)); //TheBored 06-JUL-07: second condition must be (iMission <= (number of training missions))
-                    char*   strNamespace[] =
+                    const char*   strNamespace[] =
                     {
                         "",
                         "tm_1_introduction",
@@ -2537,7 +2537,7 @@ public:
         bSwitchingScreens = false;
 
         if (s != sNextScreen)
-            screen(sNextScreen, NULL);
+            screen(sNextScreen, 0);
     }
 
     void        CharInfoScreenForPlayer(int idZone)
@@ -3372,7 +3372,7 @@ public:
 				if (dwHasSeenMovie == 0)
 				{
 					DWORD   dwNewValue = 1;
-					RegSetValueExA(hKey, "HasSeenMovie", NULL, REG_DWORD, (const BYTE*)&dwNewValue, sizeof(dwNewValue));
+                    RegSetValueExA(hKey, "HasSeenMovie", 0, REG_DWORD, (const BYTE*)&dwNewValue, sizeof(dwNewValue));
 				}
 				RegCloseKey(hKey);
 			}
@@ -11456,7 +11456,7 @@ public:
     // VT functions.
     //
 
-    VOID VTSetText(LPSTR szFormat, ...)
+    VOID VTSetText(const char* szFormat, ...)
     {
         TCHAR szText[1024];
         va_list vaList;

@@ -1,3 +1,8 @@
+#include <efapp.h>
+#include <efpane.h>
+#include <listpane.h>
+#include <namespace.h>
+
 #include "trekctrls.h"
 
 //////////////////////////////////////////////////////////////////////////////
