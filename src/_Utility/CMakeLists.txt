@@ -1,5 +1,6 @@
-ADD_DEFINITIONS(-D__MODULE__="Utility")
-INCLUDE_DIRECTORIES(../Inc ../zlib ../Lib/steam ../guids ../Igc)
+SET_MODULE("Utility")
+
+INCLUDE_DIRECTORIES(../Inc ../zlib ../guids ../Igc)
 
 SET(Utility_SRC
     CRC.cpp

@@ -8,7 +8,7 @@
 #include <zassert.h>
 
 // BT - STEAM
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 # include "atlenc.h"
 # include <inttypes.h>
 #endif
@@ -396,7 +396,7 @@ public:
     HRESULT Initialize(const ZString& strCommandLine)
     {
         _controlfp(_PC_53, _MCW_PC);
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 		// BT - STEAM
 #ifndef _DEBUG
 		if (IsDebuggerPresent() == false)
@@ -778,7 +778,7 @@ public:
 
 		//Orion - 2009 ACSS : check the alleg pipe for the auth token
 		//trekClient.SetCDKey(ReadAuthPipe());
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 		debugf("Logging into steam.\n");
 
 		// BT - STEAM

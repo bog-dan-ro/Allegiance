@@ -1,8 +1,11 @@
-ADD_DEFINITIONS(-D__MODULE__="WinTrek" -DSTRSAFE_NO_DEPRECATE -DEnablePerformanceCounters -DNO_CLUB_SERVER_CONNECTION -D_STEAM_APP_ID=700480)
+SET_MODULE("WinTrek")
+
+ADD_DEFINITIONS(-DSTRSAFE_NO_DEPRECATE -DEnablePerformanceCounters
+                -DNO_CLUB_SERVER_CONNECTION -DSTEAM_APP_ID=700480)
 
 INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
-                    ../Lib/steam ../soundengine ../guids ../Zone
-                    ../training ../clintlib ../lobby ../_Utility ..)
+                    ../soundengine ../guids ../Zone ../training
+                    ../clintlib ../lobby ../_Utility ..)
 
 SET(Allegiance_SRC
     CallsignTagInfo.cpp
@@ -59,16 +62,33 @@ SET(Allegiance_SRC
    )
 
 SET(Allegiance_DEPS
-    Zlib
     training
-    Utility
-    effect
-    ClintLib
     Igc
+    ClintLib
+    Utility
     Engine
+    effect
     SoundEngine
+    Zlib
    )
 
+IF(UNIX)
+    SET(PLATFORM_LIBS)
+ELSEIF(WIN32)
+    SET(PLATFORM_LIBS ${CMAKE_SOURCE_DIR}/src/Lib/OggVorbis/file.lib
+        ${CMAKE_SOURCE_DIR}/src/Lib/OggVorbis/vorbis.lib
+        ${CMAKE_SOURCE_DIR}/src/Lib/OggVorbis/ogg.lib
+        -lwininet -lwinmm -lstrmiids -ldxguid -ld3d9 -ld3dx9 -ldsound
+        -ldinput8 -ldbghelp -lntdll -lversion
+        )
+ELSE()
+    MESSAGE(FATAL_ERROR "Unhandled platform")
+ENDIF()
+
+IF (USE_STEAM)
+    SET(PLATFORM_LIBS ${PLATFORM_LIBS} ${CMAKE_SOURCE_DIR}/src/Lib/steam/lib/win32/sdkencryptedappticket.lib)
+ENDIF()
+
 ADD_EXECUTABLE(Allegiance ${Allegiance_SRC})
-TARGET_LINK_LIBRARIES(Allegiance ${Allegiance_DEPS})
+TARGET_LINK_LIBRARIES(Allegiance ${Allegiance_DEPS} ${PLATFORM_LIBS})
 SET_PROPERTY(TARGET Allegiance PROPERTY CXX_STANDARD 14)

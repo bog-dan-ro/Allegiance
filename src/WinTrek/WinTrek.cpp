@@ -4163,7 +4163,9 @@ public:
 	void TakeScreenShot()
 	{
 		// BT - STEAM - When the user attempts to take a screen shot inside of Alleg, trigger the steam overlay to do it instead.
-		SteamScreenshots()->TriggerScreenshot();
+#ifndef NO_STEAM
+        SteamScreenshots()->TriggerScreenshot();
+#endif
 		return; 
 
 		////capturing screen size this way (instead of using a native GDI call) will create
@@ -4234,7 +4236,7 @@ public:
 
 	// BT - STEAM - TODO Move these to where the other globals are hiding?
 	CallsignTagInfo m_currentCallsignTag;
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 	SteamClans m_availableSteamClans;
 #endif
 
@@ -4298,7 +4300,7 @@ public:
 
 		
 		// BT - STEAM - Let the user select their steam call sign from a list of options.
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 		if (m_availableSteamClans.GetAvailableCallsignTags()->GetCount() > 0)
 		{
 			ZString menuOption = "Squad Tags";
@@ -4356,10 +4358,11 @@ public:
 
 	bool IsPlayerSteamModerator()
 	{
+        bool isModerator = false;
+#ifndef NO_STEAM
 		// The MSAlleg Steam Group ID.
 		CSteamID moderatorGroupID = ((uint64)103582791460031578);
 		int clanCount = SteamFriends()->GetClanCount();
-		bool isModerator = false;
 		for (int i = 0; i < clanCount; i++)
 		{
 			if (SteamFriends()->GetClanByIndex(i) == moderatorGroupID)
@@ -4368,7 +4371,7 @@ public:
 				break;
 			}
 		}
-
+#endif
 		return isModerator;
 	}
 
@@ -4569,7 +4572,7 @@ public:
 
 
 	// BT - STEAM 
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 	void AddAvailablePlayerTagsToMenu(TRef<IMenu> pmenu)
 	{
 		pmenu->AddMenuItem(0, "Squad Tags");
@@ -4689,7 +4692,7 @@ public:
                 break;
 
 				// BT - STEAM
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 			case idmTags:
 				AddAvailablePlayerTagsToMenu(pmenu);
 				break;
@@ -6641,7 +6644,7 @@ public:
 				break;
 			// End Imago
 
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 			// BT - STEAM
 			case idmCallsignTag0:
 			case idmCallsignTag1:
@@ -8377,8 +8380,10 @@ public:
                       float dt,
                       bool  activeControlsF)
 	{
+#ifndef NO_STEAM
 		// BT - STEAM
 		SteamAPI_RunCallbacks();
+#endif
 
 		//Spunky #76 - only update throttle if enough time elapsed
 		static const float delay[] = {0.066f, 0.033f, 0.022f, 0.016f, 0.0f}; //#282

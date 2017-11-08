@@ -1,4 +1,4 @@
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 #include "SteamClans.h"
 
 // BT - STEAM

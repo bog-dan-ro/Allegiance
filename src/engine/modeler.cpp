@@ -2348,8 +2348,10 @@ private:
     PathString				m_pathStr;
 	ImportImageFactory *	m_pImageFactory;			// This allows us to pass extra parameters into the image factory.
 
-	// BT - STEAM
+#ifdef STEAMSECURE
+    // BT - STEAM
 	FileHashTable			m_fileHashTable;
+#endif
 
     TMap<ZString, TRef<INameSpace> > m_mapNameSpace;
 

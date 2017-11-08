@@ -42,10 +42,12 @@ DEFINE_FEDMSG(C, LOGONREQ, 1)   // First message the client sends to the server.
   Time      time;
   DWORD     dwCookie;
   int       crcFileList; 
-  int8_t		steamAuthTicket[1024]; // BT - STEAM
+#ifndef NO_STEAM
+  int8_t	steamAuthTicket[1024]; // BT - STEAM
   uint32_t	steamAuthTicketLength; // BT - STEAM
   uint64_t	steamID; // BT - STEAM
   char		drmHash[50]; // BT - STEAM
+#endif
 END_FEDMSG
 
 DEFINE_FEDMSG(S, LOGONACK, 2) // sent when the server recives FM_C_LOGONREQ

@@ -1339,8 +1339,10 @@ HRESULT BaseClient::ConnectToServer(ConnectInfo & ci, DWORD dwCookie, Time now, 
         //pfmLogon->zgs = m_fm.GetEncryptedZoneTicket();
         pfmLogon->time = Time::Now ();
 
-		// BT - STEAM
+#ifndef NO_STEAM
+        // BT - STEAM
 		UpdateServerLoginRequestWithSteamAuthTokenInformation(pfmLogon);
+#endif
 
         debugf("Logging on to game server \"%s\"...\n",
           ci.strServer.IsEmpty() ? "" : (LPCSTR)ci.strServer);
@@ -1421,7 +1423,9 @@ HRESULT BaseClient::ConnectToLobby(ConnectInfo * pci) // pci is NULL if reloggin
         lstrcpy(pfmLogon->szName, m_ci.szName);
 
 		// BT - STEAM
-		UpdateLobbyLoginRequestWithSteamAuthTokenInformation(pfmLogon);
+#ifndef NO_STEAM
+        UpdateLobbyLoginRequestWithSteamAuthTokenInformation(pfmLogon);
+#endif
 
         // do art update--see ConnectToServer
         debugf("Logging on to lobby \"%s\"...\n",
@@ -1435,6 +1439,7 @@ HRESULT BaseClient::ConnectToLobby(ConnectInfo * pci) // pci is NULL if reloggin
     return hr;
 }
 
+#ifndef NO_STEAM
 // BT - STEAM
 void BaseClient::UpdateLobbyLoginRequestWithSteamAuthTokenInformation(FMD_C_LOGON_LOBBY *pfmLogon)
 {
@@ -1487,6 +1492,7 @@ void BaseClient::CancelSteamAuthSessionToLobby()
 		m_hAuthTicketLobby = 0;
 	}
 }
+#endif
 
 HRESULT BaseClient::ConnectToClub(ConnectInfo * pci) // pci is NULL if relogging in
 {
@@ -1610,8 +1616,10 @@ void BaseClient::Disconnect(void)
         m_fLoggedOn = false;
     }
 
-	// BT - STEAM 
+#ifndef NO_STEAM
+    // BT - STEAM
 	CancelSteamAuthSessionToGameServer();
+#endif
 
     m_szCharName[0] = '\0';
     m_szIGCStaticFile[0] = '\0';
@@ -3698,8 +3706,10 @@ void BaseClient::OnQuitSide()
 void BaseClient::OnJoinSide()
 {
 	// BT - STEAM
-	// WHen joining a server, the player leaves the lobby, so cancel their lobby auth ticket, and transition to the server auth ticket.
+#ifndef NO_STEAM
+    // WHen joining a server, the player leaves the lobby, so cancel their lobby auth ticket, and transition to the server auth ticket.
 	CancelSteamAuthSessionToLobby();
+#endif
 
     ResetShip();
     m_strBriefingText.SetEmpty();
@@ -3725,8 +3735,10 @@ void BaseClient::OnQuitMission(QuitSideReason reason, const char* szMessageParam
 {
     Disconnect();
 
-	// BT - STEAM
+#ifndef NO_STEAM
+    // BT - STEAM
 	CancelSteamAuthSessionToGameServer();
+#endif
 
     // clear chat messages
     m_chatList.purge(true);

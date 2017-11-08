@@ -1,6 +1,6 @@
-ADD_DEFINITIONS(-D__MODULE__="zlib")
+SET_MODULE("zlib")
 
-INCLUDE_DIRECTORIES(../Inc ../Lib/steam)
+INCLUDE_DIRECTORIES(../Inc)
 
 SET(Zlib_SRC
     StackTracer.cpp
@@ -17,6 +17,7 @@ SET(Zlib_SRC
     token.cpp
     vector.cpp
     window.cpp
+    zmath.cpp
     zstring.cpp
     ztime.cpp
    )

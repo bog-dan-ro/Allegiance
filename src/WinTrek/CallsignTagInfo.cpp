@@ -1,7 +1,7 @@
 #include "CallsignTagInfo.h"
 
 #include <regkey.h>
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 # include <steam_api.h>
 #endif
 CallsignTagInfo::CallsignTagInfo(ZString callsignTag, uint64_t steamGroupID, int index, bool isOfficer) :
@@ -105,7 +105,7 @@ void CallsignTagInfo::LoadFromRegistry()
 		RegQueryValueEx(hKey, "SteamOfficerToken", NULL, &dwType, (BYTE *)&szSteamOfficerToken, &cbSteamOfficerToken);
 		RegCloseKey(hKey);
 	}
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 	CSteamID targetGroupID(strtoull(szSteamClanID, NULL, NULL));
 
 	CSteamID currentUser = SteamUser()->GetSteamID();
@@ -126,7 +126,7 @@ void CallsignTagInfo::LoadFromRegistry()
 
 void CallsignTagInfo::SaveToRegistry()
 {
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
     char steamGroupID[64];
 	sprintf(steamGroupID, "%" PRIu64, m_steamGroupID);
 
@@ -149,7 +149,7 @@ void CallsignTagInfo::SaveToRegistry()
 
 void CallsignTagInfo::UpdateStringValues(ZString selectedToken)
 {
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
     m_isOfficer = false;
 	//m_callsignTag = "";
 	//m_index = 0;

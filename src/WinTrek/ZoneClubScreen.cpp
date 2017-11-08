@@ -289,7 +289,12 @@ public:
 			// BT - Steam - User is logged into steam, and has a steam profile name
 			// The steam reviewer was somehow launching the game with steam authorization but no persona name. If 
 			// there is an player name, then the server rejects the user as a hacker with a DPlay error. 
-			bool isUserLoggedIntoSteamWithValidPlayerName = SteamUser() != nullptr && strlen(m_szName) > 0;
+            bool isUserLoggedIntoSteamWithValidPlayerName =
+# ifndef NO_STEAM
+                    SteamUser() != nullptr && strlen(m_szName) > 0;
+# else
+                    false;
+# endif
 
 #endif
 		  // wlp - don't ask for callsign if it was on the command line

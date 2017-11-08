@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "badwords.h"
 
 // note, this became much more complex thatn I have time for, so I'm bailing out 
@@ -227,7 +226,7 @@ void    BuildFilterAutomata (char* pBuffer)
 // table to look up lower case conversions
 //------------------------------------------------------------------------------
 //                            "\0........\t\n..\r.................. !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~................................................................................................................................."
-char* gszConvertToLowerCase = "\0........\t\n..\r.................. !\"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~.................................................................................................................................";
+const char* gszConvertToLowerCase = "\0........\t\n..\r.................. !\"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~.................................................................................................................................";
 
 //------------------------------------------------------------------------------
 // resource id and other defines
@@ -264,7 +263,7 @@ void    FilterBadWords (char* szString)
     // better.
 
     // this is the set of characters we will use to obscure bad words
-    char*    random = "*&^%$#@!!@#$%^&*@$^*!#%&&%#!*^$@";
+    const char*    random = "*&^%$#@!!@#$%^&*@$^*!#%&&%#!*^$@";
 
     // copy the string and make it totally lowercase
     char*   szLowerCopy = new char[strlen (szString) + 1];

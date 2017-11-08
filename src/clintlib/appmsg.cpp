@@ -1,5 +1,8 @@
-#include "pch.h"
-#include    <limits.h>
+#include <ClubMessages.h>
+#include <limits.h>
+
+#include "AutoDownload.h"
+#include "clintlib.h"
 
 //
 // Helper function for handling ship updates.

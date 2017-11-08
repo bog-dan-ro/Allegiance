@@ -1,5 +1,5 @@
 #pragma once
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 
 #include <tvector.h>
 #include <steam_api.h>

@@ -9,9 +9,11 @@
 #include <inttypes.h>
 
 #include "alloc.h"
-#include "steam_api.h"
 #include "SlmVer.h"
 #include "zstring.h"
+
+#ifndef NO_STEAM
+# include "steam_api.h"
 
 // BT - STEAM - Integrated Steam Exception at the highest level.
 void MiniDumpFunction(unsigned int nExceptionCode, EXCEPTION_POINTERS *pException)
@@ -34,13 +36,16 @@ void MiniDumpFunction(unsigned int nExceptionCode, EXCEPTION_POINTERS *pExceptio
 	// The 0 here is a build ID, we don't set it
 	SteamAPI_WriteMiniDump(nExceptionCode, pException, int(rup));
 }
+#endif
 
 
 int WINAPI Win32Main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow)
 {
-	_set_se_translator(MiniDumpFunction);
+#ifndef NO_STEAM
+    _set_se_translator(MiniDumpFunction);
+#endif
 	try  // this try block allows the SE translator to work
 	{
 
