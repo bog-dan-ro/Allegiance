@@ -1,6 +1,9 @@
 #ifndef _RadarImage_h_
 #define _RadarImage_h_
 
+#include <image.h>
+
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // RadarImage header
@@ -19,7 +22,7 @@ rob - don't we need some kind of label in hud as to what mode i'm in?
 */
 static const float c_flBorderSide = 10.0f;
 
-const char* c_szRadarLODs[];
+extern const char* c_szRadarLODs[4];
 
 class RadarImage : public Image {
 protected:

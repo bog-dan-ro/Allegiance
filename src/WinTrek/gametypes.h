@@ -1,6 +1,11 @@
 #ifndef	GAMETYPES_H
 #define	GAMETYPES_H
 
+#include <tlist.h>
+#include <zstring.h>
+
+class MissionParams;
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // ImageStringPane 
@@ -17,4 +22,4 @@ public:
     static TList<TRef<GameType> >& GetGameTypes();
 };
 
-#endif GAMETYPES_H
+#endif // GAMETYPES_H

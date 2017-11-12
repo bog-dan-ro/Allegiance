@@ -1,11 +1,14 @@
 #pragma once
 
+#include <cstdint>
+#include <zstring.h>
+
 // BT - STEAM
 class CallsignTagInfo
 {
 private:
 	
-	ZString FixupCallsignTag(ZString callsignTag);
+    ZString FixupCallsignTag(ZString callsignTag);
 	void LoadFromRegistry();
 	void SaveToRegistry();
 	void UpdateStringValues(ZString selectedToken);
@@ -13,16 +16,16 @@ private:
 public:
 	ZString m_callsignTag;
 	ZString m_callsignToken;
-	uint64	m_steamGroupID;
+    uint64_t m_steamGroupID;
 	int		m_index;
 	bool	m_isOfficer;
 
 	CallsignTagInfo();
-	CallsignTagInfo(ZString callsignTag, uint64 steamGroupID, int index, bool isOfficer);
+    CallsignTagInfo(ZString callsignTag, uint64_t steamGroupID, int index, bool isOfficer);
 
 	ZString GetAvailableTokens();
 	
-	void SetSteamGroupID(uint64 steamGroupID, ZString callsignTag);
+    void SetSteamGroupID(uint64_t steamGroupID, ZString callsignTag);
 	void SetToken(ZString token);
 
 	ZString Render(ZString callsign);
@@ -30,6 +33,5 @@ public:
 
 	inline bool operator == (const CallsignTagInfo& compare) const { return m_steamGroupID == compare.m_steamGroupID; }
 	inline  bool operator > (const CallsignTagInfo& compare) const { return m_steamGroupID > compare.m_steamGroupID; }
-
 
 };

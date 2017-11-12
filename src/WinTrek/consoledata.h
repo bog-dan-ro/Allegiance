@@ -1,8 +1,15 @@
+#pragma once
 /////////////////////////////////////////////////////////////////////////////
 //
 // TMemberSnapshotValue
 //
 /////////////////////////////////////////////////////////////////////////////
+
+#include "trekctrls.h"
+
+#include <igc.h>
+#include <namespace.h>
+#include <value.h>
 
 template<class ObjectClass, class StaticType>
 class TMemberSnapshotValue : public TStaticValue<StaticType>, 
@@ -26,16 +33,16 @@ public:
         ZAssert(pobject != NULL);
         ZAssert(pfn != NULL);
 		// mdvalley: Needs pointer and class.
-        AddEventTarget(&TMemberSnapshotValue<ObjectClass,StaticType>::OnEvent, peventSource);
+        EventTargetContainer<TMemberSnapshotValue<ObjectClass, StaticType> >::AddEventTarget(&TMemberSnapshotValue<ObjectClass,StaticType>::OnEvent, peventSource);
     }
 
     bool OnEvent()
     {
         StaticType value = (m_pobject->*m_pfn)();
-        if (GetValueInternal() != value)
+        if (TStaticValue<StaticType>::GetValueInternal() != value)
             {
-            GetValueInternal() = value;
-            Changed();
+            TStaticValue<StaticType>::GetValueInternal() = value;
+            TStaticValue<StaticType>::Changed();
             }
         return true;
     }

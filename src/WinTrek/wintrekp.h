@@ -1,6 +1,13 @@
 #ifndef _WinTrekP_H__
 #define _WinTrekP_H__
 
+#include <igc.h>
+namespace SoundEngine
+{
+    class ISoundPositionSource;
+}
+
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Wintrek Private Headers
@@ -16,7 +23,7 @@ public:
         unsigned char ucRadarState
     ) {
     }
-    virtual TRef<ISoundPositionSource> GetSoundSource(void) = 0;
+    virtual TRef<SoundEngine::ISoundPositionSource> GetSoundSource(void) = 0;
 };
 
 #endif

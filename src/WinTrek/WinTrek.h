@@ -18,7 +18,10 @@
 #ifndef _WINTREK_
 #define _WINTREK_
 
-#include "treki.h"
+#include <base.h>
+#include <clintlib.h>
+#include <efpopup.h>
+#include "Treki.h"
 
 extern bool g_bActivity; //Imago: AFK from Activity flag
 
@@ -109,8 +112,8 @@ class  WinTrekClient :
         float                   m_offset;
         TRef<Geo>               m_pgeoFlares[3];
         SoundID                 m_idAmbient;
-        TRef<ISoundInstance>    m_psoundAmbient;
-        TRef<ISoundInstance>    m_psoundMissileWarning;
+        TRef<SoundEngine::ISoundInstance>    m_psoundAmbient;
+        TRef<SoundEngine::ISoundInstance>    m_psoundMissileWarning;
 
         int                     m_nGrooveLevel;
         Time                    m_vtimeGrooveDrops[c_numGrooveLevels];
@@ -270,9 +273,9 @@ class  WinTrekClient :
 
         WarningMask    wmOld; 
 
-        TRef<ISoundInstance>  StartSound(ISoundTemplate* ptemplate, ISoundPositionSource* psource = NULL) 
+        TRef<SoundEngine::ISoundInstance>  StartSound(SoundEngine::ISoundTemplate* ptemplate, SoundEngine::ISoundPositionSource* psource = NULL)
             { return GetWindow()->StartSound(ptemplate, psource); };
-        TRef<ISoundInstance>  StartSound(SoundID soundId, ISoundPositionSource* psource = NULL)
+        TRef<SoundEngine::ISoundInstance>  StartSound(SoundID soundId, SoundEngine::ISoundPositionSource* psource = NULL)
             { return GetWindow()->StartSound(soundId, psource); };
 
         void              ForwardSquadMessage(FEDMESSAGE* pSquadMessage); // forward message to squads screen
