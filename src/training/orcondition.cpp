@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "OrCondition.h"
+#include    "orcondition.h"
 
 namespace Training
 {
@@ -37,7 +36,7 @@ namespace Training
         // make sure that both conditions get started before combining the results
         bool    resultA = m_pConditionA->Start ();
         bool    resultB = m_pConditionB->Start ();
-        return resultA or resultB;
+        return resultA || resultB;
     }
 
     //------------------------------------------------------------------------------
@@ -54,7 +53,7 @@ namespace Training
         // make sure that both conditions get evaluated before combining the results
         bool    resultA = m_pConditionA->Evaluate ();
         bool    resultB = m_pConditionB->Evaluate ();
-        return resultA or resultB;
+        return resultA || resultB;
     }
 
     //------------------------------------------------------------------------------

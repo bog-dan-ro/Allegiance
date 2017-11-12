@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "OneTimeAction.h"
+#include    "onetimeaction.h"
 
 namespace Training
 {
@@ -33,7 +32,7 @@ namespace Training
     //------------------------------------------------------------------------------
     void        OneTimeAction::Execute (void)
     {
-        if (not m_bHasExecuted)
+        if (!m_bHasExecuted)
         {
             m_bHasExecuted = true;
             m_pAction->Execute ();

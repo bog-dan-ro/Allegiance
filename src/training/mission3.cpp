@@ -10,35 +10,34 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "Mission3.h"
 
 #include    "Training.h"
-#include    "GoalList.h"
+#include    "goallist.h"
 #include    "Predicate.h"
-#include    "TrueCondition.h"
-#include    "FalseCondition.h"
-#include    "AndCondition.h"
-#include    "OrCondition.h"
-#include    "NotCondition.h"
-#include    "PeriodicCondition.h"
-#include    "ElapsedTimeCondition.h"
-#include    "ObjectMovingTowardsCondition.h"
-#include    "ObjectWithinRadiusCondition.h"
-#include    "ObjectPointingAtCondition.h"
-#include    "ConditionalAction.h"
-#include    "ConditionList.h"
-#include    "ActionList.h"
-#include    "MessageAction.h"
-#include    "PlaySoundAction.h"
-#include    "SetCommandAction.h"
-#include    "NoAction.h"
-#include    "NTimesCondition.h"
-#include    "EndMissionAction.h"
-#include    "ResetAction.h"
-#include    "ResetShipAction.h"
-#include    "SoundFinishedCondition.h"
-#include    "SetDisplayModeAction.h"
+#include    "truecondition.h"
+#include    "falsecondition.h"
+#include    "andcondition.h"
+#include    "orcondition.h"
+#include    "notcondition.h"
+#include    "periodiccondition.h"
+#include    "elapsedtimecondition.h"
+#include    "objectmovingtowardscondition.h"
+#include    "objectwithinradiuscondition.h"
+#include    "objectpointingatcondition.h"
+#include    "conditionalaction.h"
+#include    "conditionlist.h"
+#include    "actionlist.h"
+#include    "messageaction.h"
+#include    "playsoundaction.h"
+#include    "setcommandaction.h"
+#include    "noaction.h"
+#include    "ntimescondition.h"
+#include    "endmissionaction.h"
+#include    "resetaction.h"
+#include    "resetshipaction.h"
+#include    "soundfinishedcondition.h"
+#include    "setdisplaymodeaction.h"
 #include    "TurnShipAboutCondition.h"
 #include    "GetRadarLODCondition.h"
 #include    "SetRadarLODAction.h"
@@ -142,7 +141,7 @@ namespace Training
             {
                 // only allow if the inventory pane is up
                 TrekWindow* pWindow = GetWindow ();
-                if (pWindow->GetOverlayFlags () bit_and ofInventory)
+                if (pWindow->GetOverlayFlags () & ofInventory)
                     return true;
                 return false;
             }
@@ -380,7 +379,7 @@ namespace Training
 		// tm_3_07
 		// The armor gauge shows how much more damage your ship hull 
 		// can withstand before breaking apart. If this gauge drops to 
-		// 0, you will explodeÿ. This is what it will look like when 
+		// 0, you will explodeï¿½. This is what it will look like when 
 		// you take armor damage.
         {
             Goal*   pGoal = CreatePlaySoundGoal (tm_3_07Sound);
@@ -862,7 +861,7 @@ namespace Training
         pGoalList->AddGoal (new Goal (new ElapsedTimeCondition (0.5f)));
 
 		// tm_3_34
-		// Blow up your target with the machine guns.ÿ
+		// Blow up your target with the machine guns.ï¿½
         {
             Goal*   pGoal = new Goal (new GetShipIsDestroyedCondition (new CurrentTarget (new PlayerShipTarget, true)));
             pGoal->AddStartAction (new MessageAction ("Destroy current target."));

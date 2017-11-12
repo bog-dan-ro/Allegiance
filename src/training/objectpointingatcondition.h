@@ -13,13 +13,10 @@
 #ifndef _OBJECT_POINTING_AT_CONDITION_H_
 #define _OBJECT_POINTING_AT_CONDITION_H_
 
-#ifndef _CONDITION_H_
-#include "Condition.h"
-#endif  //_CONDITION_H_
+#include <igc.h>
 
-#ifndef _ABSTRACT_TARGET_H_
 #include "AbstractTarget.h"
-#endif  //_ABSTRACT_TARGET_H_
+#include "Condition.h"
 
 namespace Training
 {

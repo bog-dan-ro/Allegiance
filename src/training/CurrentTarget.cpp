@@ -10,9 +10,11 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "CurrentTarget.h"
-#include    "TypeIDTarget.h"
+#include "CurrentTarget.h"
+
+#include <igc.h>
+
+#include "TypeIDTarget.h"
 
 namespace Training
 {
@@ -47,7 +49,7 @@ namespace Training
         {
 
             // first check to see if we have done a fetch at all
-            if (not m_pFetched)
+            if (!m_pFetched)
             {
                 // we haven't cached a target yet, so we need to get the target
                 m_pFetched = new TypeIDTarget (pTarget ? pTarget->GetObjectType () : NA, pTarget ? pTarget->GetObjectID () : NA);
@@ -61,7 +63,7 @@ namespace Training
                 // we check to see if the target has been changed w/o eliminating the
                 // original target, and if so, adjust to compensate.
                 ImodelIGC*  pFetched = *m_pFetched;
-                if ((pFetched != pTarget) and pFetched and pTarget)
+                if ((pFetched != pTarget) && pFetched && pTarget)
                 {
                     // there has been such a change, so set up a new abstract target
                     delete m_pFetched;

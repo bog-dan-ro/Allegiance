@@ -1,0 +1,96 @@
+SET_MODULE("Training")
+
+INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
+                    ../soundengine ../guids ../Zone
+                    ../WinTrek ../clintlib ../lobby ..)
+
+SET(training_SRC
+    AbstractTarget.cpp
+    Action.cpp
+    CommandAcknowledgedCondition.cpp
+    Condition.cpp
+    CreateDroneAction.cpp
+    CreateObjectAction.cpp
+    CreateProbeAction.cpp
+    CreateWaypointAction.cpp
+    CurrentTarget.cpp
+    DoDamageAction.cpp
+    DoDamageAdjustableAction.cpp
+    GetAutopilotCondition.cpp
+    GetChatCondition.cpp
+    GetCommandCondition.cpp
+    GetControlActiveCondition.cpp
+    GetKeyCondition.cpp
+    GetPickedCondition.cpp
+    GetProbeCountCondition.cpp
+    GetRadarLODCondition.cpp
+    GetSectorCondition.cpp
+    GetShipHasAmmoCondition.cpp
+    GetShipHasCargoCondition.cpp
+    GetShipHasMountedCondition.cpp
+    GetShipIsDamagedCondition.cpp
+    GetShipIsStoppedCondition.cpp
+    GetStateBitsCondition.cpp
+    GetTargetCondition.cpp
+    GetViewSectorCondition.cpp
+    Goal.cpp
+    PlayerShipTarget.cpp
+    Predicate.cpp
+    ProxyAction.cpp
+    ProxyCondition.cpp
+    ReleaseConsumerAction.cpp
+    RepairRearmAction.cpp
+    SetAutopilotAction.cpp
+    SetCargoNanAction.cpp
+    SetControlConstraintsAction.cpp
+    SetControlsAction.cpp
+    SetDroneNanAction.cpp
+    SetHUDOverlayAction.cpp
+    SetRadarLODAction.cpp
+    SetSignatureAction.cpp
+    SetStationDestroyedAction.cpp
+    ShipSeesObjectCondition.cpp
+    ShowEyeballAction.cpp
+    ShowPaneAction.cpp
+    SuspendedPlaySoundAction.cpp
+    SuspendedSoundFinishedCondition.cpp
+    SwapWeaponAction.cpp
+    ToggleWeaponAction.cpp
+    Training.cpp
+    TurnShipAboutCondition.cpp
+    TurnToAction.cpp
+    TypeIDTarget.cpp
+    actionlist.cpp
+    andcondition.cpp
+    conditionalaction.cpp
+    conditionlist.cpp
+    endmissionaction.cpp
+    goallist.cpp
+    messageaction.cpp
+    mission2.cpp
+    mission3.cpp
+    mission4.cpp
+    mission5.cpp
+    mission6.cpp
+    mission8.cpp
+    mission10.cpp
+    noaction.cpp
+    ntimescondition.cpp
+    objectmovingtowardscondition.cpp
+    objectpointingatcondition.cpp
+    objectwithinradiuscondition.cpp
+    onetimeaction.cpp
+    orcondition.cpp
+    periodiccondition.cpp
+    playsoundaction.cpp
+    resetaction.cpp
+    resetshipaction.cpp
+    setcommandaction.cpp
+    setdisplaymodeaction.cpp
+    soundfinishedcondition.cpp
+    trainingmission.cpp
+    truecondition.cpp
+   )
+
+ADD_LIBRARY(training ${training_SRC})
+SET_PROPERTY(TARGET training PROPERTY CXX_STANDARD 14)

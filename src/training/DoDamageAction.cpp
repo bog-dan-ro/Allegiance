@@ -10,8 +10,10 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "DoDamageAction.h"
+#include "DoDamageAction.h"
+
+#include <igc.h>
+#include <WinTrek.h>
 
 namespace Training
 {
@@ -32,17 +34,17 @@ namespace Training
     void        DoDamageAction::Execute (void)
     {
         IshipIGC*   pShip = trekClient.GetShip ();
-        if (not m_bHull)
+        if (!m_bHull)
         {
             IshieldIGC* pShield = static_cast<IshieldIGC*> (pShip->GetMountedPart (ET_Shield, 0));
-            if (pShield and (pShield->GetFraction () > 0.2f))
+            if (pShield && (pShield->GetFraction () > 0.2f))
                 pShip->ReceiveDamage (c_dmgidCollision, pShield->GetMaxStrength () * 0.03f, Time::Now (), Vector (-1.0f, 0.0f, 0.0f), Vector (1.0f, 0.0f, 0.0f), 0);
 
         }
         else
         {
             IshieldIGC* pShield = static_cast<IshieldIGC*> (pShip->GetMountedPart (ET_Shield, 0));
-            if (pShield and (pShield->GetFraction () > 0.25f))
+            if (pShield && (pShield->GetFraction () > 0.25f))
                 pShield->SetFraction (0.2f);
             else if (pShip->GetFraction () > 0.5f)
                 pShip->ReceiveDamage (c_dmgidCollision, 7.5f, Time::Now (), Vector (-1.0f, 0.0f, 0.0f), Vector (1.0f, 0.0f, 0.0f), 0);

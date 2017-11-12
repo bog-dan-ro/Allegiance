@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "PlayerShipTarget.h"
+
+#include <WinTrek.h>
 
 namespace Training
 {

@@ -13,9 +13,9 @@
 #ifndef _SET_HUD_OVERLAY_ACTION_H_
 #define _SET_HUD_OVERLAY_ACTION_H_
 
-#ifndef _ACTION_H_
+#include <indicator.h>
+
 #include "Action.h"
-#endif// _ACTION_H_
 
 namespace Training
 {

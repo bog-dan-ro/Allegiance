@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "GetAutopilotCondition.h"
+
+#include <igc.h>
 
 namespace Training
 {

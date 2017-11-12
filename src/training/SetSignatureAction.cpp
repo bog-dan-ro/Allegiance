@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "SetSignatureAction.h"
 #include    "TypeIDTarget.h"
 

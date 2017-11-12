@@ -10,10 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "SetCommandAction.h"
+#include    "setcommandaction.h"
 #include    "TypeIDTarget.h"
-#include    "TrainingMission.h"
+#include    "trainingmission.h"
 
 namespace Training
 {
@@ -80,7 +79,7 @@ namespace Training
         if (pShip)
         {
             // we want to use the pretty interface if this is a command for the player
-            if ((pShip == trekClient.GetShip ()) and (m_command == c_cmdQueued))
+            if ((pShip == trekClient.GetShip ()) && (m_command == c_cmdQueued))
             {
                 TrekWindow* pWindow = GetWindow ();
                 IshipIGC*   pCommander = g_pMission->GetCommanderShip ();

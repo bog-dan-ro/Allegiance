@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "SetRadarLODAction.h"
+#include "SetRadarLODAction.h"
+
+#include <Treki.h>
 
 namespace Training
 {

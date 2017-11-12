@@ -13,6 +13,8 @@
 #ifndef _TRAINING_H_
 #define _TRAINING_H_
 
+#include <igc.h>
+
 namespace Training
 {
     //------------------------------------------------------------------------------

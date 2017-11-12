@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "PeriodicCondition.h"
+#include "periodiccondition.h"
+
+#include <ztime.h>
 
 namespace Training
 {
@@ -20,7 +21,7 @@ namespace Training
     //------------------------------------------------------------------------------
     /* void */  PeriodicCondition::PeriodicCondition (Condition* pCondition, float fPeriod) :
     m_pCondition (pCondition),
-    m_dwPeriod (static_cast<DWORD> (fPeriod * Time::fResolution ()))
+    m_dwPeriod (static_cast<uint32_t> (fPeriod * Time::fResolution ()))
     {
     }
 
@@ -51,7 +52,7 @@ namespace Training
     bool        PeriodicCondition::Evaluate (void)
     {
         // get the current clock time, and compute how much time has elapsed.
-        DWORD   dwElapsedTime = (Time::Now ().clock ()  - m_dwStartTime);
+        uint32_t   dwElapsedTime = (Time::Now ().clock ()  - m_dwStartTime);
 
         // if the elapsed time is longer than the desired period
         if (dwElapsedTime > m_dwPeriod)

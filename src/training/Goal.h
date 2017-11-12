@@ -13,13 +13,8 @@
 #ifndef _GOAL_H_
 #define _GOAL_H_
 
-#ifndef _CONDITION_LIST_H_
-#include "ConditionList.h"
-#endif  //_CONDITION_LIST_H_
-
-#ifndef _ACTION_LIST_H_
-#include "ActionList.h"
-#endif  //_ACTION_LIST_H_
+#include "actionlist.h"
+#include "conditionlist.h"
 
 namespace Training
 {

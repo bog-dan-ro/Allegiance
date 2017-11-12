@@ -13,9 +13,9 @@
 #ifndef _SET_RADAR_LOD_ACTION_H_
 #define _SET_RADAR_LOD_ACTION_H_
 
-#ifndef _ACTION_H_
+#include <radarimage.h>
+
 #include "Action.h"
-#endif// _ACTION_H_
 
 namespace Training
 {

@@ -13,9 +13,7 @@
 #ifndef _CURRENT_TARGET_H_
 #define _CURRENT_TARGET_H_
 
-#ifndef _ABSTRACT_TARGET_H_
 #include "AbstractTarget.h"
-#endif  //_ABSTRACT_TARGET_H_
 
 namespace Training
 {

@@ -8,14 +8,7 @@
 #ifndef _MISSION_FREEFLIGHT_H_
 #define _MISSION_FREEFLIGHT_H_
 
-#ifndef _TRAINING_MISSION_H_
-#include "TrainingMission.h"
-#endif
-
-#ifndef _GOAL_H_
-#include "Goal.h"
-#endif
-
+#include "trainingmission.h"
 
 namespace Training
 {

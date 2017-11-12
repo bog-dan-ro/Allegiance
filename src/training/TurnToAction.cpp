@@ -10,9 +10,10 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "TurnToAction.h"
-#include    "TypeIDTarget.h"
+#include "TurnToAction.h"
+#include "TypeIDTarget.h"
+
+#include <Treki.h>
 
 namespace Training
 {

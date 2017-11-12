@@ -10,34 +10,35 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "TrainingMission.h"
+#include    "trainingmission.h"
 
-#include    "GoalList.h"
+#include    <trekinput.h>
+
+#include    "goallist.h"
 #include    "Predicate.h"
-#include    "TrueCondition.h"
-#include    "FalseCondition.h"
-#include    "AndCondition.h"
-#include    "OrCondition.h"
-#include    "NotCondition.h"
-#include    "PeriodicCondition.h"
-#include    "ElapsedTimeCondition.h"
-#include    "ObjectMovingTowardsCondition.h"
-#include    "ObjectWithinRadiusCondition.h"
-#include    "ObjectPointingAtCondition.h"
-#include    "ConditionalAction.h"
-#include    "ConditionList.h"
-#include    "ActionList.h"
-#include    "MessageAction.h"
-#include    "PlaySoundAction.h"
-#include    "SetCommandAction.h"
-#include    "NoAction.h"
-#include    "NTimesCondition.h"
-#include    "EndMissionAction.h"
-#include    "ResetAction.h"
-#include    "ResetShipAction.h"
-#include    "SoundFinishedCondition.h"
-#include    "SetDisplayModeAction.h"
+#include    "truecondition.h"
+#include    "falsecondition.h"
+#include    "andcondition.h"
+#include    "orcondition.h"
+#include    "notcondition.h"
+#include    "periodiccondition.h"
+#include    "elapsedtimecondition.h"
+#include    "objectmovingtowardscondition.h"
+#include    "objectwithinradiuscondition.h"
+#include    "objectpointingatcondition.h"
+#include    "conditionalaction.h"
+#include    "conditionlist.h"
+#include    "actionlist.h"
+#include    "messageaction.h"
+#include    "playsoundaction.h"
+#include    "setcommandaction.h"
+#include    "noaction.h"
+#include    "ntimescondition.h"
+#include    "endmissionaction.h"
+#include    "resetaction.h"
+#include    "resetshipaction.h"
+#include    "soundfinishedcondition.h"
+#include    "setdisplaymodeaction.h"
 #include    "TurnShipAboutCondition.h"
 #include    "GetRadarLODCondition.h"
 #include    "SetRadarLODAction.h"
@@ -172,7 +173,7 @@ namespace Training
         {
             // Check to see if the mission is paused, and evaluate the mission
             // goals only if it is running.
-            if (not Time::IsPaused ())
+            if (!Time::IsPaused ())
             {
                 // Check to see if there is a wait condition.
                 std::list<Condition*>::iterator pWaitConditionIterator = m_WaitConditionList.begin ();
@@ -222,7 +223,7 @@ namespace Training
     void        TrainingMission::Terminate (void)
     {
         // pause the game clock, if it isn't already stopped
-        if (not Time::IsPaused ())
+        if (!Time::IsPaused ())
             Time::Pause ();
 
         // swap the condition into dead space, and set it to null
@@ -528,8 +529,15 @@ namespace Training
                             };
         static CivID        civs[c_cSidesMax] = {25, 35, 18, 25, 35, 18};
 
-        assert (sizeofArray(szSideNames) == c_cSidesMax);
-        assert (sizeofArray(civs) == c_cSidesMax);
+#ifndef sizeofArray
+		///////////////////////////////////////////////////////////////////////////
+		// Counts the number of elements in a fixed-length array.
+		// Parameters:  x - The name of the array of which to compute the size.
+#define sizeofArray(x) (sizeof(x) / sizeof(x[0]))
+#endif // !sizeofArray
+
+        ZAssert (sizeofArray(szSideNames) == c_cSidesMax);
+        ZAssert (sizeofArray(civs) == c_cSidesMax);
 
         // set up the civs associated with the sides. There are more sides than civs, so we want to loop
         // over them once

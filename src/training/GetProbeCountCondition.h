@@ -13,9 +13,7 @@
 #ifndef _GET_PROBE_COUNT_CONDITION_H_
 #define _GET_PROBE_COUNT_CONDITION_H_
 
-#ifndef _CONDITION_H_
 #include "Condition.h"
-#endif  //_CONDITION_H_
 
 namespace Training
 {

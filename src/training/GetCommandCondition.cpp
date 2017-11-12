@@ -10,8 +10,6 @@
 **
 **  History:
 */
-
-#include    "pch.h"
 #include    "GetCommandCondition.h"
 #include    "TypeIDTarget.h"
 
@@ -48,7 +46,7 @@ namespace Training
         {
             // the ship is there, so we return true if it has a command like the one we 
             // are checking for.
-            return ((pShip->GetCommandID (c_cmdAccepted) == m_command) or (pShip->GetCommandID (c_cmdCurrent) == m_command)) ? true : false;
+            return ((pShip->GetCommandID (c_cmdAccepted) == m_command) || (pShip->GetCommandID (c_cmdCurrent) == m_command));
         }
         // the ship wasn't there for some reason, so we assume that this condition is true
         return true;

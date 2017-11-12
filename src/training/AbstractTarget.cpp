@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "AbstractTarget.h"
+
+#include "AbstractTarget.h"
+#include "igc.h"
 
 namespace Training
 {

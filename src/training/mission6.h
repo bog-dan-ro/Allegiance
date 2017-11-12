@@ -13,13 +13,7 @@
 #ifndef _MISSION_FIVE_H_
 #define _MISSION_FIVE_H_
 
-#ifndef _TRAINING_MISSION_H_
-#include "TrainingMission.h"
-#endif  //_TRAINING_MISSION_H_
-
-#ifndef _GOAL_H_
-#include "Goal.h"
-#endif  //_GOAL_H_
+#include "trainingmission.h"
 
 namespace Training
 {

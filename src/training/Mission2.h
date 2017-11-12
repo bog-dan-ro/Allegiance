@@ -13,9 +13,7 @@
 #ifndef _MISSION_ZERO_H_
 #define _MISSION_ZERO_H_
 
-#ifndef _TRAINING_MISSION_H_
-#include "TrainingMission.h"
-#endif  //_TRAINING_MISSION_H_
+#include "trainingmission.h"
 
 namespace Training
 {

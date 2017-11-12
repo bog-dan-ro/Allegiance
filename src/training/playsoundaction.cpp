@@ -10,8 +10,10 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "PlaySoundAction.h"
+#include "playsoundaction.h"
+
+#include <WinTrek.h>
+#include <wintrekp.h>
 
 namespace Training
 {
@@ -37,7 +39,7 @@ namespace Training
         if (m_soundID != NA)
         {
             /*ThingSitePrivate*           pThingSite = static_cast<ThingSitePrivate*> (trekClient.GetShip ()->GetThingSite());
-            TRef<ISoundPositionSource>  pSource = pThingSite ? pThingSite->GetSoundSource () : NULL;*/
+            TRef<SoundEngine::ISoundPositionSource>  pSource = pThingSite ? pThingSite->GetSoundSource () : NULL;*/
             m_soundInstance = trekClient.StartSound (m_soundID); //use NULL instead of pSource, so the sounds don't stop on cluster change
         }
         m_bHasStarted = true;
@@ -46,7 +48,7 @@ namespace Training
     //------------------------------------------------------------------------------
     void        PlaySoundAction::Stop (void)
     {
-        if ((m_soundID != NA) and m_bHasStarted and (m_soundInstance->IsPlaying () == S_OK))
+        if ((m_soundID != NA) && m_bHasStarted && (m_soundInstance->IsPlaying () == S_OK))
             m_soundInstance->Stop (true);
     }
 
