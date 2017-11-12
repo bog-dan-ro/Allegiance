@@ -10,15 +10,17 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "Training.h"
+
+#include	<indicator.h>
+
 #include    "Mission2.h"
 #include    "Mission3.h"
 #include    "Mission4.h"
 #include    "Mission5.h"
-#include    "Mission6.h"
-#include    "Mission8.h" //TheBored 06-JUL-07: Adding nanite mission.
-#include    "Mission10.h"
+#include    "mission6.h"
+#include    "mission8.h" //TheBored 06-JUL-07: Adding nanite mission.
+#include    "mission10.h"
 
 namespace Training
 {
@@ -103,7 +105,7 @@ namespace Training
     bool            HandleMission (void)
     {
         // handle the mission if necessary
-        if (g_pMission and g_pMission->Frame ())
+        if (g_pMission && g_pMission->Frame ())
         {
             TrainingMission*    pMission = g_pMission;
             g_pMission = 0;

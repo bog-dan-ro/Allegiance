@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "GetProbeCountCondition.h"
+#include "GetProbeCountCondition.h"
+
+#include <WinTrek.h>
 
 namespace Training
 {

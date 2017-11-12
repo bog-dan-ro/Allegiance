@@ -10,35 +10,34 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "Mission4.h"
 
 #include    "Training.h"
 #include    "Goal.h"
-#include    "GoalList.h"
+#include    "goallist.h"
 #include    "Predicate.h"
-#include    "TrueCondition.h"
-#include    "FalseCondition.h"
-#include    "AndCondition.h"
-#include    "OrCondition.h"
-#include    "NotCondition.h"
-#include    "ElapsedTimeCondition.h"
-#include    "ObjectMovingTowardsCondition.h"
-#include    "ObjectWithinRadiusCondition.h"
-#include    "ObjectPointingAtCondition.h"
-#include    "ConditionalAction.h"
-#include    "ConditionList.h"
-#include    "ActionList.h"
-#include    "MessageAction.h"
-#include    "PlaySoundAction.h"
-#include    "SetCommandAction.h"
-#include    "NoAction.h"
-#include    "NTimesCondition.h"
-#include    "EndMissionAction.h"
-#include    "ResetAction.h"
-#include    "ResetShipAction.h"
-#include    "SoundFinishedCondition.h"
-#include    "SetDisplayModeAction.h"
+#include    "truecondition.h"
+#include    "falsecondition.h"
+#include    "andcondition.h"
+#include    "orcondition.h"
+#include    "notcondition.h"
+#include    "elapsedtimecondition.h"
+#include    "objectmovingtowardscondition.h"
+#include    "objectwithinradiuscondition.h"
+#include    "objectpointingatcondition.h"
+#include    "conditionalaction.h"
+#include    "conditionlist.h"
+#include    "actionlist.h"
+#include    "messageaction.h"
+#include    "playsoundaction.h"
+#include    "setcommandaction.h"
+#include    "noaction.h"
+#include    "ntimescondition.h"
+#include    "endmissionaction.h"
+#include    "resetaction.h"
+#include    "resetshipaction.h"
+#include    "soundfinishedcondition.h"
+#include    "setdisplaymodeaction.h"
 #include    "TurnShipAboutCondition.h"
 #include    "GetRadarLODCondition.h"
 #include    "SetRadarLODAction.h"
@@ -683,7 +682,7 @@ namespace Training
 		// tm_4_24
 		// First, you can stay out of their scan ranges. Enemies can't 
 		// see you if they can't scan you. This includes hiding in the 
-		// shadow of asteroids. ÿEnemies can't scan you unless they 
+		// shadow of asteroids. ï¿½Enemies can't scan you unless they
 		// have a line of sight on you. Remember that if any 
 		// individual enemy can see you, then they all can.
         pGoalList->AddGoal (CreatePlaySoundGoal (tm_4_24Sound));

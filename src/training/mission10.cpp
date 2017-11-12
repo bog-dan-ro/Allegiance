@@ -5,18 +5,17 @@
 **      Implementation of the tenth pseudo training mission "Free Flight", intended for dev use.
 **      Cloned mission 6 without intro and with less constraints.
 */
-#include    "pch.h"
-#include    "Mission10.h"
+#include    "mission10.h"
 
 #include    "Training.h"
-#include    "GoalList.h"
-#include    "ConditionalAction.h"
+#include    "goallist.h"
+#include    "conditionalaction.h"
 #include    "GetShipIsDestroyedCondition.h"
-#include    "FalseCondition.h"
-#include    "ElapsedTimeCondition.h"
-#include    "SetDisplayModeAction.h"
+#include    "falsecondition.h"
+#include    "elapsedtimecondition.h"
+#include    "setdisplaymodeaction.h"
 #include    "CreateDroneAction.h"
-#include    "MessageAction.h"
+#include    "messageaction.h"
 
 namespace Training
 {

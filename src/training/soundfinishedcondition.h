@@ -13,13 +13,8 @@
 #ifndef _SOUND_FINISHED_CONDITION_H_
 #define _SOUND_FINISHED_CONDITION_H_
 
-#ifndef _CONDITION_H_
 #include "Condition.h"
-#endif  //_CONDITION_H_
-
-#ifndef _PLAY_SOUND_ACTION_H_
-#include "PlaySoundAction.h"
-#endif  //_PLAY_SOUND_ACTION_H_
+#include "playsoundaction.h"
 
 namespace Training
 {

@@ -13,13 +13,8 @@
 #ifndef _GET_SHIP_IS_DESTROYED_CONDITION_H_
 #define _GET_SHIP_IS_DESTROYED_CONDITION_H_
 
-#ifndef _GET_SHIP_IS_DAMAGED_CONDITION_H_
 #include "GetShipIsDamagedCondition.h"
-#endif  //_GET_SHIP_IS_DAMAGED_CONDITION_H_
-
-#ifndef _NOT_CONDITION_H_
-#include "NotCondition.h"
-#endif  //_NOT_CONDITION_H_
+#include "notcondition.h"
 
 namespace Training
 {

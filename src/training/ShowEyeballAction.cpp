@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ShowEyeballAction.h"
+#include "ShowEyeballAction.h"
+
+#include <WinTrek.h>
 
 namespace Training
 {

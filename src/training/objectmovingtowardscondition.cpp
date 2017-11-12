@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ObjectMovingTowardsCondition.h"
+#include    "objectmovingtowardscondition.h"
 
 namespace Training
 {
@@ -38,8 +37,8 @@ namespace Training
         // to avoid unwanted crashes, not to provide any kind of desired behavior.
         // Note that if the objects don't exist, a constraint should have caught
         // the situation and appropriately handled it, so this shouldn't fail.
-        assert (m_object->GetMission () and m_target->GetMission ());
-        if (m_object->GetMission () and m_target->GetMission ())
+        ZAssert (m_object->GetMission () && m_target->GetMission ());
+        if (m_object->GetMission () && m_target->GetMission ())
         {
             // The algorithm here is to get the vector of the motion and the vector towards
             // the target (the look vector). If the object is moving towards the target, 

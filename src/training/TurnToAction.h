@@ -13,13 +13,10 @@
 #ifndef _TURN_TO_ACTION_H_
 #define _TURN_TO_ACTION_H_
 
-#ifndef _ACTION_H_
-#include "Action.h"
-#endif  //_ACTION_H_
+#include <igc.h>
 
-#ifndef _ABSTRACT_TARGET_H_
 #include "AbstractTarget.h"
-#endif  //_ABSTRACT_TARGET_H_
+#include "Action.h"
 
 namespace Training
 {

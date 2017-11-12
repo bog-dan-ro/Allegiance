@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ToggleWeaponAction.h"
+#include "ToggleWeaponAction.h"
+
+#include <Treki.h>
 
 namespace Training
 {

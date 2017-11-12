@@ -10,8 +10,8 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "TypeIDTarget.h"
+#include "TypeIDTarget.h"
+#include <WinTrek.h>
 
 namespace Training
 {

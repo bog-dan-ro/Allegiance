@@ -10,8 +10,10 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "CreateProbeAction.h"
+
+#include <igc.h>
+#include <WinTrek.h>
 
 namespace Training
 {

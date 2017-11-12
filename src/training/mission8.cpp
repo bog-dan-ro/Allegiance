@@ -9,22 +9,24 @@
 **
 **  History:
 */
-#include "pch.h"
-#include "Mission8.h"
+#include "mission8.h"
+
+#include <trekinput.h>
+
 #include "Training.h"
-#include "GoalList.h"
-#include "ConditionalAction.h"
+#include "goallist.h"
+#include "conditionalaction.h"
 #include "GetShipIsDestroyedCondition.h"
 #include "GetShipHasMountedCondition.h"
 #include "GetShipHasCargoCondition.h"
-#include "FalseCondition.h"
-#include "ElapsedTimeCondition.h"
-#include "SetDisplayModeAction.h"
+#include "falsecondition.h"
+#include "elapsedtimecondition.h"
+#include "setdisplaymodeaction.h"
 #include "CreateDroneAction.h"
-#include "MessageAction.h"
+#include "messageaction.h"
 #include "DoDamageAction.h"
 #include "DoDamageAdjustableAction.h"
-#include "SetCommandAction.h"
+#include "setcommandaction.h"
 #include "notcondition.h"
 #include "orcondition.h"
 #include "andcondition.h"
@@ -38,10 +40,10 @@
 #include "TurnToAction.h"
 #include "objectpointingatcondition.h"
 #include "GetShipIsStoppedCondition.h"
-#include "PlaySoundAction.h"
+#include "playsoundaction.h"
 #include "SetCargoNanAction.h"
-#include "ResetAction.h"
-#include "ResetShipAction.h"
+#include "resetaction.h"
+#include "resetshipaction.h"
 #include "objectwithinradiuscondition.h";
 
 namespace Training

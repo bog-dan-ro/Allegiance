@@ -10,8 +10,8 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ConditionalAction.h"
+#include "Condition.h"
+#include "conditionalaction.h"
 
 namespace Training
 {
@@ -38,7 +38,7 @@ namespace Training
     bool        ConditionalAction::Start (void)
     {
         m_bExecute = m_pCondition->Start ();
-        if ((m_bImmediateExecute == IMMEDIATE_EXECUTION)and (m_bExecute == true))
+        if ((m_bImmediateExecute == IMMEDIATE_EXECUTION) & (m_bExecute == true))
             m_pAction->Execute ();
         return m_bExecute;
     }

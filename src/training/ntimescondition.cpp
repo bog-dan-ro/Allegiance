@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "NTimesCondition.h"
+#include "ntimescondition.h"
+
+#include <zassert.h>
 
 namespace Training
 {

@@ -10,8 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ConditionList.h"
+
+#include <list>
+#include "conditionlist.h"
 
 namespace Training
 {

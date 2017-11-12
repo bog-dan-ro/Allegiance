@@ -10,7 +10,6 @@
 **
 **  History:
 */
-#include    "pch.h"
 #include    "SetAutopilotAction.h"
 #include    "TypeIDTarget.h"
 

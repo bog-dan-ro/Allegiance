@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "SoundFinishedCondition.h"
+#include    "soundfinishedcondition.h"
 
 namespace Training
 {
@@ -32,7 +31,7 @@ namespace Training
     //------------------------------------------------------------------------------
     bool        SoundFinishedCondition::Evaluate (void)
     {
-        if (not m_bHasStarted)
+        if (!m_bHasStarted)
         {
             m_bHasStarted = m_pPlaySoundAction->HasStarted ();
             return false;

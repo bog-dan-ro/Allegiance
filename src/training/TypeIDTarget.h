@@ -13,9 +13,9 @@
 #ifndef _TYPE_ID_TARGET_H_
 #define _TYPE_ID_TARGET_H_
 
-#ifndef _ABSTRACT_TARGET_H_
+#include <igc.h>
+
 #include "AbstractTarget.h"
-#endif  //_ABSTRACT_TARGET_H_
 
 namespace Training
 {

@@ -13,9 +13,9 @@
 #ifndef _SHOW_PANE_ACTION_H_
 #define _SHOW_PANE_ACTION_H_
 
-#ifndef _ACTION_H_
+#include <console.h>
+
 #include "Action.h"
-#endif  //_ACTION_H_
 
 namespace Training
 {

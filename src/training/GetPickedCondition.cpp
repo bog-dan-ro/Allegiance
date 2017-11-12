@@ -10,10 +10,10 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "GetPickedCondition.h"
-#include    "TypeIDTarget.h"
-#include    "console.h"
+#include "GetPickedCondition.h"
+#include "TypeIDTarget.h"
+#include "console.h"
+#include <Treki.h>
 
 namespace Training
 {

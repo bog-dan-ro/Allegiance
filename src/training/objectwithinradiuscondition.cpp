@@ -10,8 +10,7 @@
 **
 **  History:
 */
-#include    "pch.h"
-#include    "ObjectWithinRadiusCondition.h"
+#include    "objectwithinradiuscondition.h"
 #include    "TypeIDTarget.h"
 
 namespace Training
@@ -70,8 +69,8 @@ namespace Training
             // to avoid unwanted crashes, not to provide any kind of desired behavior.
             // Note that if the objects don't exist, a constraint should have caught
             // the situation and appropriately handled it, so this shouldn't fail.
-            assert (*m_pObject and *m_pTarget);
-            if (*m_pObject and *m_pTarget)
+            assert (*m_pObject && *m_pTarget);
+            if (*m_pObject && *m_pTarget)
             {
                 // Check to see if the objects are closer than the specified distance,
                 // after accounting for the radii of the two objects. We use the squared
@@ -98,7 +97,7 @@ namespace Training
     //------------------------------------------------------------------------------
     bool        ObjectWithinRadiusCondition::Initialized (void)
     {
-        if (not m_bConditionInitialized)
+        if (!m_bConditionInitialized)
         {
             // fetch the target object, if we can
             if (*m_pTarget)
