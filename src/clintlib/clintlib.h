@@ -1,10 +1,14 @@
 #ifndef _CLINTLIB_
 #define _CLINTLIB_
 
+#include <igc.h>
 #include <Messages.h>
 #include <messageslc.h>
 #include <mission.h>
-#include <steam_api.h>
+
+#ifndef NO_STEAM
+# include <steam_api.h>
+#endif
 
 class MissionInfo;
 class SideInfo;
@@ -700,10 +704,11 @@ private:
 
     BallotList              m_listBallots;
 
-	// BT - STEAM
+#ifndef NO_STEAM
+    // BT - STEAM
 	HAuthTicket				m_hAuthTicketLobby = 0;
 	HAuthTicket				m_hAuthTicketServer = 0;
-
+#endif
 
 public: //todo: make protected
 
@@ -732,8 +737,10 @@ public: //todo: make protected
       LPBYTE    pZoneTicket;
       CB        cbZoneTicket;
       GUID      guidSession;
-	  int8		steamAuthTicket[1024]; // BT - STEAM
+#ifndef NO_STEAM
+      int8		steamAuthTicket[1024]; // BT - STEAM
 	  int32		steamAuthTicketLength; // BT - STEAM
+#endif
     };
     
     bool                m_fLoggedOn   : 1;
@@ -875,11 +882,13 @@ public:
     }
     virtual void        SetCDKey(const ZString& strCDKey);
 
-	// BT - STEAM
+#ifndef NO_STEAM
+    // BT - STEAM
 	void UpdateLobbyLoginRequestWithSteamAuthTokenInformation(FMD_C_LOGON_LOBBY *pfmLogon);
 	void UpdateServerLoginRequestWithSteamAuthTokenInformation(FMD_C_LOGONREQ *pfmLogon);
 	void CancelSteamAuthSessionToGameServer();
 	void CancelSteamAuthSessionToLobby();
+#endif
 
     virtual void        OnLogonAck(bool fValidated, bool bRetry, LPCSTR szFailureReason) = 0;
     virtual void        OnLogonLobbyAck(bool fValidated, bool bRetry, LPCSTR szFailureReason) = 0;

@@ -1,4 +1,3 @@
-#include "pch.h"
 /*-------------------------------------------------------------------------
  * clintlib\AutoDownload.cpp
  * 
@@ -14,6 +13,7 @@
 
 #include "AutoDownload.h"
 
+#include <algorithm>
 #include <base.h>
 #include <CRC.h>
 #include <Utility.h>
