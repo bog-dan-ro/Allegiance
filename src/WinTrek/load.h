@@ -1,12 +1,17 @@
 #ifndef _loadout_h_
 #define _loadout_h_
 
+#include <tref.h>
+#include <value.h>
+
+#include "screen.h"
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Loadout
 //
 //////////////////////////////////////////////////////////////////////////////
-
+class Pane;
 class Loadout : public Screen {
 public:
     virtual void   UpdateHullType(void)      = 0;
@@ -18,7 +23,7 @@ public:
 // Constructor
 //
 //////////////////////////////////////////////////////////////////////////////
-
+class Modeler;
 TRef<Loadout> CreateLoadout(Modeler* pmodeler, Number* ptime);
 
 #endif

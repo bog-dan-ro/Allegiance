@@ -3,6 +3,8 @@
 
 #include <controls.h>
 
+class MissionParams;
+
 /*
 **
 **  File:	mappreview.h

@@ -11,6 +11,15 @@
 #ifndef _TREKCTRLS_H
 #define _TREKCTRLS_H
 
+#include <clintlib.h>
+#include <pane.h>
+#include <transform.h>
+#include <value.h>
+
+#include "WinTrek.h"
+
+class Image;
+class ButtonPane;
 
 /////////////////////////////////////////////////////////////////////////////
 //

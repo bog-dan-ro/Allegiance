@@ -1,7 +1,11 @@
 #ifndef _trekmdl_h_
 #define _trekmdl_h_
 
+#include <igc.h>
+#include <pane.h>
 #include <value.h>
+
+
 
 void ExportPaneFactories(INameSpace* pns);
 

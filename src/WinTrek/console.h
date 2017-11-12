@@ -1,12 +1,16 @@
 #ifndef _Console_h_
 #define _Console_h_
 
+#include <igc.h>
+#include <image.h>
+#include <ztime.h>
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // 
 //
 //////////////////////////////////////////////////////////////////////////////
-
+class Pane;
 void AddChildren(Pane* ppaneParent, ObjectStack& stack);
 
 //////////////////////////////////////////////////////////////////////////////
@@ -59,7 +63,7 @@ enum OverlayFlag
 typedef unsigned int OverlayMask;
 
 const OverlayMask c_omBanishablePanes = (ofTeleportPane | ofInvestment | ofGameState | ofTeam | ofExpandedTeam);
-
+class GameStateContainer;
 class ConsoleImage : public WrapImage 
 {
 protected:
