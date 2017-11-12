@@ -1,14 +1,11 @@
+#include "CRC.h"
 
-#include "pch.h"
-
-
-
-
-
+#include <cstdint>
+#include <cstdio>
 
 /****************************************************************************/
 
-static const unsigned CRC32_TABLE[256] =
+static uint32_t CRC32_TABLE[256] =
 {
      0x00000000, 0x77073096, 0xee0e612c, 0x990951ba,
      0x076dc419, 0x706af48f, 0xe963a535, 0x9e6495a3,
@@ -95,10 +92,12 @@ static const unsigned CRC32_TABLE[256] =
 
 // Imago uncommented and adapted for x64 6/20/09
 #if defined (_WIN64) || defined(__GNUC__)
-DWORD update_crc (DWORD Crc, const void * pData)
+DWORD update_crc (DWORD Crc, const void * pData, unsigned nSize)
 {
-	BYTE Data = (BYTE)pData;
-    return CRC32_TABLE[(BYTE)(Crc) ^ Data] ^ (Crc >> 8);
+    uint8_t *bytePtr = (uint8_t *)pData;
+    while(nSize--)
+        Crc = CRC32_TABLE[(Crc & 0xff) ^ *bytePtr++] ^ (Crc >> 8);
+    return Crc;
 }
 #else
 
@@ -161,12 +160,7 @@ Returns:		checksum of the data (never returns zero)
 ****************************************************************************/
 int MemoryCRC(const void *_data, unsigned size) 
 {
-
-#if defined (_WIN64) //hack for x64
-    int crc = (int)update_crc(0xFFFFFFFF, _data);
-#else
 	int crc = (int)update_crc(0xFFFFFFFF, _data, size);
-#endif
 
     // shouldn't ever happen, but make sure we never return 0
     if (crc == 0)  

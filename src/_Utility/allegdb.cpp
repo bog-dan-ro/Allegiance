@@ -8,7 +8,6 @@
   Copyright 1986-2000 Microsoft Corporation, All Rights Reserved
  *-----------------------------------------------------------------------*/
 
-#include "pch.h"
 #include "allegdb.h"
 
 unsigned CALLBACK SQLQueueProc(void * pvSQLQueueThread)
