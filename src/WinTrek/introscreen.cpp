@@ -1,6 +1,22 @@
-#include "pch.h"
-#include "regkey.h"
-#include "training.h"
+#include "screen.h"
+
+#include <Training.h>
+#include <combopane.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <frameimage.h>
+#include <geometry.h>
+#include <listpane.h>
+#include <namespace.h>
+#include <paneimage.h>
+#include <regkey.h>
+#include <thinggeo.h>
+#include <VersionInfo.h>
+
+#include "logon.h"
+#include "passworddialog.h"
+#include "trekctrls.h"
+#include "trekmdl.h"
 #include "valuetransform.h"
 #include <boost/any.hpp>
 

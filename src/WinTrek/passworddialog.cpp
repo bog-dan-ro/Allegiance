@@ -1,4 +1,8 @@
-#include "pch.h"
+#include "passworddialog.h"
+
+#include <namespace.h>
+
+#include "trekctrls.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

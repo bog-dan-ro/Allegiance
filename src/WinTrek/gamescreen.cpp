@@ -1,8 +1,21 @@
-#include "pch.h"
 #include "badwords.h"
 
+#include <FTPSession.h>
+#include <efapp.h>
+#include <efpane.h>
 #include <button.h>
+#include <combopane.h>
 #include <controls.h>
+#include <help.h>
+#include <listpane.h>
+#include <messagesall.h>
+#include <messageslc.h>
+#include <namespace.h>
+
+#include "gametypes.h"
+#include "passworddialog.h"
+#include "screen.h"
+#include "trekctrls.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

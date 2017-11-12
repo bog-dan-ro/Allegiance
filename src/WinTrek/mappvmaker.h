@@ -8,7 +8,8 @@
 **
 **  History:
 */
-// 
+
+//
 
 #ifndef __MAPPVMAKER_H_
 #define __MAPPVMAKER_H_

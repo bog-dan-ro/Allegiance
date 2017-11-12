@@ -1,11 +1,14 @@
-#include "pch.h"
-#include "trekctrls.h"
-#include "loadout.h"
-#include "limits.h"
-#include "trekmdl.h"
-
 #include <button.h>
 #include <controls.h>
+#include <efapp.h>
+
+#include "artwork.h"
+#include "limits.h"
+#include "loadout.h"
+#include "trekctrls.h"
+#include "trekmdl.h"
+
+using namespace std;
 
 // KG- EF5P - sept2008- 
 // Enhanced F5 panel: added 'show all' and 'hide completed' options
@@ -1453,7 +1456,7 @@ private:
         Color             color = MakeColorFromCOLORREF(RGB(180,180,180));
 
         pSurface->DrawString(pfont, color, WinPoint(nBorderWidth, 15 + nLineHeight),   ZString("Cost:           $") + ZString(pBuyable->GetPrice()));
-        pSurface->DrawString(pfont, color, WinPoint(nBorderWidth, 15 + 2*nLineHeight), ZString("Time:          ") + ZString((long)pBuyable->GetTimeToBuild()) + ZString(" Sec."));
+        pSurface->DrawString(pfont, color, WinPoint(nBorderWidth, 15 + 2*nLineHeight), ZString("Time:          ") + ZString((int)pBuyable->GetTimeToBuild()) + ZString(" Sec."));
 
         ZString strDescription(pBuyable->GetDescription() + ZString(" "));
         

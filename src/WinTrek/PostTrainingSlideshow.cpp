@@ -1,6 +1,6 @@
-#include "pch.h"
-#include "slideshow.h"
-#include "training.h"
+#include "Slideshow.h"
+#include "Training.h"
+#include "Treki.h"
 
 
 //////////////////////////////////////////////////////////////////////////////

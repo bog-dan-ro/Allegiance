@@ -1,6 +1,7 @@
+#include <paneimage.h>
 
-#include "pch.h"
 #include "consoledata.h"
+#include "trekmdl.h"
 
 namespace {
     class InventoryImage : public WrapImage, public TrekClientEventSink, public IKeyboardInput

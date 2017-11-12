@@ -9,17 +9,7 @@
  * 
  * Copyright 1986-2000 Microsoft Corporation, All Rights Reserved
  *-----------------------------------------------------------------------*/
-
-
-
-#include "pch.h"
-
-
-class CZonePlayerImpl;
-
-
-
-
+#include "ZoneSquad.h"
 
 class CZonePlayerImpl:
   public IZonePlayer

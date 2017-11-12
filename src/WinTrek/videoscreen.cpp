@@ -1,4 +1,14 @@
-#include "pch.h"
+#include "screen.h"
+
+#include <efapp.h>
+#include <efpane.h>
+#include <combopane.h>
+#include <frameimage.h>
+#include <listpane.h>
+#include <namespace.h>
+#include <regkey.h>
+
+#include "trekctrls.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

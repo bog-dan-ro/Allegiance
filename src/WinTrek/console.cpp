@@ -1,13 +1,19 @@
-#include "pch.h"
+#include "console.h"
+
+#include <button.h>
+#include <combopane.h>
+#include <controls.h>
+#include <gamestate.h>
+
+#include "artwork.h"
 #include "consoledata.h"
 #include "trekctrls.h"
 #include "loadout.h"
 #include "trekmdl.h"
-#include "training.h"
+#include "Training.h"
 #include "badwords.h"
-
-#include <button.h>
-#include <controls.h>
+#include "trekinput.h"
+#include "WinTrek.h"
 
 const int   c_iRecipientOther   = -1;
 const int   c_iRecipientMe      =  0;

@@ -1,4 +1,22 @@
-#include "pch.h"
+#include <messagecore.h>
+
+#include <ClubMessages.h>
+#include <Squad.h>
+#include <Zone.h>
+#include <algorithm>
+#include <button.h>
+#include <combopane.h>
+#include <controls.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <efpopup.h>
+#include <listpane.h>
+#include <namespace.h>
+
+#include "ZoneSquad.h"
+#include "screen.h"
+#include "trekctrls.h"
+#include "WinTrek.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -2779,9 +2797,9 @@ public:
         return index;
     }
 
-    static char* CivID2String(CivID id)
+    static const char* CivID2String(CivID id)
     {
-      char *szCivs[] = {
+      const char *szCivs[] = {
         "ANY",
         "Rix",
         "Iron league",

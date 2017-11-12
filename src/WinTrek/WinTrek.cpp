@@ -1,20 +1,44 @@
-#include "pch.h"
+#include "WinTrek.h"
 
-
+#include <efapp.h>
+#include <efimage.h>
+#include <efgeo.h>
+#include <efpane.h>
+#include <geometry.h>
+#include <help.h>
+#include <namespace.h>
+#include <redbooksound.h>
+#include <regkey.h>
 #include <shellapi.h>
+#include <soundtemplates.h>
+#include <starimage.h>
+#include <thinggeo.h>
+
+#include <VersionInfo.h>
+
+#include "artwork.h"
 #include "cmdview.h"
 //#include "console.h"
+#include "indicator.h"
+#include "radarimage.h"
 #include "trekctrls.h"
+#include "trekinput.h"
+#include "trekmdl.h"
+#include "treksound.h"
 
 #include "gamesite.h"
+#include "gamestate.h"
+#include "wintrekp.h"
 
 #include "badwords.h"
-#include "slideshow.h"
+#include "Slideshow.h"
 #include "Training.h"
 #include "CommandAcknowledgedCondition.h"
 #include "SteamClans.h" // BT - STEAM
+#include "ddvideo.h"
+#include "CallsignTagInfo.h"
 
-#include <Delayimp.h>   // For error handling & advanced features
+#include <delayimp.h>   // For error handling & advanced features
 //#include "..\\icqapi\\ICQAPIInterface.h"
 
 class QuickChatNode : public IMDLObject {};
@@ -43,7 +67,8 @@ extern bool g_bActivity = true;
 extern bool g_bAFKToggled = false;
 
 
-
+using namespace std;
+using namespace SoundEngine;
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -2467,7 +2492,7 @@ public:
                     extern  TRef<ModifiableNumber>  g_pnumberMissionNumber;
                     int     iMission = static_cast<int> (g_pnumberMissionNumber->GetValue ());
                     ZAssert ((iMission >= 1) && (iMission <= 8)); //TheBored 06-JUL-07: second condition must be (iMission <= (number of training missions))
-                    char*   strNamespace[] =
+                    const char*   strNamespace[] =
                     {
                         "",
                         "",
@@ -2489,7 +2514,7 @@ public:
                     extern  TRef<ModifiableNumber>  g_pnumberMissionNumber;
                     int     iMission = static_cast<int> (g_pnumberMissionNumber->GetValue ());
                     ZAssert ((iMission >= 1) && (iMission <= 10)); //TheBored 06-JUL-07: second condition must be (iMission <= (number of training missions))
-                    char*   strNamespace[] =
+                    const char*   strNamespace[] =
                     {
                         "",
                         "tm_1_introduction",
@@ -2528,7 +2553,7 @@ public:
         bSwitchingScreens = false;
 
         if (s != sNextScreen)
-            screen(sNextScreen, NULL);
+            screen(sNextScreen, 0);
     }
 
     void        CharInfoScreenForPlayer(int idZone)
@@ -3375,7 +3400,7 @@ public:
 				if (dwHasSeenMovie == 0)
 				{
 					DWORD   dwNewValue = 1;
-					RegSetValueExA(hKey, "HasSeenMovie", NULL, REG_DWORD, (const BYTE*)&dwNewValue, sizeof(dwNewValue));
+                    RegSetValueExA(hKey, "HasSeenMovie", 0, REG_DWORD, (const BYTE*)&dwNewValue, sizeof(dwNewValue));
 				}
 				RegCloseKey(hKey);
 			}
@@ -3869,8 +3894,7 @@ public:
 	// BT - STEAM - Enable moderators to ban players by context menu.
 	void contextKickPlayer()
 	{
-		char szMessageParam[CB_ZTS];
-		lstrcpy(szMessageParam, "You have been moved to NOAT by an administrator.");
+        char szMessageParam[CB_ZTS] = "You have been moved to NOAT by an administrator.";
 		trekClient.SetMessageType(BaseClient::c_mtGuaranteed);
 		BEGIN_PFM_CREATE(trekClient.m_fm, pfmQuitSide, CS, QUIT_SIDE)
 			FM_VAR_PARM(szMessageParam, CB_ZTS)
@@ -3882,8 +3906,7 @@ public:
 	// BT - STEAM - Enable moderators to ban players by context menu.
 	void contextBanPlayer()
 	{
-		char szMessageParam[CB_ZTS];
-		lstrcpy(szMessageParam, "You have been banned from this game an administrator.");
+        char szMessageParam[CB_ZTS] = "You have been banned from this game an administrator.";
 		trekClient.SetMessageType(BaseClient::c_mtGuaranteed);
 		BEGIN_PFM_CREATE(trekClient.m_fm, pfmQuitSide, CS, QUIT_MISSION)
 			FM_VAR_PARM(szMessageParam, CB_ZTS)
@@ -4177,7 +4200,9 @@ public:
 	void TakeScreenShot()
 	{
 		// BT - STEAM - When the user attempts to take a screen shot inside of Alleg, trigger the steam overlay to do it instead.
-		SteamScreenshots()->TriggerScreenshot();
+#ifndef NO_STEAM
+        SteamScreenshots()->TriggerScreenshot();
+#endif
 		return; 
 
 		////capturing screen size this way (instead of using a native GDI call) will create
@@ -4248,7 +4273,7 @@ public:
 
 	// BT - STEAM - TODO Move these to where the other globals are hiding?
 	CallsignTagInfo m_currentCallsignTag;
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 	SteamClans m_availableSteamClans;
 #endif
 
@@ -4312,7 +4337,7 @@ public:
 
 		
 		// BT - STEAM - Let the user select their steam call sign from a list of options.
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 		if (m_availableSteamClans.GetAvailableCallsignTags()->GetCount() > 0)
 		{
 			ZString menuOption = "Squad Tags";
@@ -4371,10 +4396,11 @@ public:
 	// BT - Steam
 	bool IsPlayerSteamModerator()
 	{
+        bool isModerator = false;
+#ifndef NO_STEAM
 		// The MSAlleg Steam Group ID.
 		CSteamID moderatorGroupID = ((uint64)103582791460031578);
 		int clanCount = SteamFriends()->GetClanCount();
-		bool isModerator = false;
 		for (int i = 0; i < clanCount; i++)
 		{
 			if (SteamFriends()->GetClanByIndex(i) == moderatorGroupID)
@@ -4383,7 +4409,7 @@ public:
 				break;
 			}
 		}
-
+#endif
 		return isModerator;
 	}
 
@@ -4584,7 +4610,7 @@ public:
 
 
 	// BT - STEAM 
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 	void AddAvailablePlayerTagsToMenu(TRef<IMenu> pmenu)
 	{
 		pmenu->AddMenuItem(0, "Squad Tags");
@@ -4706,7 +4732,7 @@ public:
                 break;
 
 				// BT - STEAM
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 			case idmTags:
 				AddAvailablePlayerTagsToMenu(pmenu);
 				break;
@@ -4929,8 +4955,8 @@ public:
 			{
 				if (GetViewMode() == vmLoadout)
 				{
-					m_pchatListPane->SetChatLines(std::min(lines, 6));
-					m_pnumberChatLines->SetValue(std::min(lines, 6));
+					m_pchatListPane->SetChatLines(min<uint32_t>(lines, 6));
+					m_pnumberChatLines->SetValue(min<uint32_t>(lines, 6));
 				}
 				else if (GetViewMode() <= vmOverride)
 				{
@@ -4956,8 +4982,8 @@ public:
 			{
 				if (GetViewMode() == vmLoadout)
 				{
-					m_pchatListPane->SetChatLines(std::min(lines, 6));
-					m_pnumberChatLines->SetValue(std::min(lines, 6));
+					m_pchatListPane->SetChatLines(min<uint32_t>(lines, 6));
+					m_pnumberChatLines->SetValue(min<uint32_t>(lines, 6));
 				}
 				else if (GetViewMode() <= vmOverride)
 				{
@@ -5462,7 +5488,7 @@ public:
     }
 
 	//Imago 7/8/09 #24
-    void SetGamma(ZString& value)
+    void SetGamma(const ZString& value)
     {
        //we save only when loading non-default or terminate()
 		GetEngine()->SetGammaLevel(atof(ZString(value)));
@@ -5663,7 +5689,7 @@ public:
 
     void AdjustMusicVolume(float fDelta)
     {
-        float fNewValue = std::min(0.0f, std::max(c_nMinGain, m_pnumMusicGain->GetValue() + fDelta));
+        float fNewValue = min(0.f, max<float>(c_nMinGain, m_pnumMusicGain->GetValue() + fDelta));
         m_pnumMusicGain->SetValue(fNewValue);
 
         SavePreference("MusicGain", (DWORD)-fNewValue);
@@ -5683,7 +5709,7 @@ public:
 
     void AdjustSFXVolume(float fDelta)
     {
-        float fNewValue = std::min(0.0f, std::max(c_nMinGain, m_pnumSFXGain->GetValue() + fDelta));
+        float fNewValue = min(0.f, max<float>(c_nMinGain, m_pnumSFXGain->GetValue() + fDelta));
         m_pnumSFXGain->SetValue(fNewValue);
 
         SavePreference("SFXGain", (DWORD)-fNewValue);
@@ -5702,7 +5728,7 @@ public:
 
     void AdjustVoiceOverVolume(float fDelta)
     {
-        float fNewValue = std::min(0.0f, std::max(c_nMinGain, m_pnumVoiceOverGain->GetValue() + fDelta));
+        float fNewValue = min(0.f, max<float>(c_nMinGain, m_pnumVoiceOverGain->GetValue() + fDelta));
         m_pnumVoiceOverGain->SetValue(fNewValue);
 
         SavePreference("VoiceOverGain", (DWORD)-fNewValue);
@@ -5722,7 +5748,7 @@ public:
 	//Imago 7/10 #187
     void AdjustFFGain(float fDelta)
     {
-        float fNewValue = std::min(10000.0f, std::max(c_nMinFFGain, m_pnumFFGain->GetValue() + fDelta));
+        float fNewValue = min(10000.f, max<float>(c_nMinFFGain, m_pnumFFGain->GetValue() + fDelta));
         m_pnumFFGain->SetValue(fNewValue);
 
         SavePreference("FFGain", fNewValue);
@@ -5744,7 +5770,7 @@ public:
 
     void AdjustMouseSens(float fDelta)
     {
-        float fNewValue = std::min(2.0f, std::max(0.1f, m_pnumMouseSens->GetValue() + fDelta));
+        float fNewValue = min(2.0f, max(0.1f, m_pnumMouseSens->GetValue() + fDelta));
         m_pnumMouseSens->SetValue(fNewValue);
 
         SavePreference("MouseSensitivity", ZString(fNewValue));
@@ -5824,7 +5850,7 @@ public:
         }
         else
         {
-			float value = (std::min(2.0f, std::max(0.1f, fCurrentSens + fDelta))) * 100;
+			float value = (min(2.f, max(0.1f, fCurrentSens + fDelta))) * 100;
 			char szValue[4] = {'\0'};
 			sprintf(szValue,"%.0f",value);
             strResult += "to " + ZString(szValue) + " %";
@@ -6135,7 +6161,7 @@ public:
         }
         else
         {
-            strResult += "to " + ZString(std::min(0.0f, std::max(c_nMinGain, fCurrentGain + fDelta))) + " dB";
+            strResult += "to " + ZString(min(0.f, max<float>(c_nMinGain, fCurrentGain + fDelta))) + " dB";
         }
 
         return strResult;
@@ -6155,7 +6181,7 @@ public:
         }
         else
         {
-            strResult += "to " + ZString(std::min(10000.0f, std::max(c_nMinFFGain, fCurrentGain + fDelta) / 100)) + " %";
+            strResult += "to " + ZString(min(10000.f, max<float>(c_nMinFFGain, fCurrentGain + fDelta) / 100)) + " %";
         }
 
         return strResult;
@@ -6682,7 +6708,7 @@ public:
 				break;
 			// End Imago
 
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 			// BT - STEAM
 			case idmCallsignTag0:
 			case idmCallsignTag1:
@@ -7635,7 +7661,7 @@ public:
             + " Server: " + ZString(szRemoteAddress)
             + " fov: " + ((m_pcamera != NULL) ? ZString(DegreesFromRadians(m_pcamera->GetFOV())) : ZString())
             + strPosition
-            + " lag: " + ZString((long) trekClient.m_serverLag)
+            + " lag: " + ZString((int) trekClient.m_serverLag)
             + " ping: " + ZString(Time::Now() - trekClient.m_timeLastPing)
             + " sync: " + ZString(int(100.0f * trekClient.m_sync))
             + " snds: " + ZString(nNumPlayingSoundBuffers);
@@ -8413,8 +8439,10 @@ public:
                       float dt,
                       bool  activeControlsF)
 	{
+#ifndef NO_STEAM
 		// BT - STEAM
 		SteamAPI_RunCallbacks();
+#endif
 
 		//Spunky #76 - only update throttle if enough time elapsed
 		static const float delay[] = {0.066f, 0.033f, 0.022f, 0.016f, 0.0f}; //#282
@@ -9447,9 +9475,9 @@ public:
         void Evaluate()
         {
             if (m_bOn) {
-                m_value = std::min(1.0f, m_valueStart + (GetTime() - m_timeStart));
+                m_value = min(1.f, m_valueStart + (GetTime() - m_timeStart));
             } else {
-                m_value = std::max(0.0f, m_valueStart - (GetTime() - m_timeStart));
+                m_value = max(0.f, m_valueStart - (GetTime() - m_timeStart));
             }
 
             GetValueInternal() = Interpolate(m_positionOff, m_positionOn, m_value);
@@ -11324,6 +11352,7 @@ public:
             case FM_S_ICQ_CHAT_ACK:
             {
                 CASTPFM(pfmICQChat, S, ICQ_CHAT_ACK, pfm);
+#ifndef __GNUC__
                 __try
                 {
                   static bool fICQInit = false;
@@ -11339,6 +11368,7 @@ public:
                 {
                   // nothing to do here
                 }
+#endif
             }
             break;
 
@@ -11499,7 +11529,7 @@ public:
     // VT functions.
     //
 
-    VOID VTSetText(LPSTR szFormat, ...)
+    VOID VTSetText(const char* szFormat, ...)
     {
         TCHAR szText[1024];
         va_list vaList;

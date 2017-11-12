@@ -1,9 +1,22 @@
-#include "pch.h"
+#include <AutoDownload.h>
+
+#include <button.h>
+#include <efpopup.h>
+#include <image.h>
+#include <namespace.h>
 #include <zreg.h>
 
+#include "logon.h"
+#include "screen.h"
+#include "trekctrls.h"
+#include "Treki.h"
+#include "WinTrek.h"
+#include "CallsignTagInfo.h"
+
 // BT - STEAM
+#ifndef __GNUC__
 #include "atlenc.h"
-#include <inttypes.h>
+#endif
 
 // #define NO_CLUB_SERVER_CONNECTION 1 // comment out before checkin
 
@@ -277,7 +290,12 @@ public:
 			// BT - Steam - User is logged into steam, and has a steam profile name
 			// The steam reviewer was somehow launching the game with steam authorization but no persona name. If 
 			// there is an player name, then the server rejects the user as a hacker with a DPlay error. 
-			bool isUserLoggedIntoSteamWithValidPlayerName = SteamUser() != nullptr && strlen(m_szName) > 0;
+            bool isUserLoggedIntoSteamWithValidPlayerName =
+# ifndef NO_STEAM
+                    SteamUser() != nullptr && strlen(m_szName) > 0;
+# else
+                    false;
+# endif
 
 #endif
 		  // wlp - don't ask for callsign if it was on the command line

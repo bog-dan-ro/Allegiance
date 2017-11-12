@@ -1,4 +1,5 @@
-#include "pch.h"
+#include <efapp.h>
+
 #include "trekctrls.h"
 #include "trekmdl.h"
 #include "badwords.h"
