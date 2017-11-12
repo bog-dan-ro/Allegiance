@@ -1,4 +1,7 @@
-#include "pch.h"
+#include <base.h>
+#include <igc.h>
+#include <namespace.h>
+#include <soundbase.h>
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -9,7 +12,7 @@
 namespace SoundInit {
     void InitializeSoundTemplates(
         Modeler* pmodeler, 
-        TVector<TRef<ISoundTemplate> >& vSoundMap
+        TVector<TRef<SoundEngine::ISoundTemplate> >& vSoundMap
     ) {
         DWORD dwStartTime = timeGetTime();
 
@@ -25,7 +28,7 @@ namespace SoundInit {
         // load the general-purpose sound templates
         TRef<INameSpace>  pnsSoundDefs = pmodeler->GetNameSpace("sounddef");
         TRef<IObjectList> plist; CastTo(plist, pnsSoundDefs->FindMember("soundList"));
-        TLookup<ISoundTemplate>::Parse(plist, 0, vSoundMap);
+        TLookup<SoundEngine::ISoundTemplate>::Parse(plist, 0, vSoundMap);
 
         // unload the training sound namespace
         pmodeler->UnloadNameSpace ("trainingsounddef");

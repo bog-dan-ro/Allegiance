@@ -1,7 +1,11 @@
-#include "pch.h"
+#include "logon.h"
 
 #include <button.h>
 #include <controls.h>
+#include <popup.h>
+#include <namespace.h>
+
+#include "WinTrek.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

@@ -1,4 +1,16 @@
-#include "pch.h"
+#include "screen.h"
+
+#include <ClubMessages.h>
+
+#include <efapp.h>
+#include <efpane.h>
+#include <combopane.h>
+#include <listpane.h>
+#include <namespace.h>
+
+#include "trekctrls.h"
+
+using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -337,7 +349,7 @@ public:
         GetWindow()->SetFocus();
         GetWindow()->SetFocus(m_peditPane);
         
-        m_strBasis = strCharacter.IsEmpty() ? trekClient.GetNameLogonClubServer() : strCharacter;
+        m_strBasis = strCharacter.IsEmpty() ? trekClient.GetNameLogonClubServer() : (const char*)strCharacter;
         m_idBasis = strCharacter.IsEmpty() ? -2 : -1;
 
         AddEventTarget(&LeaderBoardScreen::OnButtonSearch, m_pbuttonSearch->GetEventSource());

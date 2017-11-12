@@ -1,6 +1,16 @@
-#include "pch.h"
-#include "training.h"
+#include <clintlib.h>
+#include <combopane.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <listpane.h>
+#include <namespace.h>
+
+#include "Training.h"
+#include "WinTrek.h"
+#include "artwork.h"
 #include "badwords.h"
+#include "surface.h"
+#include "trekctrls.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //

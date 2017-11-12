@@ -1,9 +1,14 @@
-#include "pch.h"
-#include <objbase.h>
+#include <AutoDownload.h>
+#include <D3DDevice9.h>
+#include <VersionInfo.h>
+#include <efapp.h>
 #include <malloc.h>
+#include <objbase.h>
+#include <token.h>
+#include <zassert.h>
 
 // BT - STEAM
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 # include "atlenc.h"
 # include <inttypes.h>
 #endif
@@ -24,6 +29,8 @@
 // BUILD_DX9
 #include "VideoSettingsDX9.h"
 // BUILD_DX9
+
+#include "WinTrek.h"
 
 extern bool g_bEnableSound = true;
 extern bool bStartTraining   = false;
@@ -100,8 +107,8 @@ typedef DWORD (*EBUPROC) (LPCTSTR lpRegKeyLocation, LPCTSTR lpEULAFileName, LPCS
 //
 //    //
 //    //This call enables both EULA and warranty accepting/viewing/printing.  If your
-//    //game doesn't ship with a WARRANTY file, specifiy NULL instead of szWarranty…
-//    //The code below, for instance, works with both OEM and retail builds…
+//    //game doesn't ship with a WARRANTY file, specifiy NULL instead of szWarrantyï¿½
+//    //The code below, for instance, works with both OEM and retail buildsï¿½
 //    //
 //    TCHAR *pszWarrantyParam = 0xFFFFFFFF != GetFileAttributes(szWarranty) ? szWarranty : NULL;
 //    */
@@ -298,7 +305,7 @@ ZString ReadAuthPipe()
 
 	debugf("sending memory location: %s\r\n", memoryLocation);
 
-	hWrite = CreateFile(_T("\\\\.\\pipe\\allegqueue"), 
+    hWrite = CreateFile("\\\\.\\pipe\\allegqueue",
 		FILE_GENERIC_WRITE, 0, NULL, CREATE_NEW, 0, NULL);
 
 	if(WriteFile(hWrite, memoryLocation, nDataLength, &nWritten, NULL) == false || nDataLength != nWritten)
@@ -330,7 +337,7 @@ public:
 	ZString CleanUpSteamName(ZString &personaName)
 	{
 		char tempBuffer[25];
-		Strncpy(tempBuffer, personaName, 24);
+        strncpy(tempBuffer, personaName, 24);
 
 		tempBuffer[24] = '\0';
 
@@ -392,7 +399,7 @@ public:
     HRESULT Initialize(const ZString& strCommandLine)
     {
         _controlfp(_PC_53, _MCW_PC);
-#ifdef STEAM_APP_ID
+#ifndef NO_STEAM
 		// BT - STEAM
 #ifndef _DEBUG
 		if (IsDebuggerPresent() == false)
@@ -786,7 +793,7 @@ public:
 
 		//Orion - 2009 ACSS : check the alleg pipe for the auth token
 		//trekClient.SetCDKey(ReadAuthPipe());
-
+#ifndef NO_STEAM
 		debugf("Logging into steam.\n");
 
 		// BT - STEAM
@@ -810,7 +817,7 @@ public:
 		}
 
 		debugf("Steam login complete.\n");
-
+#endif
         // 
         // Check for other running copies of the app
         //

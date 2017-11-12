@@ -1,4 +1,9 @@
-#include "pch.h"
+#include "ddstream.h"
+
+#include <regkey.h>
+#include <zstring.h>
+
+#include "ddvideo.h"
 
 //Imago 6/29/09 - added THE DirectDraw class for showing videos
 
@@ -71,7 +76,7 @@ BOOL CDShow::Open(ZString& pFileName, IDirectDraw7 *pDD)
     // Convert filename to UNICODE.
 	// Notice the safe way to get the actual size of a string.
 	WCHAR wPath[MAX_PATH];
-    MultiByteToWideChar(CP_ACP, 0, pFileName, -1, wPath, sizeof(wPath)/sizeof(wPath[0]));   
+    MultiByteToWideChar(CP_ACP, 0, pFileName, -1, wPath, sizeof(wPath)/sizeof(wPath[0]));
     
 	// Build the filter graph for our multimedia stream.
 	if (FAILED((pAMStream->OpenFile(wPath, 0))))
@@ -259,4 +264,3 @@ BOOL CDShow::Close()
 	// Everything went ok. Return TRUE.
 	return TRUE;
 }
-		

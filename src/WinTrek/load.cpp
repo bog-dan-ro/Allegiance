@@ -1,10 +1,15 @@
-#include "pch.h"
+#include "load.h"
 
 #include <button.h>
 #include <controls.h>
+#include <efapp.h>
 #include <geometry.h>
+#include <igc.h>
 #include <image.h>
 #include <paneimage.h>
+#include <thinggeo.h>
+
+#include "trekctrls.h"
 #include "valuetransform.h"
 
 const Money moneyLots = 0x7fffffff;

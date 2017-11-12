@@ -1,10 +1,13 @@
-#include "pch.h"
-#include "trekctrls.h"
 #include "screen.h"
 
-#include <button.h>
-#include <controls.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <combopane.h>
 #include <frameimage.h>
+#include <listpane.h>
+#include <namespace.h>
+
+#include "trekctrls.h"
 
 TRef<ModifiableNumber>  g_pnumberInTurretNumber;
 

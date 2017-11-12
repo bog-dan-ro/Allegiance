@@ -1,6 +1,13 @@
-#include "pch.h"
-#include "training.h"
-#include "badwords.h"
+#include "screen.h"
+
+#include <Training.h>
+#include <badwords.h>
+#include <efapp.h>
+#include <efpane.h>
+#include <combopane.h>
+#include <frameimage.h>
+#include <listpane.h>
+#include <namespace.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,7 +15,13 @@
 #include <string>
 
 // KGJV #62
+#include "artwork.h"
 #include "mappreview.h"
+#include "trekctrls.h"
+#include "trekmdl.h"
+
+using namespace std;
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Team Screen
@@ -1479,7 +1492,7 @@ public:
         }
 
         // WLP 2005 - added this to send chat to a highlighted player
-        //   This only works when highlighted – when highlight is off it works normal
+        //   This only works when highlighted ï¿½ when highlight is off it works normal
         // Imago 7/10 - it's wasn't entirely true (had issues)  --^
         else if ( m_plistPanePlayers->GetSelection())  // if something is selected now - 
 														//#11 7/10 Imago ^-- this hits on edge cases even when something is no logner selected 
@@ -1896,13 +1909,13 @@ public:
 	  plistMembers = pSideInfo->GetMembers();
 	  if (plistMembers.GetCount() > 0)
 	  {
-		  ShipID iShipID = plistMembers.GetFront();
+          ItemID iShipID = ItemID(plistMembers.GetFront());
 		  while (true)
 		  {
 			  if (!iShipID)
 				  break;
 
-			  pPlayer = trekClient.FindPlayer(iShipID);
+              pPlayer = trekClient.FindPlayer(ShipID(uintptr_t(iShipID)));
 
 			  if (pPlayer)
 			  {
@@ -1912,7 +1925,7 @@ public:
 					  iRankSum += (iTempRank < 1) ? 1 : iTempRank;
 				  }
 			  }
-			  iShipID = (ShipID)plistMembers.GetNext((ItemID)iShipID);
+              iShipID = plistMembers.GetNext(iShipID);
 		  }
 
 	  }
@@ -1949,13 +1962,13 @@ public:
 			plistMembers = pSide->GetMembers();
 			if (plistMembers.GetCount() > 0)
 			{
-				ShipID iShipID = plistMembers.GetFront();
+                ItemID iShipID = ItemID(plistMembers.GetFront());
 				while (true)
 				{
 					if (!iShipID)
 						break;
 
-					pPlayer = trekClient.FindPlayer(iShipID);
+                    pPlayer = trekClient.FindPlayer(ShipID(uintptr_t(iShipID)));
 	
 					if (pPlayer)
 					{
@@ -1973,7 +1986,7 @@ public:
 							iAverageRank += iTempRank;
 						}
 					}
-					iShipID = (ShipID)plistMembers.GetNext((ItemID)iShipID);
+                    iShipID = plistMembers.GetNext(iShipID);
 				}
 			}
 		}
@@ -2998,8 +3011,8 @@ public:
     {
         ShipID shipID = IntItemIDWrapper<ShipID>(m_plistPanePlayers->GetSelection());
 
-        // WLP 2005 – remove highlight from player to prevent chat target
-        m_plistPanePlayers->SetSelection(NULL); // WLP – remove as chat target
+        // WLP 2005 ï¿½ remove highlight from player to prevent chat target
+        m_plistPanePlayers->SetSelection(NULL); // WLP ï¿½ remove as chat target
         GetWindow()->SetLobbyChatTarget(m_chattargetChannel, NA); //#8 Imago 7/10
 
         trekClient.SetMessageType(BaseClient::c_mtGuaranteed);

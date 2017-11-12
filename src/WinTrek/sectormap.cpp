@@ -1,6 +1,11 @@
-#include "pch.h"
+#include <efapp.h>
+
+#include "artwork.h"
+#include "trekinput.h"
 #include "trekmdl.h"
 #include "trekctrls.h"
+
+using namespace std;
 
 const int   c_iClusterHasNoRipcord = 0;
 const int   c_iClusterHasStationRipcord = 1;
@@ -783,7 +788,7 @@ public:
         }
 
         const   float   c_bfr = 0.1f *
-            std::max(0.0001f, std::max(m_xClusterMax - m_xClusterMin,
+            max(0.0001f, max(m_xClusterMax - m_xClusterMin,
                 m_yClusterMax - m_yClusterMin));
         m_xClusterMin -= c_bfr;
         m_xClusterMax += c_bfr;
@@ -1429,8 +1434,8 @@ private:
             float fDeltaY = fScale * (m_pointLastDrag.Y() - point.Y());
 
             // make sure we don't drag the map off of the screen
-            m_xDrag = std::max(std::min((m_xClusterMax - m_xClusterMin) - (m_xMax - m_xMin), m_xDrag + fDeltaX), 0.0f);
-            m_yDrag = std::max(std::min((m_yClusterMax - m_yClusterMin) - (m_yMax - m_yMin), m_yDrag + fDeltaY), 0.0f);
+            m_xDrag = max(min((m_xClusterMax - m_xClusterMin) - (m_xMax - m_xMin), m_xDrag + fDeltaX), 0.f);
+            m_yDrag = max(min((m_yClusterMax - m_yClusterMin) - (m_yMax - m_yMin), m_yDrag + fDeltaY), 0.f);
 
             m_pointLastDrag = point;
             GetWindow()->SetCursor(AWF_CURSOR_DRAG);

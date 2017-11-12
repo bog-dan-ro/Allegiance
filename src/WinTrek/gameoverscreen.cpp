@@ -1,9 +1,15 @@
-#include "pch.h"
-#include "badwords.h"
-
+#include <efapp.h>
+#include <efpane.h>
 #include <button.h>
 #include <controls.h>
+#include <listpane.h>
 
+#include "badwords.h"
+#include "screen.h"
+#include "trekctrls.h"
+#include "trekmdl.h"
+
+using namespace std;
 //////////////////////////////////////////////////////////////////////////////
 //
 // GameOver Screen

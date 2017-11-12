@@ -18,7 +18,8 @@ void AddChildren(Pane* ppaneParent, ObjectStack& stack);
 // ConsoleData
 //
 //////////////////////////////////////////////////////////////////////////////
-
+/// \brief The ConsoleData class
+///
 class ConsoleData : public IObject
 {
 public:

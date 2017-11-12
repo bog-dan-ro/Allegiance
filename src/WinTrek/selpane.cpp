@@ -1,7 +1,7 @@
-#include "pch.h"
 #include "trekmdl.h"
 #include "consoledata.h"
 
+using namespace std;
 //////////////////////////////////////////////////////////////////////////////
 //
 // SelectModelPane
