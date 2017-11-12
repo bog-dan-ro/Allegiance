@@ -52,10 +52,12 @@ BEGIN_QUERY(CQLogonStats, true,
   double	commandMu;
 
   // BT - STEAM
+#ifndef NO_STEAM
   int8	steamAuthTicket[1024];		// BT - STEAM
   uint32	steamAuthTicketLength;	// BT - STEAM
   uint64	steamID;				// BT - STEAM
   char	szDrmHash[256];				// BT - STEAM - The DRM hash will only be sent when the allegiance client is an official Steam release build.
+#endif
 
   BEGIN_COLUMN_MAP(CQLogonStatsData)
     COLUMN_ENTRY_TYPE(1,  DBTYPE_I2, civID)

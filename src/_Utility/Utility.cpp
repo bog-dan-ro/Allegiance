@@ -10,7 +10,9 @@
 **
 **  History:
 */
-#include    "pch.h"
+#include "Utility.h"
+
+#include <VersionInfo.h>
 
 const Rotation      c_rotationZero(0.0f, 0.0f, 1.0f, 0.0f);
 
@@ -635,7 +637,7 @@ void    Rotation::reset(void)
 }
 
 void    Rotation::set(const Vector&  axis,
-                      D3DVALUE          angle)
+                      float          angle)
 {
     m_axis = axis;
 
@@ -656,22 +658,22 @@ void            Rotation::axis(const Vector&    a)
     m_axis = a;
 }
 
-void            Rotation::angle(D3DVALUE a)
+void            Rotation::angle(float a)
 {
     m_angle = a;
 }
 
-void            Rotation::x(D3DVALUE t)
+void            Rotation::x(float t)
 {
     m_axis.x = t;
 }
 
-void            Rotation::y(D3DVALUE t)
+void            Rotation::y(float t)
 {
     m_axis.y = t;
 }
 
-void            Rotation::z(D3DVALUE t)
+void            Rotation::z(float t)
 {
     m_axis.z = t;
 }
