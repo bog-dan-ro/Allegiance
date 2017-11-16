@@ -1,7 +1,8 @@
 SET_MODULE("Training")
 
 INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
-                    ../soundengine ../guids ../Zone
+                    ../soundengine ../guids ../Zone ../ui
+                    ../Lib/lua/include ../Lib/sol/include
                     ../WinTrek ../clintlib ../lobby ..)
 
 SET(training_SRC

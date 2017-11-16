@@ -1,5 +1,6 @@
+#include <event.h>
 #include <type_traits>
-#include "event.h"
+#include <value.h>
 
 template <typename EntryType>
 class UiList;
@@ -77,8 +78,8 @@ namespace sol {
         };
 
         template <>
-        struct getter<TRef<TEvent<bool>::Sink>> {
-            typedef TRef<TEvent<bool>::Sink> ReturnType;
+        struct getter<TRef<typename TEvent<bool>::Sink>> {
+            typedef TRef<typename TEvent<bool>::Sink> ReturnType;
             static ReturnType get(lua_State* L, int index, record& tracking) {
                 if (sol::stack::check_usertype<ReturnType>(L, index)) {
                     return getter<detail::as_value_tag<ReturnType>>{}.get(L, index, tracking);
@@ -105,8 +106,8 @@ namespace sol {
         };
 
         template <>
-        struct getter<TRef<TEvent<float>::Sink>> {
-            typedef TRef<TEvent<float>::Sink> ReturnType;
+        struct getter<TRef<typename TEvent<float>::Sink>> {
+            typedef TRef<typename TEvent<float>::Sink> ReturnType;
             static ReturnType get(lua_State* L, int index, record& tracking) {
                 if (sol::stack::check_usertype<ReturnType>(L, index)) {
                     return getter<detail::as_value_tag<ReturnType>>{}.get(L, index, tracking);

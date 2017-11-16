@@ -44,7 +44,7 @@
 #include "SetCargoNanAction.h"
 #include "resetaction.h"
 #include "resetshipaction.h"
-#include "objectwithinradiuscondition.h";
+#include "objectwithinradiuscondition.h"
 
 namespace Training
 {

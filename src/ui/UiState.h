@@ -1,28 +1,35 @@
+#include <zstring.h>
+
+class IMDLBinaryFile;
+class UiState;
+
+// Maybe remove when we really don't care about mdl logging anymore
+void Write(IMDLBinaryFile* pmdlFile, const UiState& value);
+ZString GetString(int indent, const UiState& value);
+ZString GetFunctionName(const UiState& value);
+
 #pragma once
 
-#ifndef __MODULE__
-#define __MODULE__ "Ui"
-#endif
 #include "model.h"
 
+#include <any>
 #include <functional>
 #include <list>
-#include <boost/any.hpp>
 
 
 class UiObjectContainer : public IObject {
 
 private:
-    std::map<std::string, boost::any> m_map;
+    std::map<std::string, std::any> m_map;
 
 public:
-    UiObjectContainer(std::map<std::string, boost::any> map) :
+    UiObjectContainer(const std::map<std::string, std::any> &map) :
         m_map(map)
     {
     }
 
     template <typename Type>
-    Type Get(std::string key) {
+    Type Get(const std::string &key) {
         auto found = m_map.find(key);
         if (found == m_map.end()) {
             throw std::runtime_error("Key not found: " + key);
@@ -30,23 +37,23 @@ public:
 
         try
         {
-            return boost::any_cast<Type>(found->second);
+            return std::any_cast<Type>(found->second);
         }
-        catch (const boost::bad_any_cast &)
+        catch (const std::bad_any_cast &)
         {
             throw std::runtime_error("Key found but not of valid type: " + key);
         }
     }
 
-    TRef<StringValue> GetString(std::string key) {
+    TRef<StringValue> GetString(const std::string &key) {
         return Get<TRef<StringValue>>(key);
     }
 
-    TRef<Boolean> GetBoolean(std::string key) {
+    TRef<Boolean> GetBoolean(const std::string &key) {
         return Get<TRef<Boolean>>(key);
     }
 
-    TRef<Number> GetNumber(std::string key) {
+    TRef<Number> GetNumber(const std::string &key) {
         return Get<TRef<Number>>(key);
     }
 
@@ -64,10 +71,9 @@ class UiState : public UiObjectContainer {
 private:
     std::string m_name;
 public:
-    using UiObjectContainer::UiObjectContainer;
-    UiState(std::string name, std::map<std::string, boost::any> map = {}) :
-        m_name(name),
-        UiObjectContainer(map)
+    UiState(const std::string &name, const std::map<std::string, std::any> &map = {}) :
+        UiObjectContainer(map),
+        m_name(name)
     {}
 
     std::string GetName() const {
@@ -86,18 +92,14 @@ public:
 
 class SimpleUiState : public UiState {
 public:
-    SimpleUiState(std::string name, std::map<std::string, boost::any> map = {}) :
+    SimpleUiState(const std::string &name, const std::map<std::string, std::any> &map = {}) :
         UiState(name, map)
     {
     }
 };
 
-typedef TStaticValue<UiState> UiStateValue;
 
-// Maybe remove when we really don't care about mdl logging anymore
-void Write(IMDLBinaryFile* pmdlFile, const UiState& value);
-ZString GetString(int indent, const UiState& value);
-ZString GetFunctionName(const UiState& value);
+typedef TStaticValue<UiState> UiStateValue;
 typedef TModifiableValue<UiState, ModifiableUiStateName> UiStateModifiableValue;
 
 template <typename EntryType>
@@ -112,7 +114,7 @@ protected:
 
 public:
     template<class... T>
-    UiList(std::list<EntryType> list, T ... values) :
+    UiList(const std::list<EntryType> &list, T ... values) :
         m_list(list),
         Value(values...)
     {}
@@ -159,13 +161,14 @@ private:
 
 public:
     MappedList(const TRef<UiList<OriginalEntryType>>& list, std::function<ResultEntryType(OriginalEntryType, TRef<Number>)> callback) :
-        m_callback(callback),
-        UiList({}, list)
+        UiList<ResultEntryType>({}, list),
+        m_callback(callback)
     {
     }
 
     TRef<UiList<OriginalEntryType>> GetSourceList() {
-        return (TRef<UiList<OriginalEntryType>>)(UiList<OriginalEntryType>*)GetChild(0);
+        auto child = UiList<ResultEntryType>::GetChild(0);
+        return (TRef<UiList<OriginalEntryType>>)(UiList<OriginalEntryType>*)child;
     }
 
     void Evaluate() override {
@@ -178,6 +181,6 @@ public:
             ++i;
         }
 
-        GetListInternal() = list;
+        UiList<ResultEntryType>::GetListInternal() = list;
     }
 };

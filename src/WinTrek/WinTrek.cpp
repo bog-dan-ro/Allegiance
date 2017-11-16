@@ -48,6 +48,8 @@ class QuickChatNode : public IMDLObject {};
 #include <paneimage.h>
 #include <D3DDevice9.h>
 #include <DX9PackFile.h>
+#include <ui.h>
+#include <UiEngine.h>
 
 // Tell the linker that my DLL should be delay loaded
 //#pragma comment(linker, "/DelayLoad:icqmapi.dll")

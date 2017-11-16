@@ -1,7 +1,8 @@
+#include <chrono>
+#include <fstream>
+#include <stdexcept>
 
-#include "ui.h"
-#include "items.hpp"
-
+#include "UiState.h"
 #include "ns_math.hpp"
 #include "ns_string.hpp"
 #include "ns_color.hpp"
@@ -13,8 +14,6 @@
 #include "ns_screen.hpp"
 #include "ns_list.hpp"
 
-#include <stdexcept>
-#include <fstream>
 
 std::string UiEngine::m_stringLogPath = "";
 
@@ -28,7 +27,7 @@ void WriteLog(const std::string &text)
 }
 
 std::string UiEngine::m_stringArtPath;
-void UiEngine::SetGlobalArtPath(std::string path)
+void UiEngine::SetGlobalArtPath(const std::string &path)
 {
     m_stringArtPath = path;
 }
@@ -38,7 +37,7 @@ class UiScreenConfigurationImpl : public UiScreenConfiguration {
     std::string m_strPath;
 
 public:
-    UiScreenConfigurationImpl(std::string path, std::map<std::string, boost::any> map) :
+    UiScreenConfigurationImpl(std::string path, std::map<std::string, std::any> map) :
         UiScreenConfiguration(map)
     {
         m_strPath = path;
@@ -54,7 +53,7 @@ public:
 
 };
 
-std::shared_ptr<UiScreenConfiguration> UiScreenConfiguration::Create(std::string path, std::map<std::string, std::function<bool()>> event_listeners, std::map<std::string, boost::any> map) {
+std::shared_ptr<UiScreenConfiguration> UiScreenConfiguration::Create(std::string path, std::map<std::string, std::function<bool()>> event_listeners, std::map<std::string, std::any> map) {
     
     std::for_each(event_listeners.begin(), event_listeners.end(),
         [&map](auto& p) {

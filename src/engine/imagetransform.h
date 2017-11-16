@@ -4,6 +4,7 @@
 #include "model.h"
 #include "enginep.h"
 #include "engine.h"
+#include "image.h"
 
 template<class OriginalType>
 class NonStaticCallbackImage : public WrapImage {

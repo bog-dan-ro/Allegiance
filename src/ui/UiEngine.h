@@ -1,17 +1,25 @@
 #pragma once
 
-#include <boost/any.hpp>
+#include <any>
+#include <event.h>
+#include <functional>
+#include <image.h>
+#include <tref.h>
+#include <soundbase.h>
+#include <sys/stat.h>
+
+#include "UiState.h"
 
 class UiScreenConfiguration : public UiObjectContainer {
 public:
-    UiScreenConfiguration(std::map<std::string, boost::any> map) :
+    UiScreenConfiguration(const std::map<std::string, std::any> &map) :
         UiObjectContainer(map)
     {}
 
     virtual std::string GetPath() = 0;
     virtual IEventSink& GetEventSink(std::string) = 0;
 
-    static std::shared_ptr<UiScreenConfiguration> Create(std::string path, std::map<std::string, std::function<bool()>> event_listeners, std::map<std::string, boost::any> map);
+    static std::shared_ptr<UiScreenConfiguration> Create(std::string path, std::map<std::string, std::function<bool()>> event_listeners, std::map<std::string, std::any> map);
 }; 
 
 class UiEngine : public IObject
@@ -24,8 +32,8 @@ public:
 
     static std::string m_stringLogPath;
 
-    static void SetGlobalArtPath(std::string path);
-    static UiEngine* UiEngine::Create(Engine* pEngine, ISoundEngine* pSoundEngine, std::function<void(std::string)> funcOpenWebsite);
+    static void SetGlobalArtPath(const std::string &path);
+    static UiEngine* Create(Engine* pEngine, SoundEngine::ISoundEngine* pSoundEngine, std::function<void(std::string)> funcOpenWebsite);
 
     //virtual Image* LoadImage(std::string path) = 0;
     virtual TRef<Image> LoadImageFromLua(const std::shared_ptr<UiScreenConfiguration>& screenConfiguration) = 0;
@@ -97,7 +105,7 @@ public:
 class LuaScriptContext {
 private:
     TRef<Engine> m_pEngine;
-    TRef<ISoundEngine> m_pSoundEngine;
+    TRef<SoundEngine::ISoundEngine> m_pSoundEngine;
     Loader m_loader;
     PathFinder m_pathFinder;
     std::shared_ptr<UiScreenConfiguration> m_pConfiguration;
@@ -108,7 +116,7 @@ private:
     sol::state m_lua;
 
 public:
-    LuaScriptContext(Engine* pEngine, ISoundEngine* pSoundEngine, std::string stringArtPath, const std::shared_ptr<UiScreenConfiguration>& pConfiguration, std::function<void(std::string)> funcOpenWebsite);
+    LuaScriptContext(Engine* pEngine, SoundEngine::ISoundEngine* pSoundEngine, std::string stringArtPath, const std::shared_ptr<UiScreenConfiguration>& pConfiguration, std::function<void(std::string)> funcOpenWebsite);
 
     sol::state& GetLua();
 
@@ -118,7 +126,7 @@ public:
 
     Engine* GetEngine();
 
-    ISoundEngine* GetSoundEngine();
+    SoundEngine::ISoundEngine* GetSoundEngine();
 
     Executor* GetExecutor() {
         return &m_executor;

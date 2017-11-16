@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include <sys/stat.h>
+
 #include "ui.h"
 #include "enginep.h"
 #include "font.h"
@@ -25,7 +27,7 @@ public:
     {
     }
 
-    TRef<IEventSource> GetEventSource(std::string string) {
+    TRef<IEventSource> GetEventSource(const std::string &string) {
         auto found = m_mapEventSources.find(string);
         if (found != m_mapEventSources.end()) {
             return found->second;
@@ -36,7 +38,7 @@ public:
         return pEventSource;
     }
 
-    TRef<PointEvent::Source> GetPointEventSource(std::string string) {
+    TRef<PointEvent::Source> GetPointEventSource(const std::string &string) {
         auto found = m_mapPointEventSources.find(string);
         if (found != m_mapPointEventSources.end()) {
             return found->second;
@@ -47,14 +49,14 @@ public:
         return pEventSource;
     }
 
-    void Trigger(std::string string) {
+    void Trigger(const std::string &string) {
         auto found = m_mapEventSources.find(string);
         if (found != m_mapEventSources.end()) {
             found->second->Trigger();
         }
     }
 
-    void TriggerPoint(std::string string, Point& point) {
+    void TriggerPoint(const std::string &string, const Point& point) {
         auto found = m_mapPointEventSources.find(string);
         if (found != m_mapPointEventSources.end()) {
             found->second->Trigger(point);
@@ -70,7 +72,7 @@ public:
         Trigger("mouse.leave");
     }
 
-    void TriggerMouseButton(std::string button_name, std::string what) {
+    void TriggerMouseButton(const std::string &button_name,const std::string &what) {
         Trigger("mouse." + button_name + "." + what);
     }
 

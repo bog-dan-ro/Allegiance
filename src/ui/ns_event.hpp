@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "ui.h"
@@ -46,7 +45,7 @@ class EventToMappedValue : public TWrapValue<TypeResult>, IEventSink {
 public:
     EventToMappedValue(TypeWrappedResult tDefault, std::map<TRef<IEventSource>, TypeWrappedResult> mapOptions) :
         m_mapOptions(mapOptions),
-        TWrapValue(tDefault)
+        TWrapValue<TypeResult>(tDefault)
     {
         for (auto kv = m_mapOptions.begin(); kv != m_mapOptions.end(); ++kv)
         {
@@ -67,7 +66,7 @@ public:
             ZAssert(false);
         }
         else {
-            SetWrappedValue(find->second);
+            TWrapValue<TypeResult>::SetWrappedValue(find->second);
         }
         return true;
     }
@@ -118,12 +117,12 @@ public:
     static auto CreateOnEventPropagatorFunction() {
 
 
-        return [](const TRef<TEvent<TypeResult>::Sink>& pEventSink, const TRef<TEvent<TypeOriginal>::Source>& pEventSource, std::function<sol::object(WrappedOriginal)> transformer) {
+        return [](const TRef<typename TEvent<TypeResult>::Sink>& pEventSink, const TRef<typename TEvent<TypeOriginal>::Source>& pEventSource, std::function<sol::object(WrappedOriginal)> transformer) {
             TypeOriginal original_default_value;
             TRef<SimpleModifiableValue<TypeOriginal>> start = new SimpleModifiableValue<TypeOriginal>(original_default_value);
             WrappedResult end = wrapValue<TypeResult>(transformer(start));
 
-            TRef<TEvent<TypeResult>::Sink> sinkRefCounted = pEventSink;
+            TRef<typename TEvent<TypeResult>::Sink> sinkRefCounted = pEventSink;
 
             pEventSource->AddSink(new CallbackValueSink<TypeOriginal>([start, end, sinkRefCounted](TypeOriginal value) {
                 start->SetValue(value);
@@ -142,10 +141,10 @@ class EventVoidToOne {
 public:
     static auto CreateOnEventPropagatorFunction() {
 
-        return [](const TRef<TEvent<TypeResult>::Sink>& pEventSink, const TRef<IEventSource>& pEventSource, std::function<sol::object()> transformer) {
+        return [](const TRef<typename TEvent<TypeResult>::Sink>& pEventSink, const TRef<IEventSource>& pEventSource, std::function<sol::object()> transformer) {
             WrappedResult end = wrapValue<TypeResult>(transformer());
 
-            TRef<TEvent<TypeResult>::Sink> sinkRefCounted = pEventSink;
+            TRef<typename TEvent<TypeResult>::Sink> sinkRefCounted = pEventSink;
 
             pEventSource->AddSink(new CallbackSink([end, sinkRefCounted]() {
                 end->Update();
@@ -169,7 +168,7 @@ public:
     static auto CreateOnEventPropagatorFunction() {
 
 
-        return [](const TRef<EventType::Sink>& pEventSink, const TRef<IEventSource>& pEventSource, std::function<TupleType()> transformer) {
+        return [](const TRef<typename EventType::Sink>& pEventSink, const TRef<IEventSource>& pEventSource, std::function<TupleType()> transformer) {
 
             WrappedType a, b, c;
 
@@ -181,7 +180,7 @@ public:
             b = wrapValue<Type>(std::get<1>(tuple));
             c = wrapValue<Type>(std::get<2>(tuple));
 
-            TRef<EventType::Sink> sinkRefCounted = pEventSink;
+            TRef<typename EventType::Sink> sinkRefCounted = pEventSink;
 
             pEventSource->AddSink(new CallbackSink([a, b, c, sinkRefCounted]() {
                 a->Update();

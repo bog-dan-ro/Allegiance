@@ -29,6 +29,7 @@ public:
 //
 //////////////////////////////////////////////////////////////////////////////
 class Modeler;
+class UiEngine;
 TRef<Screen> CreateTeamScreen(Modeler* pmodeler);
 TRef<Screen> CreateGameScreen(Modeler* pmodeler);
 TRef<Screen> CreateIntroScreen(Modeler* pmodeler, UiEngine& uiEngine, bool bUseOldUi);

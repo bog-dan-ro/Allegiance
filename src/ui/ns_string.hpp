@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "imagetransform.h"
 #include "ui.h"
 #include "items.hpp"
 
@@ -13,25 +14,25 @@ class ValueToMappedValue : public TWrapValue<TypeResult> {
     std::map<TypeArgument, TRef<TypeWrappedResult>> m_mapOptions;
 
 public:
-    ValueToMappedValue(TypeWrappedArgument* tValue, std::map<TypeArgument, TRef<TypeWrappedResult>> mapOptions, TypeWrappedResult* tDefault) :
+    ValueToMappedValue(TypeWrappedArgument* tValue, std::map<TypeArgument, TRef<TypeWrappedResult>> mapOptions, TypeWrappedResult* tDefault)
+        : TWrapValue<TypeResult>(tDefault),
         m_default(tDefault),
-        m_mapOptions(mapOptions),
-        TWrapValue(tDefault)
+        m_mapOptions(mapOptions)
     {
-        AddChild(tValue);
+        TWrapValue<TypeResult>::AddChild(tValue);
     }
 
     void Evaluate()
     {
-        TypeArgument value = ((TypeWrappedArgument*)GetChild(1))->GetValue();
+        TypeArgument value = ((TypeWrappedArgument*)TWrapValue<TypeResult>::GetChild(1))->GetValue();
 
         auto find = m_mapOptions.find(value);
 
         auto evaluated = find == m_mapOptions.end() ? m_default : find->second;
         evaluated->Update();
-        SetChildSilently(0, evaluated);
+        TWrapValue<TypeResult>::SetChildSilently(0, evaluated);
 
-        TWrapValue::Evaluate();
+        TWrapValue<TypeResult>::Evaluate();
     }
 };
 

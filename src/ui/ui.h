@@ -1,23 +1,13 @@
 #pragma once
 
-#ifndef __MODULE__
-#define __MODULE__ "Ui"
-#endif
-
-#include "soundengine.h"
-#include "model.h"
-#include "image.h"
-#include "engine.h"
-
-#include "UiState.h"
-
 #define SOL_CHECK_ARGUMENTS 1
 #define SOL_ENABLE_INTEROP 1
 
-#include "sol.hpp"
-
-#include "ui_types.h"
-
+#include <model.h>
+#include <image.h>
+#include <engine.h>
+#include <sol.hpp>
+#include <soundengine.h>
 
 class CallbackSink : public IEventSink {
 private:

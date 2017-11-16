@@ -1,6 +1,5 @@
 #include "clintlib.h"
 
-#include <AllegianceSecurity.h>
 #include <ClubMessages.h>
 #include <cguid.h>
 #include <guids.h>

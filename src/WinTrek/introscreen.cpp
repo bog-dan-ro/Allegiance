@@ -1,5 +1,7 @@
+#include <UiState.h>
 #include "screen.h"
 
+#include <future>
 #include <Training.h>
 #include <combopane.h>
 #include <efapp.h>
@@ -11,6 +13,8 @@
 #include <paneimage.h>
 #include <regkey.h>
 #include <thinggeo.h>
+#include <ui.h>
+#include <UiEngine.h>
 #include <VersionInfo.h>
 
 #include "logon.h"
@@ -18,8 +22,9 @@
 #include "trekctrls.h"
 #include "trekmdl.h"
 #include "valuetransform.h"
-#include <boost/any.hpp>
+#include <any>
 
+#include "CallsignTagInfo.h"
 #include "CreateGameDialog.h"
 
 extern bool CheckNetworkDevices(ZString& strDriverURL);
@@ -241,7 +246,7 @@ public:
 
             current_modifiablelist->Insert(i, new UiObjectContainer({
                 { "Name", (TRef<StringValue>)new StringValue(trekClient.CfgGetCoreName(pitem.cbIGCFile)) },
-                { "Bitmask", (uint32)(1 << i) },
+                { "Bitmask", (uint32_t)(1 << i) },
                 { "StaticCoreInfo", (StaticCoreInfo)pitem }
             }));
         }
@@ -265,7 +270,7 @@ public:
         for (i = 0; i < count; ++i) {
             ServerCoreInfo pitem = plist[i];
 
-            uint32 bitmaskServer = (uint32)pitem.dwCoreMask;
+            uint32_t bitmaskServer = (uint32_t)pitem.dwCoreMask;
 
             current_modifiablelist->Insert(i, new UiObjectContainer({
                 { "Name", (TRef<StringValue>)new StringValue(pitem.szName) },
@@ -276,10 +281,10 @@ public:
                     auto current_iterator = listCores.begin();
 
                     while (current_iterator != listCores.end()) {
-                        std::string current_core_name = (*current_iterator)->Get<TRef<StringValue>>("Name")->GetValue();
+                          std::string current_core_name{(*current_iterator)->Get<TRef<StringValue>>("Name")->GetValue()};
 
                         if (core_name == current_core_name) {
-                            uint32 core_bitmask = (*current_iterator)->Get<uint32>("Bitmask");
+                            uint32_t core_bitmask = (*current_iterator)->Get<uint32_t>("Bitmask");
 
                             return (bool)(bitmaskServer & core_bitmask);
                         }
@@ -343,21 +348,6 @@ public:
         m_state->SetValue(LoggedOutState(new UiStateValue(YesErrorState(message)), this->GetLoginSink()));
     }
 
-    void Async(std::function<void()> callback) {
-        //the callback needs to stay alive, copy into pointer
-        std::function<void()>* pCallback = new std::function<void()>(callback);
-
-        CreateThread(NULL, 0, [](void* pData) {
-            std::function<void()> callback = *(std::function<void()>*)pData;
-
-            callback();
-
-            //delete pointer
-            delete pData;
-            return (DWORD)0;
-        }, pCallback, 0, NULL);
-    }
-
     void Logout() {
         if (m_state->GetValue().GetName() != "Logged in") {
             ZAssert(false);
@@ -396,7 +386,13 @@ public:
         // BT - Steam - User is logged into steam, and has a steam profile name
         // The steam reviewer was somehow launching the game with steam authorization but no persona name. If 
         // there is an player name, then the server rejects the user as a hacker with a DPlay error. 
-        bool isUserLoggedIntoSteamWithValidPlayerName = SteamUser() != nullptr && strlen(name) > 0;
+        bool isUserLoggedIntoSteamWithValidPlayerName =
+#ifdef NO_STEAM
+                false
+#else
+                SteamUser() != nullptr && strlen(name) > 0
+#endif
+                ;
 
         if (isUserLoggedIntoSteamWithValidPlayerName == false)
         {
@@ -407,8 +403,7 @@ public:
         // BT - STEAM - Add players callsign and token.
         CallsignTagInfo callSignTagInfo;
         ZString characterName = callSignTagInfo.Render(name);
-
-        Async([this, characterName]() {
+        std::async(std::launch::async, [this, characterName]() {
             PathString pathConfig(PathString::GetCurrentDirectory() + "allegiance.txt");
             trekClient.GetCfgInfo().Load(pathConfig);
 
@@ -438,7 +433,7 @@ public:
         }
         m_state->GetValue().as<LoggingInState>()->SetStep(3, "Logged in to the lobby. Waiting for server/core list");
 
-        Async([this]() {
+        std::async(std::launch::async, [this]() {
             trekClient.ServerListReq();
             if (!GetWindow()->GetPopupContainer()->IsEmpty())
                 GetWindow()->GetPopupContainer()->ClosePopup(NULL);
@@ -1125,7 +1120,7 @@ public:
                 return true;
             };
 
-            std::map<std::string, boost::any> map;
+            std::map<std::string, std::any> map;
 
             map["time"] = (TRef<Number>)GetWindow()->GetTime();
             map["callsign"] = (TRef<StringValue>)new StringValue(trekClient.GetSavedCharacterName());
@@ -1934,5 +1929,3 @@ TRef<Screen> CreateIntroScreen(Modeler* pmodeler, UiEngine& uiEngine, bool bUseO
 {
     return new IntroScreen(pmodeler, uiEngine, bUseOldUi);
 }
-
-

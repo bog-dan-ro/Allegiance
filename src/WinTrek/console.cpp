@@ -4,6 +4,7 @@
 #include <combopane.h>
 #include <controls.h>
 #include <gamestate.h>
+#include <efapp.h>
 
 #include "artwork.h"
 #include "consoledata.h"

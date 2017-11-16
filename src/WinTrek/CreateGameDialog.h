@@ -1,6 +1,10 @@
 #pragma once
 
-#include "pch.h"
+#include <event.h>
+#include <listpane.h>
+#include <messagesall.h>
+#include <messageslc.h>
+#include <popup.h>
 
 // internal structs for core/server
 struct CoreInfo

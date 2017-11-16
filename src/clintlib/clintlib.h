@@ -122,68 +122,68 @@ public:
     static TRef<IClientEventSink> CreateDelegate(IClientEventSink* psink);
 
     // mission events
-    virtual void OnAddMission(MissionInfo* pMissionDef) {};
-    virtual void OnDelMission(MissionInfo* pMissionDef) {};
-    virtual void OnMissionCountdown(MissionInfo* pMissionDef) {};
-    virtual void OnMissionStarted(MissionInfo* pMissionDef) {};
-    virtual void OnMissionEnded(MissionInfo* pMissionDef) {};
-    virtual void OnLockLobby(bool bLock) {};
-    virtual void OnLockSides(bool bLock) {};
-    virtual void OnFoundPlayer(MissionInfo* pMissionDef) {};
-    virtual void OnEnterMission() {};
+    virtual void OnAddMission(MissionInfo* pMissionDef) {}
+    virtual void OnDelMission(MissionInfo* pMissionDef) {}
+    virtual void OnMissionCountdown(MissionInfo* pMissionDef) {}
+    virtual void OnMissionStarted(MissionInfo* pMissionDef) {}
+    virtual void OnMissionEnded(MissionInfo* pMissionDef) {}
+    virtual void OnLockLobby(bool bLock) {}
+    virtual void OnLockSides(bool bLock) {}
+    virtual void OnFoundPlayer(MissionInfo* pMissionDef) {}
+    virtual void OnEnterMission() {}
 
     // team events
-    virtual void OnAddPlayer(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo) {};
-    virtual void OnDelPlayer(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo, QuitSideReason reason, const char* szMessageParam = NULL) {};
-    virtual void OnAddRequest(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo) {};
-    virtual void OnDelRequest(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo, DelPositionReqReason reason) {};
-    virtual void OnTeamInactive(MissionInfo* pMissionDef, SideID sideID) {};
-    virtual void OnTeamReadyChange(MissionInfo* pMissionDef, SideID sideID, bool fTeamReady) {};
-    virtual void OnTeamForceReadyChange(MissionInfo* pMissionDef, SideID sideID, bool fTeamForceReady) {};
-    virtual void OnTeamAutoAcceptChange(MissionInfo* pMissionDef, SideID sideID, bool fAutoAccept) {};
-    virtual void OnTeamCivChange(MissionInfo* pMissionDef, SideID sideID, CivID civID) {};
-    virtual void OnTeamNameChange(MissionInfo* pMissionDef, SideID sideID) {};
-	virtual void OnTeamAlliancesChange(MissionInfo* pMissionDef) {}; //#ALLY
+    virtual void OnAddPlayer(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo) {}
+    virtual void OnDelPlayer(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo, QuitSideReason reason, const char* szMessageParam = NULL) {}
+    virtual void OnAddRequest(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo) {}
+    virtual void OnDelRequest(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo, DelPositionReqReason reason) {}
+    virtual void OnTeamInactive(MissionInfo* pMissionDef, SideID sideID) {}
+    virtual void OnTeamReadyChange(MissionInfo* pMissionDef, SideID sideID, bool fTeamReady) {}
+    virtual void OnTeamForceReadyChange(MissionInfo* pMissionDef, SideID sideID, bool fTeamForceReady) {}
+    virtual void OnTeamAutoAcceptChange(MissionInfo* pMissionDef, SideID sideID, bool fAutoAccept) {}
+    virtual void OnTeamCivChange(MissionInfo* pMissionDef, SideID sideID, CivID civID) {}
+    virtual void OnTeamNameChange(MissionInfo* pMissionDef, SideID sideID) {}
+    virtual void OnTeamAlliancesChange(MissionInfo* pMissionDef) {} //#ALLY
 
     // player events
-    virtual void OnPlayerStatusChange(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo) {};
-    virtual void OnMoneyChange(PlayerInfo* pPlayerInfo) {};
+    virtual void OnPlayerStatusChange(MissionInfo* pMissionDef, SideID sideID, PlayerInfo* pPlayerInfo) {}
+    virtual void OnMoneyChange(PlayerInfo* pPlayerInfo) {}
 
     // gameplay events
-    virtual void OnBucketChange(BucketChange bc, IbucketIGC* b){};
-    virtual void OnTechTreeChanged(SideID sid){};
-    virtual void OnStationCaptured(StationID stationID, SideID sideID) {};
-    virtual void OnModelTerminated(ImodelIGC* pmodel) {};
-    virtual void OnLoadoutChanged(IpartIGC* ppart, LoadoutChange lc) {};
-    virtual void OnPurchaseCompleted(bool bAllPartsBought) {};
+    virtual void OnBucketChange(BucketChange bc, IbucketIGC* b){}
+    virtual void OnTechTreeChanged(SideID sid){}
+    virtual void OnStationCaptured(StationID stationID, SideID sideID) {}
+    virtual void OnModelTerminated(ImodelIGC* pmodel) {}
+    virtual void OnLoadoutChanged(IpartIGC* ppart, LoadoutChange lc) {}
+    virtual void OnPurchaseCompleted(bool bAllPartsBought) {}
     virtual void OnTurretStateChanging(bool bTurret) {}
-    virtual void OnShipStatusChange(PlayerInfo* pplayer) {};
-    virtual void OnBoardShip(IshipIGC* pshipChild, IshipIGC* pshipParent) {};
-    virtual void OnBoardFailed(IshipIGC* pshipRequestedParent) {};
-    virtual void OnDiscoveredStation(IstationIGC* pstation) {};
-    virtual void OnDiscoveredAsteroid(IasteroidIGC* pasteroid) {};
-    virtual void OnClusterChanged(IclusterIGC* pcluster) {};
-    virtual void OnGameoverStats() {};
-    virtual void OnGameoverPlayers() {};
+    virtual void OnShipStatusChange(PlayerInfo* pplayer) {}
+    virtual void OnBoardShip(IshipIGC* pshipChild, IshipIGC* pshipParent) {}
+    virtual void OnBoardFailed(IshipIGC* pshipRequestedParent) {}
+    virtual void OnDiscoveredStation(IstationIGC* pstation) {}
+    virtual void OnDiscoveredAsteroid(IasteroidIGC* pasteroid) {}
+    virtual void OnClusterChanged(IclusterIGC* pcluster) {}
+    virtual void OnGameoverStats() {}
+    virtual void OnGameoverPlayers() {}
 
     // chat events
-    virtual void OnDeleteChatMessage(ChatInfo* pchatInfo) {};
-    virtual void OnNewChatMessage() {};
-    virtual void OnClearChat() {};
-    virtual void OnChatMessageChange() {};
+    virtual void OnDeleteChatMessage(ChatInfo* pchatInfo) {}
+    virtual void OnNewChatMessage() {}
+    virtual void OnClearChat() {}
+    virtual void OnChatMessageChange() {}
 
     // system events
-    virtual void OnLostConnection(const char * szReason) {};
-    virtual void OnEnterModalState() {};
-    virtual void OnLeaveModalState() {};
-    virtual void OnLogonClub() {};
-    virtual void OnLogonClubFailed(bool bRetry, const char * szReason) {};
-    virtual void OnLogonLobby() {};
-    virtual void OnLogonLobbyFailed(bool bRetry, const char * szReason) {};
-    virtual void OnLogonGameServer() {};
-    virtual void OnLogonGameServerFailed(bool bRetry, const char * szReason) {};
+    virtual void OnLostConnection(const char * szReason) {}
+    virtual void OnEnterModalState() {}
+    virtual void OnLeaveModalState() {}
+    virtual void OnLogonClub() {}
+    virtual void OnLogonClubFailed(bool bRetry, const char * szReason) {}
+    virtual void OnLogonLobby() {}
+    virtual void OnLogonLobbyFailed(bool bRetry, const char * szReason) {}
+    virtual void OnLogonGameServer() {}
+    virtual void OnLogonGameServerFailed(bool bRetry, const char * szReason) {}
 	//KGJV #114 - callback for core and server lists
-	virtual void OnServersList(int cCores, char *Cores, int cServers, char *Servers) {} ;
+    virtual void OnServersList(int cCores, char *Cores, int cServers, char *Servers) {}
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -244,7 +244,7 @@ class BallotInfo
 public:
 
     BallotInfo(const ZString& strBallotText, BallotID ballotID, Time timeExpiration)
-        : m_strBallotText(strBallotText), m_ballotID(ballotID), m_timeExpiration(timeExpiration) {};
+        : m_strBallotText(strBallotText), m_ballotID(ballotID), m_timeExpiration(timeExpiration) {}
 
 
     const ZString&  GetBallotText() const           { return m_strBallotText; }
@@ -356,7 +356,7 @@ public:
 
     CivID       GetCivID() const;
     SideID      SideID() const                      { return m_fmPlayerInfo.iSide; }
-    void        SetSideID(::SideID sideID)          { m_fmPlayerInfo.iSide = sideID; };
+    void        SetSideID(::SideID sideID)          { m_fmPlayerInfo.iSide = sideID; }
     ShipID      ShipID() const                      { return m_fmPlayerInfo.shipID; }
     LPCSTR      CharacterName() const               { return m_fmPlayerInfo.CharacterName; }
     
@@ -449,20 +449,20 @@ public:
         { m_sideID = sideID; }
     ~SideInfo(){}
 
-    void        AddPlayer(ShipID shipID)    { m_listShipIDMembers.PushEnd(shipID); };
-    void        RemovePlayer(ShipID shipID) { m_listShipIDMembers.Remove(shipID); };
-    bool        FindPlayer(ShipID shipID)   { return m_listShipIDMembers.Find(shipID); };
+    void        AddPlayer(ShipID shipID)    { m_listShipIDMembers.PushEnd(shipID); }
+    void        RemovePlayer(ShipID shipID) { m_listShipIDMembers.Remove(shipID); }
+    bool        FindPlayer(ShipID shipID)   { return m_listShipIDMembers.Find(shipID); }
 
-    void        AddRequest(ShipID shipID)    { m_listShipIDRequests.PushEnd(shipID); };
-    void        RemoveRequest(ShipID shipID) { m_listShipIDRequests.Remove(shipID); };
-    bool        FindRequest(ShipID shipID)   { return m_listShipIDRequests.Find(shipID); };
+    void        AddRequest(ShipID shipID)    { m_listShipIDRequests.PushEnd(shipID); }
+    void        RemoveRequest(ShipID shipID) { m_listShipIDRequests.Remove(shipID); }
+    bool        FindRequest(ShipID shipID)   { return m_listShipIDRequests.Find(shipID); }
 
     ShipList&   GetMembers() { return m_listShipIDMembers; }
     List*       GetMemberList() { return new ListDelegate(&m_listShipIDMembers); }
     ShipList&   GetRequests() { return m_listShipIDRequests; }
     List*       GetRequestList() { return new ListDelegate(&m_listShipIDRequests); }
 
-    SideID      GetSideID() { return m_sideID; };
+    SideID      GetSideID() { return m_sideID; }
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -494,19 +494,19 @@ public:
     void            SetInProgress(bool fInProgress) { m_pfmMissionDef->fInProgress = fInProgress; }
     void            SetCountdownStarted(bool fCountdownStarted) { m_fCountdownStarted = fCountdownStarted; }
     STAGE           GetStage() { return m_pfmMissionDef->stage; }
-    void            SetStage(STAGE stage) { m_pfmMissionDef->stage = stage; };
+    void            SetStage(STAGE stage) { m_pfmMissionDef->stage = stage; }
     void            AddPlayer(PlayerInfo* pPlayerInfo);
     void            RemovePlayer(PlayerInfo* pPlayerInfo);
     bool            FindPlayer(SideID sideID, ShipID shipID);
     void            AddRequest(SideID sideID, ShipID shipID);
     void            RemoveRequest(SideID sideID, ShipID shipID);
     bool            FindRequest(SideID sideID, ShipID shipID);
-    bool            GetAnySlotsAreAvailable() { return m_fAnySlotsAvailable; };
-    bool            GetGuaranteedSlotsAreAvailable() { return m_fGuaranteedSlotsAvailable; };
-    void            SetLockLobby(bool bLock) { m_pfmMissionDef->misparms.bLockLobby = bLock; };
-    bool            GetLockLobby() { return m_pfmMissionDef->misparms.bLockLobby; };
-    void            SetLockSides(bool bLock) { m_pfmMissionDef->misparms.bLockSides = bLock; };
-    bool            GetLockSides() { return m_pfmMissionDef->misparms.bLockSides; };
+    bool            GetAnySlotsAreAvailable() { return m_fAnySlotsAvailable; }
+    bool            GetGuaranteedSlotsAreAvailable() { return m_fGuaranteedSlotsAvailable; }
+    void            SetLockLobby(bool bLock) { m_pfmMissionDef->misparms.bLockLobby = bLock; }
+    bool            GetLockLobby() { return m_pfmMissionDef->misparms.bLockLobby; }
+    void            SetLockSides(bool bLock) { m_pfmMissionDef->misparms.bLockSides = bLock; }
+    bool            GetLockSides() { return m_pfmMissionDef->misparms.bLockSides; }
     
     // Mission Accessors
     SideID          NumSides()              { return m_pfmMissionDef->misparms.nTeams; }
@@ -541,11 +541,11 @@ public:
     const MissionParams& GetMissionParams() { return m_pfmMissionDef->misparms; }
     const FMD_S_MISSIONDEF& GetMissionDef() { return *m_pfmMissionDef; }
     void            PurgePlayers();
-    short           GetMinRank()            { return m_pfmMissionDef->misparms.iMinRank; };
-    short           GetMaxRank()            { return m_pfmMissionDef->misparms.iMaxRank; };
+    short           GetMinRank()            { return m_pfmMissionDef->misparms.iMinRank; }
+    short           GetMaxRank()            { return m_pfmMissionDef->misparms.iMaxRank; }
     int             GetSlotsLeft()          { return m_pfmMissionDef->misparms.nMaxPlayersPerTeam
                                                     * m_pfmMissionDef->misparms.nTeams
-                                                - m_nNumPlayers; };
+                                                - m_nNumPlayers; }
     const ZString&  GetDetailsFiles()       { return m_strGameDetailsFiles; }
 
 	// KGJV #62
@@ -892,7 +892,7 @@ public:
 
     virtual void        OnLogonAck(bool fValidated, bool bRetry, LPCSTR szFailureReason) = 0;
     virtual void        OnLogonLobbyAck(bool fValidated, bool bRetry, LPCSTR szFailureReason) = 0;
-    virtual void        OnLogonClubAck(bool fValidated, bool bRetry, LPCSTR szFailureReason) {};
+    virtual void        OnLogonClubAck(bool fValidated, bool bRetry, LPCSTR szFailureReason) {}
     virtual void        Disconnect();
     virtual void        DisconnectLobby();
     virtual void        DisconnectClub();
@@ -962,8 +962,8 @@ public:
     MissionInfo*        MyMission()             { return m_pMissionInfo; }
     bool                MyMissionInProgress();
 
-    inline bool         IsInGame(void) const    { return m_bInGame; };
-    inline bool         IsWaitingForGameRestart(void) const { return m_bWaitingForGameRestart; };
+    inline bool         IsInGame(void) const    { return m_bInGame; }
+    inline bool         IsWaitingForGameRestart(void) const { return m_bWaitingForGameRestart; }
     const ZString&      GetBriefingText(void) const { return m_strBriefingText; }
     inline bool         GenerateCivBriefing(void) const { return m_bGenerateCivBriefing; }
     inline IsideIGC*    GetSide(void) const     { return m_ship->GetSide(); }
@@ -1208,8 +1208,8 @@ public:
     PlayerInfo*  FindPlayer(const char* szName);
     PlayerInfo*  FindPlayerByPrefix(const char* szNamePrefix);
     ZString      LookupRankName(RankID rank, CivID civ = -1);
-    const StaticMapInfo& GetStaticMapInfo(int index) { assert(index >= 0 && index < m_cStaticMapInfo); return m_vStaticMapInfo[index]; };
-    int          GetNumStaticMaps() { return m_cStaticMapInfo; };
+    const StaticMapInfo& GetStaticMapInfo(int index) { assert(index >= 0 && index < m_cStaticMapInfo); return m_vStaticMapInfo[index]; }
+    int          GetNumStaticMaps() { return m_cStaticMapInfo; }
 
     List*        GetMissionList();
     void         QuitMission();
@@ -2234,7 +2234,7 @@ public:
     virtual void ForwardCharInfoMessage(FEDMESSAGE* pCharInfoMessage) {} // forward message to character info screen
     virtual void ForwardLeaderBoardMessage(FEDMESSAGE* pLeaderBoardMessage) {} // forward message to leader board screen
 
-    virtual void OnReload(IpartIGC* ppart, bool bConsumed) {};
+    virtual void OnReload(IpartIGC* ppart, bool bConsumed) {}
     virtual void OnQuitSide();
     virtual void OnJoinSide();
     virtual void OnEnterGame();
@@ -2278,12 +2278,12 @@ public:
     bool IsLockedDown()
     {
         return m_lockdownCriteria != 0;
-    };
+    }
     const ZString& GetLockDownReason()
     {
         assert(IsLockedDown());
         return m_strLockDownReason;
-    };
+    }
 
     void BoardShip(IshipIGC*  pshipBoard);
 
