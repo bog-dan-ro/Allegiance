@@ -35,6 +35,7 @@ SET(Engine_SRC
     frameimage.cpp
     geometry.cpp
     image.cpp
+    imagetransform.cpp
     keyframe.cpp
     material.cpp
     mdl.cpp
@@ -51,6 +52,7 @@ SET(Engine_SRC
     transform.cpp
     transform2.cpp
     value.cpp
+    valuetransform.cpp
     viewport.cpp
     xfile.cpp
    )

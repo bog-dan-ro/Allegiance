@@ -46,7 +46,7 @@ class EventToMappedValue : public TWrapValue<TypeResult>, IEventSink {
 public:
     EventToMappedValue(TypeWrappedResult tDefault, std::map<TRef<IEventSource>, TypeWrappedResult> mapOptions) :
         m_mapOptions(mapOptions),
-        TWrapValue(tDefault)
+        TWrapValue<TypeResult>(tDefault)
     {
         for (auto kv = m_mapOptions.begin(); kv != m_mapOptions.end(); ++kv)
         {
@@ -67,7 +67,7 @@ public:
             ZAssert(false);
         }
         else {
-            SetWrappedValue(find->second);
+            TWrapValue<TypeResult>::SetWrappedValue(find->second);
         }
         return true;
     }

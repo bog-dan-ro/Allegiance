@@ -11,6 +11,7 @@
 #include <paneimage.h>
 #include <regkey.h>
 #include <thinggeo.h>
+#include <UiEngine.h>
 #include <VersionInfo.h>
 
 #include "logon.h"

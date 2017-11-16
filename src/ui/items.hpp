@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include <sys/stat.h>
+
 #include "ui.h"
 #include "enginep.h"
 #include "font.h"

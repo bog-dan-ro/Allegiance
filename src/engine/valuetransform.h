@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "value.h"
@@ -72,16 +71,16 @@ protected:
 public:
     TransformedValue(std::function<TransformedType(OriginalType)> callback, TStaticValue<OriginalType>* value) :
         m_callback(callback),
-        TStaticValue(value)
+        TStaticValue<TransformedType>(value)
     {}
 
     void Evaluate()
     {
-        OriginalType value = ((TStaticValue<OriginalType>*)GetChild(0))->GetValue();
+        OriginalType value = ((TStaticValue<OriginalType>*)Value::GetChild(0))->GetValue();
 
         TransformedType evaluated = GetEvaluatedValue(value);
 
-        GetValueInternal() = evaluated;
+        TStaticValue<TransformedType>::GetValueInternal() = evaluated;
     }
 };
 
@@ -98,17 +97,17 @@ protected:
 public:
     TransformedValue2(CallbackType callback, TStaticValue<OriginalType>* value, TStaticValue<OriginalType2>* value2) :
         m_callback(callback),
-        TStaticValue(value, value2)
+        TStaticValue<TransformedType>(value, value2)
     {}
 
     void Evaluate()
     {
-        OriginalType value = ((TStaticValue<OriginalType>*)GetChild(0))->GetValue();
-        OriginalType2 value2 = ((TStaticValue<OriginalType2>*)GetChild(1))->GetValue();
+        OriginalType value = ((TStaticValue<OriginalType>*)Value::GetChild(0))->GetValue();
+        OriginalType2 value2 = ((TStaticValue<OriginalType2>*)Value::GetChild(1))->GetValue();
 
         TransformedType evaluated = GetEvaluatedValue(value, value2);
 
-        GetValueInternal() = evaluated;
+        TStaticValue<TransformedType>::GetValueInternal() = evaluated;
     }
 };
 
@@ -120,18 +119,18 @@ class TransformedValue4 : public TStaticValue<TransformedType> {
 public:
     TransformedValue4(CallbackType callback, TStaticValue<OriginalType>* value, TStaticValue<OriginalType2>* value2, TStaticValue<OriginalType3>* value3, TStaticValue<OriginalType4>* value4) :
         m_callback(callback),
-        TStaticValue(value, value2, value3, value4)
+        TStaticValue<TransformedType>(value, value2, value3, value4)
     {}
 
     void Evaluate()
     {
-        OriginalType value = ((TStaticValue<OriginalType>*)GetChild(0))->GetValue();
-        OriginalType2 value2 = ((TStaticValue<OriginalType2>*)GetChild(1))->GetValue();
-        OriginalType3 value3 = ((TStaticValue<OriginalType3>*)GetChild(2))->GetValue();
-        OriginalType4 value4 = ((TStaticValue<OriginalType4>*)GetChild(3))->GetValue();
+        OriginalType value = ((TStaticValue<OriginalType>*)Value::GetChild(0))->GetValue();
+        OriginalType2 value2 = ((TStaticValue<OriginalType2>*)Value::GetChild(1))->GetValue();
+        OriginalType3 value3 = ((TStaticValue<OriginalType3>*)Value::GetChild(2))->GetValue();
+        OriginalType4 value4 = ((TStaticValue<OriginalType4>*)Value::GetChild(3))->GetValue();
 
         TransformedType evaluated = m_callback(value, value2, value3, value4);
 
-        GetValueInternal() = evaluated;
+        TStaticValue<TransformedType>::GetValueInternal() = evaluated;
     }
 };

@@ -14,6 +14,7 @@
 #include <starimage.h>
 #include <thinggeo.h>
 
+#include <UiEngine.h>
 #include <VersionInfo.h>
 
 #include "artwork.h"

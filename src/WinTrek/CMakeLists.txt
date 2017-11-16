@@ -5,7 +5,8 @@ ADD_DEFINITIONS(-DSTRSAFE_NO_DEPRECATE -DEnablePerformanceCounters
 
 INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
                     ../soundengine ../guids ../Zone ../training
-                    ../clintlib ../lobby ../_Utility ..)
+                    ../clintlib ../lobby ../_Utility ../ui
+                    ../Lib/lua/include ../Lib/sol/include ..)
 
 SET(Allegiance_SRC
     CallsignTagInfo.cpp
@@ -62,6 +63,7 @@ SET(Allegiance_SRC
    )
 
 SET(Allegiance_DEPS
+    ui
     training
     Igc
     ClintLib
@@ -77,6 +79,7 @@ IF(UNIX)
 ELSEIF(WIN32)
     SET(PLATFORM_LIBS -L${CMAKE_SOURCE_DIR}/src/Lib/OggVorbis/mingw32/
         -lvorbisfile -lvorbis -logg
+        -L${CMAKE_SOURCE_DIR}/src/Lib/lua/mingw32 -llua
         -lwininet -lwinmm -lstrmiids -ldxguid -ld3d9 -ld3dx9 -ldsound
         -ldinput8 -ldbghelp -lversion
         )

@@ -22,7 +22,7 @@ public:
                 object.value().for_each([&props](sol::object key, sol::object value) {
                     std::string strKey = key.as<std::string>();
                     if (props.find(strKey) == props.end()) {
-                        throw std::exception("Unknown key. Use 'Bold', 'Italic', 'Underline'");
+                        throw std::runtime_error("Unknown key. Use 'Bold', 'Italic', 'Underline'");
                     }
                     props[strKey] = value.as<bool>();
                 });

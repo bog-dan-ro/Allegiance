@@ -1,7 +1,6 @@
 
 #pragma once
 
-#include "ui.h"
 #include "items.hpp"
 #include "D3DDevice9.h"
 
@@ -25,7 +24,7 @@ TRef<ConstantImage> LoadImageFile(LuaScriptContext& context, std::string path) {
         pFile->GetLength(),
         &fileInfo) == D3D_OK)
     {
-        _ASSERT(fileInfo.ResourceType == D3DRTYPE_TEXTURE);
+        ZAssert(fileInfo.ResourceType == D3DRTYPE_TEXTURE);
 
         // We can resize non-UI textures.
         WinPoint targetSize(fileInfo.Width, fileInfo.Height);
@@ -44,7 +43,7 @@ TRef<ConstantImage> LoadImageFile(LuaScriptContext& context, std::string path) {
     }
     else
     {
-        throw std::exception("Failed to load image: " + pathString);
+        throw std::runtime_error("Failed to load image: " + pathString);
     }
 }
 
