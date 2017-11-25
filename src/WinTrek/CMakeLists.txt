@@ -6,7 +6,8 @@ ADD_DEFINITIONS(-DSTRSAFE_NO_DEPRECATE -DEnablePerformanceCounters
 INCLUDE_DIRECTORIES(../Inc ../Igc ../engine ../effect ../zlib
                     ../soundengine ../guids ../Zone ../training
                     ../clintlib ../lobby ../_Utility ../ui
-                    ../Lib/lua/include ../Lib/sol/include ..)
+                    ../Lib/lua/include ../Lib/sol/include
+                    ../Lib/boost ../Lib/nlohmann/json/include ..)
 
 SET(Allegiance_SRC
     CallsignTagInfo.cpp

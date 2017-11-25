@@ -2,6 +2,7 @@ SET_MODULE("Ui")
 
 INCLUDE_DIRECTORIES(../zlib ../engine ../soundengine
                     ../Lib/lua/include ../Lib/sol/include
+                    ../Lib/boost
                     )
 
 SET(ui_SRC

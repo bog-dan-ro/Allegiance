@@ -1,6 +1,12 @@
 #pragma once
 
 #include <boost/any.hpp>
+#include <event.h>
+#include <functional>
+#include <image.h>
+#include <tref.h>
+#include <sol.hpp>
+#include <soundbase.h>
 
 class UiObjectContainer : public IObject {
 
