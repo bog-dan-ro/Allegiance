@@ -157,7 +157,6 @@
     <ClInclude Include="..\src\zlib\StackTracer.h" />
     <ClInclude Include="..\src\zlib\tcompare.h" />
     <ClInclude Include="..\src\zlib\tlist.h" />
-    <ClInclude Include="..\src\zlib\TlsValue.h" />
     <ClInclude Include="..\src\zlib\tmap.h" />
     <ClInclude Include="..\src\zlib\token.h" />
     <ClInclude Include="..\src\zlib\tref.h" />

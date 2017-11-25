@@ -12,8 +12,9 @@
 #include "ns_point.hpp"
 #include "ns_screen.hpp"
 
-#include <stdexcept>
+#include <chrono>
 #include <fstream>
+#include <stdexcept>
 
 std::string UiEngine::m_stringLogPath = "";
 

@@ -13,8 +13,8 @@
 #include <list>
 #include <map>
 #include <tlist.h>
-#include <ztime.h>
 #include <windowsx.h>
+#include <chrono>
 
 #define OBLIVION_CLIENT_REG_KEY "Allegiance"
 
@@ -173,8 +173,9 @@ public:
   }
 
   bool PingQuery() {
-	  Time tmNow = Time::Now();
-	  if ( (tmNow.clock() - t_lastPingQuery.clock()) > (CLOCKS_PER_SEC*5)){
+      using namespace std::chrono_literals;
+      auto tmNow = std::chrono::steady_clock::now();
+      if ( tmNow - t_lastPingQuery > 5s) {
 		  t_lastPingQuery = tmNow;
 		  return true;
 	  } else
@@ -198,7 +199,7 @@ private:
   // w0dk4 player-pings feature
   DWORD	  m_lastPackets;
   DWORD   m_lastLost;
-  Time	  t_lastPingQuery;
+  std::chrono::steady_clock::time_point t_lastPingQuery;
   // end w0dk4
 
 
