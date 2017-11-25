@@ -13,26 +13,26 @@ class ValueToMappedValue : public TWrapValue<TypeResult> {
     std::map<TypeArgument, TRef<TypeWrappedResult>> m_mapOptions;
 
 public:
-    ValueToMappedValue(TypeWrappedArgument* tValue, std::map<TypeArgument, TRef<TypeWrappedResult>> mapOptions, TypeWrappedResult* tDefault) :
+    ValueToMappedValue(TypeWrappedArgument* tValue, std::map<TypeArgument, TRef<TypeWrappedResult>> mapOptions, TypeWrappedResult* tDefault)
+        : TWrapValue<TypeResult>(tDefault),
         m_default(tDefault),
-        m_mapOptions(mapOptions),
-        TWrapValue(tDefault)
+        m_mapOptions(mapOptions)
     {
-        AddChild(tValue);
+        TWrapValue<TypeResult>::AddChild(tValue);
     }
 
     void Evaluate()
     {
-        TypeArgument value = ((TypeWrappedArgument*)GetChild(1))->GetValue();
+        TypeArgument value = ((TypeWrappedArgument*)TWrapValue<TypeResult>::GetChild(1))->GetValue();
 
         auto find = m_mapOptions.find(value);
         if (find == m_mapOptions.end()) {
-            SetWrappedValue(m_default);
+            TWrapValue<TypeResult>::SetWrappedValue(m_default);
         }
         else {
-            SetWrappedValue(find->second);
+            TWrapValue<TypeResult>::SetWrappedValue(find->second);
         }
-        TWrapValue::Evaluate();
+        TWrapValue<TypeResult>::Evaluate();
     }
 };
 
