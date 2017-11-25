@@ -5,6 +5,7 @@
 //Imago 7/10
 #include <dbghelp.h>
 #include <crtdbg.h>
+#include <tchar.h>
 
 #include "zstring.h"
 #include "VersionInfo.h"

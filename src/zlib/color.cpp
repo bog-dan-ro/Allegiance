@@ -1,7 +1,10 @@
 #include "color.h"
+
+#include <cstdio>
+#include <cmath>
+
 #include "zmath.h"
 
-#include <cmath>
 
 //////////////////////////////////////////////////////////////////////////////
 //

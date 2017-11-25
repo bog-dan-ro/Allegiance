@@ -1,5 +1,7 @@
 #pragma once
 
+#error do not use this file, use thread_local instead
+
 #ifndef __TlsValue_h__
 #define __TlsValue_h__
 
@@ -10,7 +12,9 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 // TlsValue
-
+#ifdef __unix__
+using PVOID=void*
+#endif
 template <class T>
 class TlsValue
 {
@@ -186,7 +190,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 
 typedef TlsValue<int32_t > tlsINT32;
-typedef TlsValue<uint32_t> tlsUINT32;
+typedef TlsValue<uint32_t> thread_local uint32_t;
 typedef TlsValue<int16_t > tlsINT16;
 typedef TlsValue<uint16_t> tlsUINT16;
 typedef TlsValue<char16_t> tlsCHAR16;

@@ -18,7 +18,7 @@ TRef<ConstantImage> LoadImageFile(LuaScriptContext& context, std::string path) {
 
     PathString pathString = PathString(ZString(charString));
 
-    TRef<ZFile> zf = new ZFile(pathString, OF_READ | OF_SHARE_DENY_WRITE);
+    TRef<ZFile> zf = new ZFile(pathString);
     ZFile * pFile = (ZFile*)zf;
 
     D3DXIMAGE_INFO fileInfo;

@@ -3,8 +3,6 @@ SET_MODULE("zlib")
 INCLUDE_DIRECTORIES(../Inc)
 
 SET(Zlib_SRC
-    StackTracer.cpp
-    Win32app.cpp
     color.cpp
     event.cpp
     input.cpp
@@ -15,7 +13,6 @@ SET(Zlib_SRC
     tlist.cpp
     token.cpp
     vector.cpp
-    window.cpp
     zmath.cpp
     zstring.cpp
     ztime.cpp
@@ -36,6 +33,9 @@ ELSEIF(WIN32)
     SET(PLATFORM_SRC
         base_win.cpp
         FTPSession_win.cpp
+        StackTracer.cpp
+        Win32app.cpp
+        window.cpp
         )
 ELSE()
     MESSAGE(FATAL_ERROR "Unhandled platform")

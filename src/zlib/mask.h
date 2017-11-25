@@ -7,10 +7,14 @@
 #ifndef _mask_H_
 #define _mask_H_
 
+#include <errno.h>
+
 #include <algorithm>
+#include <climits>
 #include <cmath>
 #include <cstdint>
 #include <cstring>
+
 
 //////////////////////////////////////////////////////////////////////////////
 //

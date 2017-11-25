@@ -72,13 +72,10 @@ public:
     ZString(float value, int total, int precision);
     ZString(bool);
 
-    static ZString GetProfileString(const ZString& strSection, const ZString& strKey);
-
     const char& operator[](int index) const { return m_pdata->GetPointer()[index]; }
     int GetLength() const { return m_pdata->GetLength(); }
     operator PCC() const { return m_pdata->GetPointer(); }
     bool IsEmpty() const { return GetLength() == 0; }
-    BSTR MakeBSTR() const;
 
     int Find(char ch, int index = 0) const;
     int Find(const ZString& str) const;
@@ -175,7 +172,6 @@ public:
     PathString(const ZString& str) : ZString(str) {}
 
     static PathString GetCurrentDirectory();
-    static PathString GetModulePath();
 
     PathString operator+(const PathString&) const;
 

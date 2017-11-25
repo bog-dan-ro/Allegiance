@@ -1,4 +1,17 @@
 #include "zstring.h"
+
+#include <cstring>
+#include <memory>
+#include <string>
+#include <stdio.h>  /* defines FILENAME_MAX */
+#ifndef __unix__
+    #include <direct.h>
+    #define GetCurrentDir _getcwd
+#else
+    #include <unistd.h>
+    #define GetCurrentDir getcwd
+ #endif
+
 #include "zassert.h"
 
 //////////////////////////////////////////////////////////////////////////////
@@ -159,21 +172,6 @@ int ZString::ZStringData::ReverseFindAny(const ZStringData* pdata, int index) co
     return -1;
 }
 
-/*
-BSTR ZString::ZStringData::MakeBSTR() const
-{
-    if (m_length != 0) {
-        WCHAR* pszw = new WCHAR[m_length];
-        MultiByteToWideChar(CP_ACP, 0, m_pcc, -1, pszw, m_length);
-        BSTR bstr = SysAllocStringLen(pszw, m_length);
-        delete[] pszw;
-        return bstr;
-    } else {
-        return SysAllocStringLen(L"", 0);
-    }
-}
-*/
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // ZString Constructors
@@ -236,11 +234,9 @@ ZString::ZString(ZStringData* pdata) :
 
 ZString::ZString(int value)
 {
-    char buf[32];
+    auto str = std::to_string(value);
 
-    _itoa_s(value,buf,32,10);
-
-    m_pdata = new ZStringData(buf);
+    m_pdata = new ZStringData(str.c_str());
 }
 
 ZString::ZString(float value, int total, int precision)
@@ -248,8 +244,8 @@ ZString::ZString(float value, int total, int precision)
     char format[32];
     char buf[32];
 
-    sprintf_s(format, 32, "%%%d.%df", total, precision);
-    sprintf_s(buf, 32, format, value);
+    snprintf(format, 32, "%%%d.%df", total, precision);
+    snprintf(buf, 32, format, value);
 
     m_pdata = new ZStringData(buf);
 }
@@ -257,7 +253,7 @@ ZString::ZString(float value, int total, int precision)
 ZString::ZString(float value)
 {
         char buf[32];
-        sprintf_s(buf, 32, "%g", value);
+        snprintf(buf, 32, "%g", value);
         m_pdata = new ZStringData(buf);
 }
 
@@ -273,15 +269,6 @@ ZString::ZString(bool b)
 ZString operator+(const ZString& str1, const ZString& str2)
 {
     return ZString(new ZString::ZStringData(str1.m_pdata, str2.m_pdata));
-}
-
-ZString ZString::GetProfileString(const ZString& strSection, const ZString& strKey)
-{
-    char buf[256];
-
-    uint32_t dw = ::GetProfileString(strSection, strKey, "", buf, 256);
-
-    return ZString(buf, (int)dw);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -345,7 +332,7 @@ void ZString::ReplaceAll(const ZString& str, char ch)
 void ZString::RemoveAll(char chToRemove)
 {
     int length = GetLength();
-    char* cbNew = (char*)_alloca(length + 1);
+    auto cbNew = std::make_unique<char[]>(length + 1);
     int nLengthNew = 0;
 
     for (int indexOld = 0; indexOld < GetLength(); indexOld++) {
@@ -358,7 +345,7 @@ void ZString::RemoveAll(char chToRemove)
     }
     cbNew[nLengthNew] = '\0';
 
-    m_pdata = new ZStringData(cbNew, nLengthNew);
+    m_pdata = new ZStringData(cbNew.get(), nLengthNew);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -431,13 +418,6 @@ bool operator<(PCC pcc, const ZString& str)
 {
     return strcmp(pcc, str) < 0;
 }
-
-/*
-BSTR ZString::MakeBSTR() const 
-{ 
-    return m_pdata->MakeBSTR(); 
-}
-*/
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -540,20 +520,20 @@ ZString ZString::RightOf(const ZString& str) const
 
 ZString ZString::ToLower() const
 {
-    char* cbResult = (char*)_alloca(GetLength() + 1);
+    auto cbResult = std::make_unique<char[]>(GetLength() + 1);
 
-    ZToLower(cbResult, (*this));
+    ZToLower(cbResult.get(), (*this));
 
-    return cbResult;
+    return cbResult.get();
 }
 
 ZString ZString::ToUpper() const
 {
-    char* cbResult = (char*)_alloca(GetLength() + 1);
+    auto cbResult = std::make_unique<char[]>(GetLength() + 1);
 
-    ZToUpper(cbResult, (*this));
+    ZToUpper(cbResult.get(), (*this));
 
-    return cbResult;
+    return cbResult.get();
 }
 
 void ZToLower(char* szDest, PCC szSource)
@@ -680,20 +660,10 @@ PathString::PathString(PCC pcc) :
 
 PathString PathString::GetCurrentDirectory()
 {
-    int size = ::GetCurrentDirectory(0, nullptr);
-    char* pch = new char[size];
-    ::GetCurrentDirectory(size, pch);
-    PathString str(pch);
-    delete[] pch;
-
-    return str;
-}
-
-PathString PathString::GetModulePath()
-{
-    char ch[128];
-    GetModuleFileNameA(nullptr, ch, sizeof(ch) / sizeof(*ch));
-    return PathString(ch);
+    char currentPath[FILENAME_MAX];
+    if (!GetCurrentDir(currentPath, FILENAME_MAX))
+        return {};
+    return {currentPath};
 }
 
 FilenameString PathString::GetFilename() const
@@ -1012,18 +982,18 @@ void ZUnscramble(char* szDest, PCC szSource, PCC szKey)
 
 ZString ZString::Scramble(const ZString& strKey) const
 {
-    char* cbResult = (char*)_alloca(GetLength() + 1);
+    auto cbResult = std::make_unique<char[]>(GetLength() + 1);
 
-    ZScramble(cbResult, (*this), strKey);
+    ZScramble(cbResult.get(), (*this), strKey);
 
-    return cbResult;
+    return cbResult.get();
 }
 
 ZString ZString::Unscramble(const ZString& strKey) const
 {
-    char* cbResult = (char*)_alloca(GetLength() + 1);
+    auto cbResult = std::make_unique<char[]>(GetLength() + 1);
 
-    ZUnscramble(cbResult, (*this), strKey);
+    ZUnscramble(cbResult.get(), (*this), strKey);
 
-    return cbResult;
+    return cbResult.get();
 }

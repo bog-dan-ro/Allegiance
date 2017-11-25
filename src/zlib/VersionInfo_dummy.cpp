@@ -23,7 +23,7 @@ ZVersionInfo::ZVersionInfo(bool)
 {
 }
 
-ZVersionInfo::ZVersionInfo(LPCTSTR /*szModule*/)
+ZVersionInfo::ZVersionInfo(const char * /*szModule*/)
 {
 }
 
@@ -31,7 +31,7 @@ ZVersionInfo::~ZVersionInfo()
 {
 }
 
-bool ZVersionInfo::Load(LPCTSTR /*szModule*/)
+bool ZVersionInfo::Load(const char * /*szModule*/)
 {
     return true;
 }
@@ -41,7 +41,7 @@ bool ZVersionInfo::Load(uintptr_t /*hinstance*/)
     return true;
 }
 
-bool ZVersionInfo::Load(const void* pvVerInfo, UINT cbVerInfo)
+bool ZVersionInfo::Load(const void* pvVerInfo, uint32_t cbVerInfo)
 {
   return true;
 }
@@ -58,12 +58,10 @@ void ZVersionInfo::Unload()
 /////////////////////////////////////////////////////////////////////////////
 // String Values
 
-ZString ZVersionInfo::GetStringValue(LPCTSTR /*pszKey*/, bool* pbExists) const
+ZString ZVersionInfo::GetStringValue(const char * /*pszKey*/, bool* pbExists) const
 {
   if (pbExists)
       *pbExists = true;
-  // Indicate success
-  SetLastError(0);
   return ZString();  
 }
 
@@ -361,11 +359,11 @@ bool ZVersionInfo::IsFontTrueType() const
 /////////////////////////////////////////////////////////////////////////////
 // String Values
 
-void ZVersionInfo::SetLanguageID(LANGID /*wLangID*/)
+void ZVersionInfo::SetLanguageID(uint16_t /*wLangID*/)
 {
 }
 
-LANGID ZVersionInfo::GetLanguageID() const
+uint16_t ZVersionInfo::GetLanguageID() const
 {
   return -1;
 }
@@ -395,7 +393,7 @@ ZString ZVersionInfo::GetFileDescription(bool* pbExists) const
 
 ZString ZVersionInfo::GetFileVersion(bool* pbExists) const
 {
-  return GetStringValue(("FileVersion"), pbExists);
+  return GetStringValue("FileVersion", pbExists);
 }
 
 ZString ZVersionInfo::GetInternalName(bool* pbExists) const
@@ -442,7 +440,7 @@ const uint8_t* ZVersionInfo::GetVerInfo() const
   return nullptr;
 }
 
-UINT ZVersionInfo::GetVerInfoSize() const
+uint32_t ZVersionInfo::GetVerInfoSize() const
 {
   return 0;
 }

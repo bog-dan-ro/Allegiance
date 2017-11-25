@@ -32,7 +32,7 @@ ZVersionInfo::ZVersionInfo(bool) :
 {
 }
 
-ZVersionInfo::ZVersionInfo(LPCTSTR szModule) :
+ZVersionInfo::ZVersionInfo(const char *szModule) :
 	d(new ZVersionInfoPrivate)
 {
   bool hr = Load(szModule);
@@ -45,7 +45,7 @@ ZVersionInfo::~ZVersionInfo()
   Unload();
 }
 
-bool ZVersionInfo::Load(LPCTSTR szModule)
+bool ZVersionInfo::Load(const char *szModule)
 {
 //  // Check for a nullptr or empty string
   if (!szModule || TEXT('\0') == *szModule)
@@ -178,7 +178,7 @@ void ZVersionInfo::Unload()
 /////////////////////////////////////////////////////////////////////////////
 // String Values
 
-ZString ZVersionInfo::GetStringValue(LPCTSTR pszKey, bool* pbExists) const
+ZString ZVersionInfo::GetStringValue(const char *pszKey, bool* pbExists) const
 {
   // Initialize the [out] parameter
   if (pbExists)
@@ -222,7 +222,7 @@ ZString ZVersionInfo::GetStringValue(LPCTSTR pszKey, bool* pbExists) const
 
     // Query the value
     UINT cbValue = 0;
-    LPCTSTR pszValue = nullptr;
+    const char *pszValue = nullptr;
     if (d->m_pVerInfo != nullptr && VerQueryValue(d->m_pVerInfo, szSubBlock, (void**)&pszValue, &cbValue))
     {
       // Indicate that the key exists

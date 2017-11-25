@@ -5,10 +5,6 @@
 // VersionInfo.h : Declaration of the ZVersionInfo class.
 //
 
-#include <windows.h>
-#include <winver.h>
-#include <tchar.h>
-
 #include <memory>
 #include "zassert.h"
 #include "zstring.h"
@@ -29,12 +25,12 @@ class ZVersionInfo
 // Construction / Destruction
 public:
   ZVersionInfo(bool);
-  ZVersionInfo(LPCTSTR szModule);
+  ZVersionInfo(const char *szModule);
   ZVersionInfo(uintptr_t hinstance = 0);
   virtual ~ZVersionInfo();
-  bool Load(LPCTSTR szModule);
+  bool Load(const char *szModule);
   bool Load(uintptr_t hinstance = 0);
-  bool Load(const void* pvVerInfo, UINT cbVerInfo);
+  bool Load(const void* pvVerInfo, uint32_t cbVerInfo);
   void Unload();
 
 // Attributes
@@ -107,11 +103,11 @@ public:
   bool IsFontTrueType     () const;
 
   // String Values
-  void   SetLanguageID    (LANGID wLangID = -1);
-  LANGID GetLanguageID    () const;
+  void   SetLanguageID    (uint16_t wLangID = -1);
+  uint16_t GetLanguageID() const;
   void   SetCodePage      (uint16_t wCodePage = -1);
   uint16_t   GetCodePage      () const;
-  ZString GetStringValue(LPCTSTR pszKey, bool* pbExists = NULL) const;
+  ZString GetStringValue(const char *pszKey, bool* pbExists = NULL) const;
 
   // Common String Values
   ZString GetCompanyName     (bool* pbExists = NULL) const;

@@ -8,6 +8,7 @@
 #define _Point_H_
 
 #include <cmath>
+#include <cstdint>
 #include "zstring.h"
 
 //////////////////////////////////////////////////////////////////////////////
@@ -115,6 +116,14 @@ public:
 // Windows Points
 //
 //////////////////////////////////////////////////////////////////////////////
+#ifdef __unix__
+struct POINT {
+    uint32_t x;
+    uint32_t y;
+};
+#else
+# include <windows.h>
+#endif
 
 class WinPointCore : public POINT {
 protected:
