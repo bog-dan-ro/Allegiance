@@ -58,7 +58,6 @@ extern CComModule _Module;  // ATL mandatory symbol
 #include <wininet.h>                                                       //
 #include <shlwapi.h>                                                       //
                                                                            //
-#include <..\zlib\zlib.h>                                                  //
 #include <FixDelete.h>                                                     //
 //                                                                         //
 // End: Allegiance Header Files                                            //

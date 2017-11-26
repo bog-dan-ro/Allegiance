@@ -11,6 +11,7 @@
 //
 
 #include <TCLib.h>
+#include <Win32app.h>
 
 extern Win32App* g_papp;
 

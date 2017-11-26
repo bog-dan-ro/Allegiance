@@ -10,6 +10,8 @@
 #ifndef _LOBBYAPP_H_ 
 #define _LOBBYAPP_H_ 
 
+#include <Win32app.h>
+
 // mmf added this include so client.cpp has HKLM_FedSrv defined
 #include "regkey.h"
 

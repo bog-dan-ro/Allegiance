@@ -12,6 +12,7 @@
 #define _FEDSRV_H_
 
 #include "..\AGC\AGCSite.h"
+#include <wininet.h>
 
 #undef new // because we override it
 

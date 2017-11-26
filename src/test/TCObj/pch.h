@@ -33,6 +33,7 @@ extern CComModule _Module;  // ATL mandatory symbol
 #include <atlwin.h>         // ATL window classes
 
 // ZLib headers
-#include <..\zlib\zlib.h>
+#include <..\zlib\zassert.h>
+#include <..\zlib\zstring.h>
 #include <FixDelete.h>
 

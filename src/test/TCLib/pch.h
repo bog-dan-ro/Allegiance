@@ -35,9 +35,5 @@
 #include <process.h> // for _beginthreadex and _endthreadex
 #include <mmsystem.h>
 
-// ZLib headers
-
-#include <..\zlib\zlib.h>
-
 
 #endif // !defined(AFX_pch_H__81172B8C_CBEE_11D2_9646_00C04F68DEB0__INCLUDED_)

@@ -59,7 +59,15 @@ extern CComModule _Module;
 #include <..\TCAtl\PropertyClass.h>
 #include <..\TCAtl\TCNullStreamImpl.h>
 
-#include <zlib.h>
+#include <base.h>
+#include <zassert.h>
+#include <ztime.h>
+#include <tref.h>
+#include <zstring.h>
+#include <zadapt.h>
+#include <token.h>
+#include <VersionInfo.h>
+
 #include <utility.h>
 #include <Igc.h>
 

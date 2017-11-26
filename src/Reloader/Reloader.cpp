@@ -171,7 +171,7 @@ bool Exists(const char * szFileName)
 
 
 
-bool GetFileTime(char * szFileName, LPFILETIME pft)
+bool GetFileTime(const char * szFileName, LPFILETIME pft)
 {
     HANDLE hFile = CreateFile(szFileName, 
                            0, 
@@ -196,7 +196,7 @@ bool GetFileTime(char * szFileName, LPFILETIME pft)
 //
 // Rename mangled name to correct name
 //
-void RenameMangledFile(char * szMangled, char * szCorrect)
+void RenameMangledFile(const char * szMangled, const char * szCorrect)
 {
         if (Exists(szMangled))
         {
@@ -265,7 +265,7 @@ void RenameMangledFiles()
     for (int i = 0; i < g_cEXEFiles; ++i)
     {
         char szMangled[MAX_PATH];
-        char * szCorrect = CAutoDownloadUtil::GetEXEFileName(i);
+        const char * szCorrect = CAutoDownloadUtil::GetEXEFileName(i);
 
         // we can only handle string of at least 8 characters
         if (strlen(szCorrect) < 8) 

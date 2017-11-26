@@ -4,6 +4,8 @@
 #include "D3DDevice9.h"
 #include "UiState.h"
 
+#include <base.h>
+
 TRef<ConstantImage> LoadImageFile(LuaScriptContext& context, std::string path) {
     std::string fullpath = context.FindPath(path);
     Engine* pEngine = context.GetEngine();

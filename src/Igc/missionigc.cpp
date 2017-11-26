@@ -17,6 +17,9 @@
 **  History:
 */
 // missionIGC.cpp : Implementation of CmissionIGC
+
+#include    <time.h>
+
 #include    "missionigc.h"
 #include    "clusterIGC.h"
 #include    "warpIGC.h"
@@ -54,7 +57,6 @@
 #include    "dronetypeigc.h"
 #include    "bucketigc.h"
 #include    "mapmakerigc.h"
-#include	"zlib.h"
 
 #ifdef STEAMSECURE
 # include "AllegianceSecurity.h"
