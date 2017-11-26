@@ -35,7 +35,13 @@
 #include "stdio.h"
 #include "windows.h"
 
-#include "zlib.h"
+#include <base.h>
+#include <zassert.h>
+#include <ztime.h>
+#include <tref.h>
+#include <zstring.h>
+#include <token.h>
+
 #include "engine.h"
 #include "effect.h"
 #include <geometry.h>

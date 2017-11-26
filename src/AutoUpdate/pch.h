@@ -12,7 +12,6 @@ extern CComModule _Module;
 #include <commctrl.h>
 
 
-#include "zlib.h"
 #include "Utility.h"
 #include "zreg.h"
 #include "AutoDownload.h"

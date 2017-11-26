@@ -36,7 +36,15 @@
 #include <map>
 
 #define __MODULE__ "Lobby"
-#include <zlib.h>
+#include <base.h>
+#include <zassert.h>
+#include <ztime.h>
+#include <tref.h>
+#include <zstring.h>
+#include <zadapt.h>
+#include <token.h>
+#include <VersionInfo.h>
+#include <Win32app.h>
 #include <utility.h>
 
 

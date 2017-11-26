@@ -31,7 +31,6 @@
 
 // Allegiance Includes
 #define __MODULE__ "PigConfig"
-#include <zlib.h>
 #include <TCLib.h>
 
 // MIDL-Generated Includes (from other projects)

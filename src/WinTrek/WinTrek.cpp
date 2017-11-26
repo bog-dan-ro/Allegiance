@@ -3374,7 +3374,7 @@ public:
 		bool startFullScreen = true;
 		ParseCommandLine(strCommandLine, startFullScreen);
 
-		SetFullscreen(startFullScreen);
+        SetFullscreen(false);//startFullScreen);
 
         m_pmissileLast = 0;
 

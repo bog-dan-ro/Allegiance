@@ -36,7 +36,15 @@
 #define __MODULE__ "ALLSRVUI"
 #include <mmsystem.h>
 #define ZLIB_SKIP_NEW_REDEF
-#include <zlib.h>
+#include <base.h>
+#include <zassert.h>
+#include <ztime.h>
+#include <tref.h>
+#include <zstring.h>
+#include <zadapt.h>
+#include <token.h>
+#include <VersionInfo.h>
+
 #include <zreg.h>
 #include <FixDelete.h>
 

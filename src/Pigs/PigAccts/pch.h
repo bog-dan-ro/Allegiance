@@ -52,7 +52,4 @@ extern CExeModule _Module;
 #pragma warning(disable:4192)
 
 
-// ZLib Headers
-#include <zlib.h>
-
 #endif // !defined(AFX_pch_H__1F7E7E81_C6F0_11D2_85C9_00C04F68DEB0__INCLUDED)

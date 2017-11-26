@@ -47,7 +47,16 @@
   #define __MODULE__ "AllSrv"
 #endif // !defined(ALLSRV_STANDALONE)
 #include <guids.h>
-#include <zlib.h>
+#include <base.h>
+#include <zassert.h>
+#include <ztime.h>
+#include <tref.h>
+#include <zstring.h>
+#include <zadapt.h>
+#include <token.h>
+#include <VersionInfo.h>
+#include <Win32app.h>
+#include <FTPSession.h>
          
 #include "resource.h"
 #include <utility.h>

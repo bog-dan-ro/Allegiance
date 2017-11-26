@@ -71,7 +71,6 @@ extern CExeModule _Module;
 #include <wininet.h>                                                       //
 #include <shlwapi.h>                                                       //
 #include <guids.h>                                                         //
-#include <..\zlib\zlib.h>                                                  //
 #include <FixDelete.h>                                                     //
 //                                                                         //
 // End: Allegiance Header Files                                            //
