@@ -1,6 +1,8 @@
 #ifndef _Window_h_
 #define _Window_h_
 
+#include <windows.h>
+
 #include "event.h"
 #include "input.h"
 #include "rect.h"

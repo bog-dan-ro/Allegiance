@@ -1,4 +1,7 @@
 #include "base.h"
+
+#include <windows.h>
+
 #include "zassert.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,7 +58,7 @@ ZFile::ZFile( ) :
 }
 
 
-ZFile::ZFile(const PathString& strPath, uint32_t how) : 
+ZFile::ZFile(const PathString& strPath, FileFlags mode) :
 	d(new ZFilePrivate)
 {
 	d->m_pathString = strPath;
@@ -64,16 +67,14 @@ ZFile::ZFile(const PathString& strPath, uint32_t how) :
 	uint32_t dwShareMode = FILE_SHARE_WRITE;
 	uint32_t dwCreationDisposition = OPEN_EXISTING;
 
-	if((how & OF_WRITE) == OF_WRITE)
+    if (mode & WriteOnly) {
 		dwDesiredAccess = GENERIC_WRITE;
-
-	if((how & OF_SHARE_DENY_WRITE) == OF_SHARE_DENY_WRITE)
-		dwShareMode = FILE_SHARE_READ;
-
-	if((how & OF_CREATE) == OF_CREATE)
+        dwShareMode = FILE_SHARE_READ;
 		dwCreationDisposition = CREATE_ALWAYS;
+    }
 
-	// Unicode markers / wide format enables up to 32K path length. 
+#ifndef __GNUC__
+    // Unicode markers / wide format enables up to 32K path length.
 	PathString unicodePath("\\\\?\\");
 
 	// If the path is relative, don't use unicode marker.
@@ -81,6 +82,9 @@ ZFile::ZFile(const PathString& strPath, uint32_t how) :
 		unicodePath = strPath;
 	else
 		unicodePath += strPath;
+#else
+    PathString unicodePath(strPath);
+#endif
 
 	WCHAR* pszw = new WCHAR[unicodePath.GetLength() + 1];
     int result = MultiByteToWideChar(CP_ACP, 0, unicodePath, unicodePath.GetLength(), pszw, unicodePath.GetLength());
@@ -221,7 +225,7 @@ void ZFile::SetPointer(uint8_t * ptr)
 }
 
 ZWriteFile::ZWriteFile(const PathString& strPath) :
-    ZFile(strPath, OF_CREATE | OF_WRITE | OF_SHARE_EXCLUSIVE)
+    ZFile(strPath, ReadWrite | Append)
 {
 }
 
@@ -330,7 +334,7 @@ ZString ZFile::GetSha1Hash()
 
 // BT - STEAM
 // https://stackoverflow.com/questions/27217063/how-to-read-filename-of-the-last-modified-file-in-a-directory
-FILETIME ZFile::GetMostRecentFileModificationTime(ZString &searchPath)
+uint64_t ZFile::GetMostRecentFileModificationTime(ZString &searchPath)
 {
 	WIN32_FIND_DATAW ffd;
 	wchar_t currentFile[MAX_PATH], lastModifiedFilename[MAX_PATH];
@@ -352,7 +356,7 @@ FILETIME ZFile::GetMostRecentFileModificationTime(ZString &searchPath)
 	{
 		//still have the default in the main directory
 		printf("Invalid handle value (%lu)\n", GetLastError());
-		return currentModifiedTime;
+        return uint64_t(currentModifiedTime.dwHighDateTime) << 32 | currentModifiedTime.dwLowDateTime;
 	}
 	do
 	{
@@ -398,5 +402,5 @@ FILETIME ZFile::GetMostRecentFileModificationTime(ZString &searchPath)
 	FindClose(hFind);
 
 
-	return lastModified;
+    return uint64_t(lastModified.dwHighDateTime) << 32 | lastModified.dwLowDateTime;
 }

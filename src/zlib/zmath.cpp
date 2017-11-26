@@ -1,6 +1,8 @@
 #include "zmath.h"
 
-#include <crtdbg.h>
+#ifndef __unix__
+# include <crtdbg.h>
+#endif
 
 #include "zassert.h"
 

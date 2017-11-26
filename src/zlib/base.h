@@ -29,11 +29,19 @@ class ZFilePrivate;
 class ZFile : public IObject {
 protected:
 	std::unique_ptr<ZFilePrivate> d;
+public:
+    enum FileFlags {
+        ReadOnly = 1 << 0,
+        WriteOnly = 1 << 1,
+        ReadWrite = ReadOnly | WriteOnly,
+        Append = 1 << 2,
+        Truncate = 1 << 3
+    };
 
 public:
 	ZFile(); // BUILD_DX9: added for DX9 but can stay for DX7 as well
 
-    ZFile(const PathString& strPath, uint32_t how = OF_READ | OF_SHARE_DENY_WRITE);
+    ZFile(const PathString& strPath, FileFlags mode = ReadOnly);
     virtual ~ZFile();
 
     virtual bool  IsValid();
@@ -62,8 +70,13 @@ public:
 
 	// BT - STEAM
 	ZString GetSha1Hash();
-	static FILETIME GetMostRecentFileModificationTime(ZString &searchPath);
+    static uint64_t GetMostRecentFileModificationTime(ZString &searchPath);
 };
+
+inline ZFile::FileFlags operator|(ZFile::FileFlags a, ZFile::FileFlags b)
+{
+    return ZFile::FileFlags(a | b);
+}
 
 class ZWriteFile : public ZFile {
 public:

@@ -8,6 +8,8 @@
 #define _color_h_
 
 #include <algorithm>
+#include <cstdint>
+
 #include "zstring.h"
 
 #undef RGB // TODO: remove this line after all #include <windows.h> are nuked
@@ -149,7 +151,7 @@ public:
     }
 };
 
-inline Color MakeColorFromCOLORREF(COLORREF color)
+inline Color MakeColorFromCOLORREF(uint32_t color)
 {
     return 
         Color(

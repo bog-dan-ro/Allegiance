@@ -9,9 +9,14 @@
 
 #include <cmath>
 #include <cstdint>
+#include <cstdlib>
 
 #include "float.h"
 #include "zassert.h"
+
+#ifdef __unix__
+# define __forceinline
+#endif
 
 //////////////////////////////////////////////////////////////////////////////
 //

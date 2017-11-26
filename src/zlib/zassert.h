@@ -7,8 +7,9 @@
 #ifndef _assert_h_
 #define _assert_h_
 
-#include <windows.h>
-
+#ifndef __unix__
+# include <windows.h>
+#endif
 //////////////////////////////////////////////////////////////////////////////
 //
 // Make sure we didn't include some other assert mechanism

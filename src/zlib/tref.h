@@ -1,7 +1,13 @@
 #ifndef _tref_H_
 #define _tref_H_
 
-#include "StackTracer.h"
+#include <cstdint>
+
+#ifndef __unix__
+# include "StackTracer.h"
+#else
+# define __stdcall
+#endif
 
 // BT - 9/17 - Hunting down mystery fedsrv crashes.
 
@@ -106,7 +112,7 @@ public:
 	//
 
 	TRef() :
-		m_pt(NULL)
+        m_pt(nullptr)
 	{
 	}
 
@@ -145,7 +151,7 @@ public:
 	{
 		if (m_pt) {
 			m_pt->Release();
-			m_pt = NULL;
+            m_pt = nullptr;
 		}
 		return &m_pt;
 	}
@@ -208,10 +214,10 @@ public:
 
 
 	// define comparison operators for use in associative containers
-	inline friend bool operator<(const TRef& t1, Type* pt) { return t1.m_pt < pt; };
-	inline friend bool operator>(const TRef& t1, Type* pt) { return t1.m_pt > pt; };
-	inline friend bool operator<=(const TRef& t1, Type* pt) { return t1.m_pt <= pt; };
-	inline friend bool operator>=(const TRef& t1, Type* pt) { return t1.m_pt >= pt; };
+    inline friend bool operator<(const TRef& t1, Type* pt) { return t1.m_pt < pt; }
+    inline friend bool operator>(const TRef& t1, Type* pt) { return t1.m_pt > pt; }
+    inline friend bool operator<=(const TRef& t1, Type* pt) { return t1.m_pt <= pt; }
+    inline friend bool operator>=(const TRef& t1, Type* pt) { return t1.m_pt >= pt; }
 };
 
 #endif

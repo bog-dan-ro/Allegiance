@@ -276,7 +276,7 @@ private:
   Time              m_timeNow;
 
   // BT - STEAM
-  FILETIME			m_lastDrmHashUpdate;
+  uint64_t			m_lastDrmHashUpdate;
   char				m_szDrmHashFilename[MAX_PATH];
   char				m_szDrmDownloadUrly[MAX_PATH];
 

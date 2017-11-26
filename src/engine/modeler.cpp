@@ -2524,7 +2524,7 @@ public:
 		if (pfile == NULL &&
 			(strToTryOpenFromSteamDLC.Right(17) != "newgamescreen.mdl")) //newgamescreen needs to be ACSS-protected, so don't open it from mods
 		{
-			pfile = new ZFile(strToTryOpenFromSteamDLC, OF_READ | OF_SHARE_DENY_WRITE);
+            pfile = new ZFile(strToTryOpenFromSteamDLC);
 
 			if (!pfile->IsValid())
 				pfile = NULL;
@@ -2542,7 +2542,7 @@ public:
 		if ((pfile == NULL) && getHighresVersion == true &&
 			(strToTryOpen.Right(7) == "bmp.mdl")) // if its a texture, try loading from the strToTryOpen
 		{
-			pfile = new ZFile(strToTryOpen, OF_READ | OF_SHARE_DENY_WRITE);
+            pfile = new ZFile(strToTryOpen);
 			// mmf modified Y_P's logic
 			if (!pfile->IsValid())
 			{
@@ -2558,13 +2558,13 @@ public:
 
 			// pkk - Use same conditional compilation like on registry keys
 #ifdef _ALLEGIANCE_PROD_
-			pfile = new ZFile(strToOpen, OF_READ | OF_SHARE_DENY_WRITE);
+            pfile = new ZFile(strToOpen);
 #else
 			// KGJV try dev folder 1st
-			pfile = new ZFile(strToTryOpenFromDev, OF_READ | OF_SHARE_DENY_WRITE);
+			pfile = new ZFile(strToTryOpenFromDev);
 			if (!pfile->IsValid()) {
-				pfile = new ZFile(strToOpen, OF_READ | OF_SHARE_DENY_WRITE);
-		}
+				pfile = new ZFile(strToOpen);
+			}
 			else {
 				if (g_bMDLLog) {
 					ZDebugOutput("'dev' file found for " + pathStr + "\n");

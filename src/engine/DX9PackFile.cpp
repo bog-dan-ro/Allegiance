@@ -166,7 +166,7 @@ bool CDX9PackFile::Create( PACK_CREATE_CALLBACK pFnCreateCallback )
 	m_pWriteBuffer = new BYTE[ s_iWriteBufferSize ];
 
 	// Create the file for writing.
-	m_pFile = new ZFile( m_szOutputFileName, OF_WRITE | OF_SHARE_DENY_WRITE | OF_CREATE );
+    m_pFile = new ZFile( m_szOutputFileName, ZFile::WriteOnly);
 	headerWritePos = m_pFile->Tell();
 	m_dwWritePos	= 0;
 	m_dwPackOffset	= 0;

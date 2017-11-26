@@ -160,8 +160,7 @@ CLobbyApp::CLobbyApp(ILobbyAppSite * plas) :
 #endif
 {
 	// BT - STEAM
-	m_lastDrmHashUpdate.dwHighDateTime = 0;
-	m_lastDrmHashUpdate.dwLowDateTime = 0;
+	m_lastDrmHashUpdate = 0;
 	strcpy(m_szDrmHashFilename, "");
 
   assert(m_plas);
@@ -474,8 +473,8 @@ void CLobbyApp::CheckAndUpdateDrmHashes(bool forceUpdate)
 	if (strcmp(m_szDrmDownloadUrly, "NOTSET") == 0)
 		return;
 
-	FILETIME lastModifiedTime = ZFile::GetMostRecentFileModificationTime(ZString(m_szDrmHashFilename));
-	if (CompareFileTime(&m_lastDrmHashUpdate, &lastModifiedTime) != 0 || forceUpdate == true)
+	uint64_t lastModifiedTime = ZFile::GetMostRecentFileModificationTime(ZString(m_szDrmHashFilename));
+	if (m_lastDrmHashUpdate != lastModifiedTime || forceUpdate == true)
 	{
 		// Push update message to all servers.
 		FedMessaging * pfm = &g_pLobbyApp->GetFMServers();
